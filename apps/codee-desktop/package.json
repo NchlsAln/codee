@@ -21,6 +21,6 @@
     "posthog-node": "^4.6.0"
   },
   "devDependencies": {
-    "electron": "30.0.0"
+    "electron": "40.4.1"
   }
 }
