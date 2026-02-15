@@ -1,0 +1,15 @@
+
+> codee-vscode@0.9.0-beta.1 package
+> npm run build && vsce package --out dist/codee.vsix
+
+
+> codee-vscode@0.9.0-beta.1 build
+> npm --prefix webview-ui run build && node ../../tools/build-config/esbuild.vscode.cjs && node ../../tools/build-config/inline-webview.cjs
+
+
+> @codee/codee-vscode-webview@0.9.0-beta.1 build
+> node esbuild.config.cjs
+
+Webview assets copied.
+ WARNING  LICENSE.md, LICENSE.txt or LICENSE not found
+ DONE  Packaged: dist/codee.vsix (27 files, 4.39MB)

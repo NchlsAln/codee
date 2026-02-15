@@ -1,0 +1,13 @@
+
+> @codee/languages@0.9.0-beta.1 test:unit
+> jest -c jest.config.cjs --runInBand
+
+PASS src/test/unit/CodeTemplates.test.ts
+PASS src/test/unit/PromptEngineering.test.ts
+PASS src/test/unit/LanguageRegistry.test.ts
+
+Test Suites: 3 passed, 3 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        1.431 s, estimated 2 s
+Ran all test suites.

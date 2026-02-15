@@ -1,0 +1,345 @@
+{
+  "name": "codee-vscode",
+  "displayName": "Codee",
+  "publisher": "codee",
+  "version": "0.9.0-beta.1",
+  "description": "Local-first AI coding assistant for VS Code.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/codee"
+  },
+  "homepage": "https://github.com/your-org/codee",
+  "bugs": {
+    "url": "https://github.com/your-org/codee/issues"
+  },
+  "keywords": ["ai", "assistant", "code", "local", "productivity"],
+  "categories": ["Other"],
+  "extensionKind": ["ui", "workspace"],
+  "os": ["win32", "darwin", "linux"],
+  "cpu": ["x64", "arm64"],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "main": "dist/extension.js",
+  "types": "dist/extension.d.ts",
+  "files": [
+    "dist/**",
+    "resources/**",
+    "node_modules/keytar/**",
+    "node_modules/@journeyapps/sqlcipher/**",
+    "node_modules/@mapbox/node-pre-gyp/**"
+  ],
+  "activationEvents": [
+    "onView:codee.sidebar",
+    "onView:codee.chat",
+    "onCommand:codee.startSession",
+    "onCommand:codee.explainSelected",
+    "onCommand:codee.generateTests",
+    "onCommand:codee.refactorSelection",
+    "onCommand:codee.switchLanguageMode",
+    "onCommand:codee.openSettings",
+    "onCommand:codee.clearLocalData",
+    "onCommand:codee.openDocumentation",
+    "onCommand:codee.openFeedback",
+    "onCommand:codee.openHelp",
+    "onCommand:codee.openOnboarding",
+    "onCommand:codee.openEngineInspector",
+    "onCommand:codee.exportDebugLog",
+    "onCommand:codee.restartEngine",
+    "onCommand:codee.downloadModel",
+    "onCommand:codee.openEngineLogs"
+  ],
+  "contributes": {
+    "commands": [
+      { "command": "codee.startSession", "title": "Codee: Start New Session" },
+      { "command": "codee.explainSelected", "title": "Codee: Explain Selected Code" },
+      { "command": "codee.generateTests", "title": "Codee: Generate Unit Tests" },
+      { "command": "codee.refactorSelection", "title": "Codee: Refactor Selection" },
+      { "command": "codee.switchLanguageMode", "title": "Codee: Switch Language Mode" },
+      { "command": "codee.openSettings", "title": "Codee: Open Settings" },
+      { "command": "codee.clearLocalData", "title": "Codee: Clear Local Data" },
+      { "command": "codee.openDocumentation", "title": "Codee: Open Documentation" },
+      { "command": "codee.openFeedback", "title": "Codee: Send Feedback" },
+      { "command": "codee.openHelp", "title": "Codee: Open Help" },
+      { "command": "codee.openOnboarding", "title": "Codee: Open Onboarding" },
+      { "command": "codee.openEngineInspector", "title": "Codee: Open Engine Inspector" },
+      { "command": "codee.exportDebugLog", "title": "Codee: Export Debug Log" },
+      { "command": "codee.restartEngine", "title": "Codee: Restart Engine" },
+      { "command": "codee.downloadModel", "title": "Codee: Download Model" },
+      { "command": "codee.openEngineLogs", "title": "Codee: Open Engine Logs" }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codee",
+          "title": "Codee",
+          "icon": "resources/codee.svg"
+        }
+      ]
+    },
+    "views": {
+      "codee": [
+        { "id": "codee.sidebar", "name": "Overview" },
+        { "id": "codee.chat", "name": "Chat" }
+      ]
+    },
+    "configuration": {
+      "title": "Codee",
+      "properties": {
+        "codee.core.modelId": {
+          "type": "string",
+          "default": "local-default",
+          "description": "Active model identifier.",
+          "scope": "machine"
+        },
+        "codee.core.modelPath": {
+          "type": "string",
+          "default": "",
+          "description": "Filesystem path to a local model.",
+          "scope": "machine"
+        },
+        "codee.core.chatModelId": {
+          "type": "string",
+          "default": "",
+          "description": "Override model for chat tasks.",
+          "scope": "machine"
+        },
+        "codee.core.codeModelId": {
+          "type": "string",
+          "default": "",
+          "description": "Override model for code generation tasks.",
+          "scope": "machine"
+        },
+        "codee.core.embeddingModelId": {
+          "type": "string",
+          "default": "",
+          "description": "Override model for embeddings.",
+          "scope": "machine"
+        },
+        "codee.core.cloudFallback": {
+          "type": "boolean",
+          "default": false,
+          "description": "Allow cloud fallback when local model is unavailable.",
+          "scope": "resource"
+        },
+        "codee.core.modelEndpoint": {
+          "type": "string",
+          "default": "",
+          "description": "Custom model endpoint URL.",
+          "scope": "machine"
+        },
+        "codee.core.pinnedCertificates": {
+          "type": "object",
+          "default": {},
+          "description": "Pinned certificate fingerprints by hostname.",
+          "scope": "machine"
+        },
+        "codee.features.autoComplete": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Codee autocomplete.",
+          "scope": "resource"
+        },
+        "codee.features.inlineSuggestions": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable inline Codee suggestions.",
+          "scope": "resource"
+        },
+        "codee.features.codeLens": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable Codee code lens features.",
+          "scope": "resource"
+        },
+        "codee.features.readOnlyMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Prevent Codee from modifying files.",
+          "scope": "resource"
+        },
+        "codee.languages.enabled": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["typescript", "javascript", "python"],
+          "description": "Language packages enabled for Codee.",
+          "scope": "resource"
+        },
+        "codee.languages.lspPaths": {
+          "type": "object",
+          "default": {},
+          "description": "Custom LSP server paths per language.",
+          "scope": "resource"
+        },
+        "codee.privacy.telemetryEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable telemetry collection.",
+          "scope": "machine"
+        },
+        "codee.privacy.telemetryEndpoint": {
+          "type": "string",
+          "default": "",
+          "description": "PostHog endpoint for opt-in telemetry.",
+          "scope": "machine"
+        },
+        "codee.privacy.telemetryProjectKey": {
+          "type": "string",
+          "default": "",
+          "description": "PostHog project API key for opt-in telemetry.",
+          "scope": "machine"
+        },
+        "codee.privacy.crashReportingEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable crash reporting.",
+          "scope": "machine"
+        },
+        "codee.privacy.crashReportingDsn": {
+          "type": "string",
+          "default": "",
+          "description": "Sentry DSN for crash reporting.",
+          "scope": "machine"
+        },
+        "codee.privacy.loggingEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable diagnostic logging.",
+          "scope": "machine"
+        },
+        "codee.privacy.dataRetentionDays": {
+          "type": "number",
+          "default": 30,
+          "description": "Retention in days for local data.",
+          "scope": "machine"
+        },
+        "codee.privacy.offlineMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Block non-local network access.",
+          "scope": "machine"
+        },
+        "codee.advanced.contextWindowTokens": {
+          "type": "number",
+          "default": 6000,
+          "description": "Token budget for context window.",
+          "scope": "resource"
+        },
+        "codee.advanced.temperature": {
+          "type": "number",
+          "default": 0.2,
+          "description": "Sampling temperature for generation.",
+          "scope": "resource"
+        },
+        "codee.advanced.systemPrompts": {
+          "type": "object",
+          "default": {},
+          "description": "Custom system prompts per language.",
+          "scope": "resource"
+        },
+        "codee.advanced.includePatterns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["**/*"],
+          "description": "Include patterns for indexing.",
+          "scope": "resource"
+        },
+        "codee.advanced.excludePatterns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["**/node_modules/**", "**/dist/**", "**/.git/**"],
+          "description": "Exclude patterns for indexing.",
+          "scope": "resource"
+        },
+        "codee.advanced.customInstructions": {
+          "type": "string",
+          "default": "",
+          "description": "Project-specific instructions.",
+          "scope": "resource"
+        },
+        "codee.advanced.teamPrompts": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Team shared prompts.",
+          "scope": "resource"
+        },
+        "codee.advanced.themePreference": {
+          "type": "string",
+          "default": "vscode",
+          "enum": ["vscode", "light", "dark", "high-contrast"],
+          "description": "Theme preference for Codee UI.",
+          "scope": "machine"
+        },
+        "codee.advanced.indexingIdleDelayMs": {
+          "type": "number",
+          "default": 1500,
+          "description": "Delay before background indexing starts (ms).",
+          "scope": "resource"
+        },
+        "codee.advanced.embeddingCacheMaxEntries": {
+          "type": "number",
+          "default": 2000,
+          "description": "Max embeddings stored in the LRU cache.",
+          "scope": "resource"
+        },
+        "codee.advanced.languageServerIdleMs": {
+          "type": "number",
+          "default": 300000,
+          "description": "Idle timeout before shutting down language servers (ms).",
+          "scope": "resource"
+        },
+        "codee.advanced.performanceMetricsEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Collect and store performance metrics.",
+          "scope": "machine"
+        },
+        "codee.advanced.mockLlmEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use deterministic mock LLM responses.",
+          "scope": "resource"
+        },
+        "codee.advanced.developerMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable developer tools and inspector panels.",
+          "scope": "resource"
+        },
+        "codee.advanced.maxIndexFiles": {
+          "type": "number",
+          "default": 20000,
+          "description": "Maximum files to index before warning.",
+          "scope": "resource"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "dev": "node ../../tools/build-config/esbuild.vscode.cjs --watch",
+    "dev:webview": "npm --prefix webview-ui run watch",
+    "build": "npm --prefix webview-ui run build && node ../../tools/build-config/esbuild.vscode.cjs && node ../../tools/build-config/inline-webview.cjs",
+    "package": "npm run build && vsce package --out dist/codee.vsix",
+    "compile-tests": "tsc -p tsconfig.test.json",
+    "test:extension": "npm run compile-tests && node ./dist/test/runTest.js",
+    "test": "npm run test:extension",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@journeyapps/sqlcipher": "^5.3.1",
+    "@sentry/node": "^7.114.0",
+    "keytar": "^7.9.0",
+    "posthog-node": "^4.6.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@codee/core-engine": "0.9.0-beta.1",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-electron": "^2.3.8",
+    "mocha": "^10.2.0"
+  }
+}

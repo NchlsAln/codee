@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360">
+  <rect width="1200" height="360" fill="#0f172a" />
+  <g fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.7">
+    <rect x="60" y="80" width="300" height="200" rx="12" />
+    <rect x="450" y="80" width="300" height="200" rx="12" />
+    <rect x="840" y="80" width="300" height="200" rx="12" />
+    <line x1="360" y1="180" x2="450" y2="180" />
+    <line x1="750" y1="180" x2="840" y2="180" />
+  </g>
+  <text x="90" y="150" fill="#f8fafc" font-family="Arial, sans-serif" font-size="16">Index</text>
+  <text x="480" y="150" fill="#f8fafc" font-family="Arial, sans-serif" font-size="16">Chat</text>
+  <text x="870" y="150" fill="#f8fafc" font-family="Arial, sans-serif" font-size="16">Refactor</text>
+  <text x="90" y="200" fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">Workflow placeholder</text>
+</svg>

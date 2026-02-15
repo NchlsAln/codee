@@ -1,0 +1,15 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./apps/codee-vscode" },
+    { "path": "./apps/codee-desktop" },
+    { "path": "./packages/core-engine" },
+    { "path": "./packages/data-layer" },
+    { "path": "./packages/ui-system" },
+    { "path": "./packages/languages/common" },
+    { "path": "./packages/languages" },
+    { "path": "./packages/languages/python" },
+    { "path": "./packages/languages/typescript" },
+    { "path": "./tools/build-config" }
+  ]
+}

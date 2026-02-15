@@ -1,0 +1,40 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "webview-ui/dist/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    },
+    "test": {
+      "dependsOn": ["^test"]
+    },
+    "test:unit": {
+      "dependsOn": ["^test:unit"]
+    },
+    "test:integration": {
+      "dependsOn": ["^test:integration"]
+    },
+    "test:extension": {
+      "dependsOn": ["^test:extension"]
+    },
+    "benchmark": {
+      "dependsOn": ["build"]
+    },
+    "package": {
+      "dependsOn": ["build"]
+    },
+    "assets": {
+      "outputs": ["apps/**/resources/**"]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+
+> @codee/codee-vscode@0.9.0-beta.1 lint
+> eslint src --ext .ts
+

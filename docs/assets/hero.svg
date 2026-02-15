@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0b1220" />
+      <stop offset="100%" stop-color="#172a3a" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)" />
+  <g fill="none" stroke="#4fd1c5" stroke-width="2" opacity="0.5">
+    <rect x="120" y="120" width="960" height="360" rx="16" />
+    <line x1="160" y1="190" x2="1040" y2="190" />
+    <line x1="160" y1="260" x2="1040" y2="260" />
+    <line x1="160" y1="330" x2="1040" y2="330" />
+  </g>
+  <text x="140" y="170" fill="#f8fafc" font-family="Arial, sans-serif" font-size="32">Codee</text>
+  <text x="140" y="220" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="18">Local-first AI coding assistant</text>
+  <text x="140" y="260" fill="#94a3b8" font-family="Arial, sans-serif" font-size="14">Screenshot placeholder</text>
+</svg>

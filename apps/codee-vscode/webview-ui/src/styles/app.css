@@ -1,0 +1,265 @@
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--vscode-editor-background);
+  color: var(--vscode-editor-foreground);
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--codee-border);
+  background: var(--codee-surface);
+  gap: 12px;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.beta-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: color-mix(in srgb, var(--codee-accent) 35%, var(--codee-surface));
+  border: 1px solid var(--codee-border);
+}
+
+.chat-container {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.streaming-indicator {
+  padding: 6px 16px;
+  font-size: 12px;
+  background: color-mix(in srgb, var(--codee-surface) 70%, var(--codee-accent));
+}
+
+.message-list {
+  flex: 1;
+  overflow: auto;
+  padding: 16px;
+}
+
+.message-item {
+  margin-bottom: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--codee-border);
+  background: var(--codee-surface);
+}
+
+.message-item.user {
+  border-left: 3px solid var(--codee-accent);
+}
+
+.message-item.tool {
+  background: color-mix(in srgb, var(--codee-surface) 70%, var(--codee-accent));
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.code-block {
+  position: relative;
+  background: #0b1020;
+  border-radius: 8px;
+  padding: 12px 12px 12px 12px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.code-block pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: var(--vscode-editor-font-family);
+  font-size: 12px;
+}
+
+.code-actions {
+  display: flex;
+  gap: 6px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.code-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+.input-area {
+  border-top: 1px solid var(--codee-border);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--codee-surface);
+}
+
+.mention-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid var(--codee-border);
+  border-radius: 8px;
+  padding: 6px;
+  background: var(--vscode-editor-background);
+  max-height: 180px;
+  overflow: auto;
+}
+
+.mention-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mention-item:hover {
+  background: color-mix(in srgb, var(--codee-surface) 70%, var(--codee-accent));
+}
+
+.mention-label {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.mention-icon {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.mention-detail {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.input-textarea {
+  flex: 1;
+}
+
+.stop-button {
+  background: #ef4444;
+  color: white;
+}
+
+.context-pills {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.context-pill {
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--codee-border);
+  font-size: 12px;
+}
+
+.context-warning {
+  color: #f97316;
+  font-size: 12px;
+}
+
+.suggestion-chips {
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px;
+}
+
+.suggestion-chip {
+  border-radius: 999px;
+}
+
+.conversation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--codee-border);
+  background: var(--codee-surface);
+}
+
+.conversation-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 1px solid var(--codee-border);
+  border-radius: 8px;
+}
+
+.conversation-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.conversation-title {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.conversation-preview {
+  font-size: 11px;
+  opacity: 0.7;
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.conversation-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.conversation-empty {
+  padding: 8px 16px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.error-boundary {
+  padding: 24px;
+  color: var(--vscode-errorForeground);
+}

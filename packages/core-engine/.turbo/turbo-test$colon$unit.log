@@ -1,0 +1,21 @@
+
+> @codee/core-engine@0.9.0-beta.1 test:unit
+> jest -c jest.config.cjs --testPathPattern="src/test/unit|test/intelligence"
+
+PASS test/intelligence/nl2c.test.ts
+PASS src/test/unit/SmartCompression.test.ts
+PASS src/test/unit/ContextBuilder.test.ts
+PASS src/test/unit/ConversationMemory.test.ts
+PASS test/intelligence/documentation-generator.test.ts
+PASS test/intelligence/architecture-analyzer.test.ts
+PASS src/test/unit/OllamaAdapter.test.ts
+PASS test/intelligence/test-generator.test.ts
+PASS src/test/unit/SettingsManager.test.ts
+PASS src/test/unit/VectorMemory.test.ts (5.066 s)
+PASS test/intelligence/multi-file-refactor.test.ts
+
+Test Suites: 11 passed, 11 total
+Tests:       15 passed, 15 total
+Snapshots:   0 total
+Time:        7.641 s
+Ran all test suites matching /src\\test\\unit|test\\intelligence/i.

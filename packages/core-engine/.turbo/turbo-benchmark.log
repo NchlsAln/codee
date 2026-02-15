@@ -1,0 +1,5 @@
+
+> @codee/core-engine@0.9.0-beta.1 benchmark
+> node dist/perf/benchmarks.js
+
+ProjectIndex scan (200 files): 591ms

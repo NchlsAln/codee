@@ -1,0 +1,9 @@
+
+> codee-vscode@0.9.0-beta.1 build
+> npm --prefix webview-ui run build && node ../../tools/build-config/esbuild.vscode.cjs && node ../../tools/build-config/inline-webview.cjs
+
+
+> @codee/codee-vscode-webview@0.9.0-beta.1 build
+> node esbuild.config.cjs
+
+Webview assets copied.

@@ -1,0 +1,17 @@
+
+> @codee/codee-desktop@0.9.0-beta.1 package
+> electron-builder --config ../../electron-builder.yml
+
+  • electron-builder  version=24.13.3 os=10.0.26200
+  • loaded configuration  file=C:\Users\Nikko\Desktop\Codee\electron-builder.yml
+  • description is missed in the package.json  appPackageFile=C:\Users\Nikko\Desktop\Codee\apps\codee-desktop\package.json
+  • author is missed in the package.json  appPackageFile=C:\Users\Nikko\Desktop\Codee\apps\codee-desktop\package.json
+  • packaging       platform=win32 arch=x64 electron=30.0.0 appOutDir=dist\win-unpacked
+  • file source doesn't exist  from=C:\Users\Nikko\Desktop\Codee\apps\codee-desktop\resources
+  • building        target=nsis file=dist\Codee-0.9.0-beta.1-win-x64.exe archs=x64 oneClick=false perMachine=false
+  • default Electron icon is used  reason=application icon is not set
+  • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.1/nsis-3.0.4.1.7z size=1.3 MB parts=1
+  • downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.1/nsis-3.0.4.1.7z duration=1.92s
+  • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-resources-3.4.1/nsis-resources-3.4.1.7z size=731 kB parts=1
+  • downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-resources-3.4.1/nsis-resources-3.4.1.7z duration=1.52s
+  • building block map  blockMapFile=dist\Codee-0.9.0-beta.1-win-x64.exe.blockmap

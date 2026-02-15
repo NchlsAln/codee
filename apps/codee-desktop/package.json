@@ -1,0 +1,26 @@
+{
+  "name": "@codee/codee-desktop",
+  "private": true,
+  "version": "0.9.0-beta.1",
+  "description": "Local-first AI coding assistant",
+  "author": "Nikko",
+  "license": "MIT",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "dev": "node ../../tools/build-config/esbuild.electron.cjs --watch",
+    "build": "node ../../tools/build-config/esbuild.electron.cjs",
+    "package": "electron-builder --config ../../electron-builder.yml",
+    "test": "echo \"No tests yet\"",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "electron-updater": "^6.1.0",
+    "@sentry/electron": "^5.0.0",
+    "posthog-node": "^4.6.0"
+  },
+  "devDependencies": {
+    "electron": "30.0.0"
+  }
+}

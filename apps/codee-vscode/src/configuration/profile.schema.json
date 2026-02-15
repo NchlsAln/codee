@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Codee User Profile",
+  "type": "object",
+  "properties": {
+    "version": { "type": "integer" },
+    "core": { "type": "object" },
+    "features": { "type": "object" },
+    "languages": { "type": "object" },
+    "privacy": { "type": "object" },
+    "advanced": { "type": "object" }
+  },
+  "required": ["version", "core", "features", "languages", "privacy", "advanced"]
+}

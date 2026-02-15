@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "lib": ["ES2022", "DOM"],
+    "baseUrl": ".",
+    "paths": {
+      "@codee/languages": ["../languages/dist"],
+      "@codee/lang-common": ["../languages/common/dist"],
+      "@codee/lang-python": ["../languages/python/dist"],
+      "@codee/lang-typescript": ["../languages/typescript/dist"]
+    },
+    "types": ["node"]
+  },
+  "include": ["src"],
+  "exclude": ["src/test"],
+  "references": [{ "path": "../languages" }]
+}

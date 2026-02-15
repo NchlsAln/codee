@@ -1,0 +1,37 @@
+import { Session } from "../engine/types";
+import { ConversationMemory, ConversationMessage, ConversationThread } from "./ConversationMemory";
+export declare class ConversationStore {
+    private readonly projectPath?;
+    private readonly memory;
+    private readonly sessionMap;
+    private storagePath;
+    private dbPath;
+    private db?;
+    private dbReady?;
+    private retentionDays;
+    constructor(projectPath?: string | undefined);
+    getMemory(): ConversationMemory;
+    setProjectPath(projectPath?: string): Promise<void>;
+    setRetentionDays(days: number): void;
+    initialize(): Promise<void>;
+    persistSession(session: Session): Promise<void>;
+    addMessage(sessionId: string, role: ConversationMessage["role"], content: string): Promise<void>;
+    getConversationId(sessionId: string): string | undefined;
+    getMessages(sessionId: string): Promise<ConversationMessage[]>;
+    listConversations(projectId: string): Promise<ConversationThread[]>;
+    deleteProjectData(projectId: string): Promise<void>;
+    clearStorage(): Promise<void>;
+    private ensureConversation;
+    private load;
+    private loadDatabase;
+    private openDatabase;
+    private loadSnapshotFromDatabase;
+    private migrateLegacyJson;
+    private saveConversation;
+    private saveMessage;
+    private saveSessionMap;
+    private pruneDatabase;
+    private run;
+    private all;
+    private closeDatabase;
+}

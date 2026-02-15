@@ -1,0 +1,12 @@
+
+> @codee/core-engine@0.9.0-beta.1 test:integration
+> jest -c jest.config.cjs --testPathPattern="src/test/integration|test/integration"
+
+PASS src/test/integration/CodeContextAssembler.test.ts
+PASS test/integration/engine-flow.test.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        4.583 s
+Ran all test suites matching /src\\test\\integration|test\\integration/i.

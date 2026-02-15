@@ -1,0 +1,7 @@
+version: "3.9"
+
+services:
+  codee-build:
+    build: .
+    image: codee-build:local
+    command: npm run build

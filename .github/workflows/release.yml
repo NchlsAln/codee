@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Package extension
+        run: npm run package:extension
+      - name: Package desktop
+        run: npm run package:desktop
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+      - name: Generate release notes
+        run: npm run release:notes
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: codee-artifacts-${{ matrix.os }}
+          path: |
+            dist/**
+            apps/codee-desktop/dist/**
+            apps/codee-vscode/dist/**

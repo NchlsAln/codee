@@ -1,0 +1,38 @@
+appId: com.codee.desktop
+productName: Codee
+files:
+  - dist/**
+  - ../codee-vscode/dist/**
+  - ../codee-vscode/webview-ui/dist/**
+extraResources:
+  - from: resources
+    to: resources
+publish:
+  provider: github
+  owner: your-org
+  repo: codee
+  releaseType: draft
+mac:
+  target:
+    - target: dmg
+      arch:
+        - universal
+  hardenedRuntime: true
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+win:
+  target:
+    - target: nsis
+  publisherName: "Codee"
+  signAndEditExecutable: false
+linux:
+  target:
+    - AppImage
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Codee
+artifactName: ${productName}-${version}-${os}-${arch}.${ext}

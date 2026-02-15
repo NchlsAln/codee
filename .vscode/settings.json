@@ -1,0 +1,12 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "npm install": true,
+        "Test-Path": true,
+        "npm cache": true,
+        "nvm": true,
+        "winget": true,
+        "Get-Command": true,
+        "fnm": true,
+        ".": true
+    }
+}

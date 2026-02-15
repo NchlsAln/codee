@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codee Webview Harness</title>
+    <link rel="stylesheet" href="../../../apps/codee-vscode/webview-ui/dist/index.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      window.__messages = [];
+      window.__state = undefined;
+      window.acquireVsCodeApi = () => ({
+        postMessage: (message) => window.__messages.push(message),
+        setState: (state) => {
+          window.__state = state;
+        },
+        getState: () => window.__state
+      });
+    </script>
+    <script src="../../../apps/codee-vscode/webview-ui/dist/index.js"></script>
+  </body>
+</html>

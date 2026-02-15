@@ -1,0 +1,27 @@
+:root {
+  color-scheme: light dark;
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  color: var(--vscode-editor-foreground);
+  background-color: var(--vscode-editor-background);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--vscode-editor-background);
+  color: var(--vscode-editor-foreground);
+}
+
+.vscode-light .app-shell {
+  --codee-accent: #2563eb;
+  --codee-surface: #f8fafc;
+  --codee-border: #e2e8f0;
+}
+
+.vscode-dark .app-shell,
+.vscode-high-contrast .app-shell {
+  --codee-accent: #38bdf8;
+  --codee-surface: #0f172a;
+  --codee-border: #1f2937;
+}

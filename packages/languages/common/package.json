@@ -1,0 +1,12 @@
+{
+  "name": "@codee/lang-common",
+  "version": "0.9.0-beta.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "test": "echo \"No tests yet\"",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  }
+}

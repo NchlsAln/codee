@@ -1,0 +1,26 @@
+
+> codee-vscode@0.9.0-beta.1 test:extension
+> npm run compile-tests && node ./dist/test/runTest.js
+
+
+> codee-vscode@0.9.0-beta.1 compile-tests
+> tsc -p tsconfig.test.json
+
+- Resolving version...
+✔ Validated version: 1.109.3
+✔ Found existing install in C:\Users\Nikko\Desktop\Codee\apps\codee-vscode\.vscode-test\vscode-win32-x64-archive-1.109.3
+
+[main 2026-02-15T18:55:43.954Z] Error: Error mutex already exists
+[main 2026-02-15T18:55:43.988Z] update#setState disabled
+    at id.S (file:///C:/Users/Nikko/Desktop/Codee/apps/codee-vscode/.vscode-test/vscode-win32-x64-archive-1.109.3/b6a47e94e3/resources/app/out/main.js:145:18925)
+[main 2026-02-15T18:55:43.988Z] update#ctor - updates are disabled by the environment
+Started local extension host with pid 47980.
+Loading development extension at c:\Users\Nikko\Desktop\Codee\apps\codee-vscode
+MCP Registry configured: https://api.mcp.github.com
+Settings Sync: Account status changed from uninitialized to unavailable
+[0m[0m
+[0m  Codee extension[0m
+  [32m  ✔[0m[90m registers core commands[0m[31m (1064ms)[0m
+[92m [0m[32m 1 passing[0m[90m (1s)[0m
+[main 2026-02-15T18:55:52.703Z] Extension host with pid 47980 exited with code: 0, signal: unknown.
+Exit code:   0

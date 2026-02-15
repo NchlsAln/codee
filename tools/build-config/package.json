@@ -1,0 +1,14 @@
+{
+  "name": "@codee/build-config",
+  "private": true,
+  "version": "0.9.0-beta.1",
+  "main": "eslint.cjs",
+  "files": [
+    "eslint.cjs",
+    "prettier.cjs",
+    "esbuild.electron.cjs",
+    "esbuild.vscode.cjs",
+    "optimize-assets.cjs",
+    "inline-webview.cjs"
+  ]
+}

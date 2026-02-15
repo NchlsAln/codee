@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "core": {
+    "modelId": "local-default",
+    "modelPath": "",
+    "cloudFallback": false,
+    "modelEndpoint": ""
+  },
+  "features": {
+    "autoComplete": true,
+    "inlineSuggestions": true,
+    "codeLens": false
+  },
+  "languages": {
+    "enabled": ["typescript", "javascript", "python"],
+    "lspPaths": {}
+  },
+  "privacy": {
+    "telemetryEnabled": false,
+    "loggingEnabled": false,
+    "dataRetentionDays": 30
+  },
+  "advanced": {
+    "contextWindowTokens": 6000,
+    "temperature": 0.2,
+    "systemPrompts": {
+      "typescript": "Always use TypeScript strict mode."
+    },
+    "includePatterns": ["**/*"],
+    "excludePatterns": ["**/node_modules/**", "**/dist/**", "**/.git/**"],
+    "customInstructions": "",
+    "teamPrompts": [],
+    "themePreference": "vscode"
+  }
+}
