@@ -3,7 +3,8 @@ import { BasePromptEngineering } from "@codee/lang-common";
 export class PromptEngineering extends BasePromptEngineering {
   constructor() {
     super("sql", {
-      systemPrompt: "You are a SQL expert. Optimize for clarity and correctness.",
+      systemPrompt:
+        "You are a SQL expert. Optimize for clarity, correctness, and performance with safe parameterization.",
       fewShotExamples: [
         {
           task: "Aggregate",
@@ -14,9 +15,26 @@ export class PromptEngineering extends BasePromptEngineering {
           task: "Join",
           input: "users with orders",
           output: "SELECT u.id, o.id FROM users u JOIN orders o ON u.id = o.user_id;"
+        },
+        {
+          task: "Window",
+          input: "rank by revenue",
+          output: "SELECT *, RANK() OVER (ORDER BY revenue DESC) AS rnk FROM accounts;"
+        },
+        {
+          task: "CTE",
+          input: "top customers",
+          output:
+            "WITH totals AS (SELECT customer_id, SUM(amount) total FROM orders GROUP BY customer_id) SELECT * FROM totals WHERE total > 1000;"
         }
       ],
-      contextHints: ["Use explicit JOINs.", "Avoid SELECT * in production queries.", "Prefer window functions for analytics."]
+      contextHints: [
+        "Use explicit JOINs with clear predicates.",
+        "Avoid SELECT * in production queries.",
+        "Prefer window functions for analytics.",
+        "Filter early and index columns used in WHERE and JOIN.",
+        "Always use parameters to avoid injection."
+      ]
     });
   }
 }

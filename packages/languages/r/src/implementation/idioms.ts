@@ -14,5 +14,17 @@ export const rIdioms: Array<{ name: string; description: string }> = [
 	{
 		name: "S3/S4 objects",
 		description: "Use S3/S4 for extensible object systems."
+	},
+	{
+		name: "Pipes",
+		description: "Use |> or %>% for readable transformations."
+	},
+	{
+		name: "Tidy evaluation",
+		description: "Use tidy evaluation for programmable dplyr/ggplot2."
+	},
+	{
+		name: "R6 objects",
+		description: "Use R6 for mutable OOP when needed."
 	}
 ];

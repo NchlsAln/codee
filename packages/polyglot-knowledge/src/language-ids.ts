@@ -39,6 +39,7 @@ export const ALL_LANGUAGE_IDS = [
   "r",
   "ruby",
   "rust",
+  "sas",
   "scala",
   "solidity",
   "sql",

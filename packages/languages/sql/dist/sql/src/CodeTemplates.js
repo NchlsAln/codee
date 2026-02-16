@@ -2,29 +2,31 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CodeTemplates = void 0;
 const lang_common_1 = require("@codee/lang-common");
-const collections_1 = require("./templates/stdlib/collections");
-const async_1 = require("./templates/concurrency/async");
-const analytics_1 = require("./templates/data-analysis/analytics");
-const chart_data_1 = require("./templates/visualization/chart-data");
-const training_data_1 = require("./templates/ml/training-data");
-const postgresql_1 = require("./templates/database/postgresql");
-const mysql_1 = require("./templates/database/mysql");
-const sqlite_1 = require("./templates/database/sqlite");
-const migration_1 = require("./templates/database/migration");
+const core_1 = require("./templates/data-manipulation/core");
+const core_2 = require("./templates/visualization/core");
+const core_3 = require("./templates/statistics/core");
+const core_4 = require("./templates/machine-learning/core");
+const core_5 = require("./templates/time-series/core");
+const core_6 = require("./templates/optimization/core");
+const core_7 = require("./templates/database/core");
+const core_8 = require("./templates/reporting/core");
+const core_9 = require("./templates/bioinformatics/core");
+const core_10 = require("./templates/finance/core");
 class CodeTemplates extends lang_common_1.BaseCodeTemplates {
     constructor() {
         super("sql", {
             idioms: ["Keep queries readable.", "Prefer explicit joins."],
             templates: {
-                "stdlib.collections": (0, collections_1.collectionsTemplate)(),
-                "concurrency.transaction": (0, async_1.asyncTemplate)(),
-                "data-analysis.analytics": (0, analytics_1.analyticsTemplate)(),
-                "visualization.chart-data": (0, chart_data_1.chartDataTemplate)(),
-                "ml.training-data": (0, training_data_1.trainingTemplate)(),
-                "database.postgresql": (0, postgresql_1.postgresTemplate)(),
-                "database.mysql": (0, mysql_1.mysqlTemplate)(),
-                "database.sqlite": (0, sqlite_1.sqliteTemplate)(),
-                "database.migration": (0, migration_1.migrationTemplate)()
+                "data-manipulation.core": (0, core_1.dataManipulationTemplate)(),
+                "visualization.core": (0, core_2.visualizationTemplate)(),
+                "statistics.core": (0, core_3.statisticsTemplate)(),
+                "machine-learning.core": (0, core_4.machineLearningTemplate)(),
+                "time-series.core": (0, core_5.timeSeriesTemplate)(),
+                "optimization.core": (0, core_6.optimizationTemplate)(),
+                "database.core": (0, core_7.databaseTemplate)(),
+                "reporting.core": (0, core_8.reportingTemplate)(),
+                "bioinformatics.core": (0, core_9.bioinformaticsTemplate)(),
+                "finance.core": (0, core_10.financeTemplate)()
             },
             frameworkTemplates: {},
             testTemplates: {}

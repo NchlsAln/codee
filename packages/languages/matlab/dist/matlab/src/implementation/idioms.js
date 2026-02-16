@@ -17,5 +17,13 @@ exports.matlabIdioms = [
     {
         name: "Toolbox usage",
         description: "Leverage specialized toolboxes for domain tasks."
+    },
+    {
+        name: "Preallocation",
+        description: "Preallocate arrays for performance."
+    },
+    {
+        name: "Live scripts",
+        description: "Use Live Scripts for reports and visualizations."
     }
 ];

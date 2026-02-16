@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires, no-console */
 const { mkdirSync, writeFileSync } = require("fs");
 const { join } = require("path");
 

@@ -17,5 +17,13 @@ exports.juliaIdioms = [
     {
         name: "Macros",
         description: "Use macros for metaprogramming and DSLs."
+    },
+    {
+        name: "Do blocks",
+        description: "Use do blocks to pass functions cleanly."
+    },
+    {
+        name: "Avoid globals",
+        description: "Keep performance by using local bindings and const globals."
     }
 ];

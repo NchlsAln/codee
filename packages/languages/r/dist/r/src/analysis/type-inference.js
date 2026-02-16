@@ -23,6 +23,26 @@ function inferRTypes(source) {
         const dataFrame = line.match(/(\w+)\s*<-\s*(data\.frame|tibble)\(/);
         if (dataFrame?.[1]) {
             inferred[dataFrame[1]] = "data.frame";
+            continue;
+        }
+        const factorLiteral = line.match(/(\w+)\s*<-\s*factor\(/);
+        if (factorLiteral?.[1]) {
+            inferred[factorLiteral[1]] = "factor";
+            continue;
+        }
+        const logicalLiteral = line.match(/(\w+)\s*<-\s*(TRUE|FALSE)\b/);
+        if (logicalLiteral?.[1]) {
+            inferred[logicalLiteral[1]] = "logical";
+            continue;
+        }
+        const dateLiteral = line.match(/(\w+)\s*<-\s*as\.Date\(/);
+        if (dateLiteral?.[1]) {
+            inferred[dateLiteral[1]] = "Date";
+            continue;
+        }
+        const listLiteral = line.match(/(\w+)\s*<-\s*list\(/);
+        if (listLiteral?.[1]) {
+            inferred[listLiteral[1]] = "list";
         }
     }
     return inferred;

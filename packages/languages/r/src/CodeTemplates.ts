@@ -1,24 +1,30 @@
 import { BaseCodeTemplates } from "@codee/lang-common";
-import { collectionsTemplate } from "./templates/stdlib/collections";
-import { asyncTemplate } from "./templates/concurrency/async";
-import { dplyrTemplate } from "./templates/data-analysis/dplyr";
-import { ggplotTemplate } from "./templates/visualization/ggplot2";
-import { caretTemplate } from "./templates/ml/caret";
-import { shinyTemplate } from "./templates/visualization/shiny";
-import { dbiTemplate } from "./templates/database/dbi";
+import { dataManipulationTemplate } from "./templates/data-manipulation/core";
+import { visualizationTemplate } from "./templates/visualization/core";
+import { statisticsTemplate } from "./templates/statistics/core";
+import { machineLearningTemplate } from "./templates/machine-learning/core";
+import { timeSeriesTemplate } from "./templates/time-series/core";
+import { optimizationTemplate } from "./templates/optimization/core";
+import { databaseTemplate } from "./templates/database/core";
+import { reportingTemplate } from "./templates/reporting/core";
+import { bioinformaticsTemplate } from "./templates/bioinformatics/core";
+import { financeTemplate } from "./templates/finance/core";
 
 export class CodeTemplates extends BaseCodeTemplates {
   constructor() {
     super("r", {
       idioms: ["Favor tidyverse style when appropriate.", "Use vectorized operations.", "Keep data in tibbles."],
       templates: {
-        "stdlib.collections": collectionsTemplate(),
-        "concurrency.async": asyncTemplate(),
-        "data-analysis.dplyr": dplyrTemplate(),
-        "visualization.ggplot2": ggplotTemplate(),
-        "visualization.shiny": shinyTemplate(),
-        "ml.caret": caretTemplate(),
-        "database.dbi": dbiTemplate()
+        "data-manipulation.core": dataManipulationTemplate(),
+        "visualization.core": visualizationTemplate(),
+        "statistics.core": statisticsTemplate(),
+        "machine-learning.core": machineLearningTemplate(),
+        "time-series.core": timeSeriesTemplate(),
+        "optimization.core": optimizationTemplate(),
+        "database.core": databaseTemplate(),
+        "reporting.core": reportingTemplate(),
+        "bioinformatics.core": bioinformaticsTemplate(),
+        "finance.core": financeTemplate()
       },
       frameworkTemplates: {},
       testTemplates: {}

@@ -61,6 +61,7 @@ const COMMENT_PREFIX: Record<LanguageId, string> = {
   powershell: "#",
   r: "#",
   ruby: "#",
+  sas: "*",
   solidity: "//",
   sql: "--",
   terraform: "#",
@@ -113,6 +114,7 @@ const LANG_DISPLAY: Record<LanguageId, string> = {
   powershell: "PowerShell",
   r: "R",
   ruby: "Ruby",
+  sas: "SAS",
   solidity: "Solidity",
   sql: "SQL",
   terraform: "Terraform",
@@ -350,7 +352,7 @@ function detectListPattern(code: string): BasicPattern | null {
 }
 
 function detectMapPattern(code: string): BasicPattern | null {
-  const kotlinMap = code.match(/mapOf\((?<entries>[^\)]+)\)/);
+  const kotlinMap = code.match(/mapOf\((?<entries>[^)]+)\)/);
   if (kotlinMap?.groups) {
     const entries = kotlinMap.groups.entries ?? "";
     return {
@@ -638,21 +640,21 @@ function renderMap(params: Record<string, string>, to: LanguageId): string {
     case "typescript":
       return `{ ${key}: ${value} }`;
     case "rust":
-      return `let map = std::collections::HashMap::from([(\"${key}\", ${value})]);`;
+      return `let map = std::collections::HashMap::from([("${key}", ${value})]);`;
     case "go":
-      return `map[string]int{\"${key}\": ${value}}`;
+      return `map[string]int{"${key}": ${value}}`;
     case "java":
-      return `Map.of(\"${key}\", ${value});`;
+      return `Map.of("${key}", ${value});`;
     case "cpp":
-      return `std::unordered_map<std::string, int>{{\"${key}\", ${value}}};`;
+      return `std::unordered_map<std::string, int>{{"${key}", ${value}}};`;
     case "kotlin":
       return `mapOf(${entries})`;
     case "scala":
       return `Map(${entries})`;
     case "csharp":
-      return `new Dictionary<string, int> { [\"${key}\"] = ${value} };`;
+      return `new Dictionary<string, int> { ["${key}"] = ${value} };`;
     case "swift":
-      return `[\"${key}\": ${value}]`;
+      return `["${key}": ${value}]`;
     case "dart":
       return `{ '${key}': ${value} }`;
     default:

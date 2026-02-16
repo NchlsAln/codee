@@ -9,7 +9,7 @@ export const nimAstPatterns: Array<{ pattern: string; description: string }> = [
 	{ pattern: "\\bdistinct\\b", description: "Distinct type declaration" },
 	{ pattern: "\\bref\\s+object\\b", description: "Ref object (heap allocation)" },
 	{ pattern: "\\bptr\\b|\\bunsafeAddr\\b", description: "Unsafe pointer usage" },
-	{ pattern: "\\bcast\[", description: "Unsafe cast" },
+	{ pattern: "\\bcast[", description: "Unsafe cast" },
 	{ pattern: "\\bdefer\\b", description: "Defer cleanup" },
 	{ pattern: "\\bspawn\\b|\\bthreadpool\\b", description: "Thread pool usage" }
 ];

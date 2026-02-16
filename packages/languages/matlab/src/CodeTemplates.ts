@@ -1,26 +1,30 @@
 import { BaseCodeTemplates } from "@codee/lang-common";
-import { collectionsTemplate } from "./templates/stdlib/collections";
-import { asyncTemplate } from "./templates/concurrency/async";
-import { signalTemplate } from "./templates/data-analysis/signal-processing";
-import { imageTemplate } from "./templates/data-analysis/image-processing";
-import { controlTemplate } from "./templates/data-analysis/control-systems";
-import { plotTemplate } from "./templates/visualization/plotting";
-import { mlTemplate } from "./templates/ml/ml-toolbox";
-import { databaseTemplate } from "./templates/database/database-connection";
+import { dataManipulationTemplate } from "./templates/data-manipulation/core";
+import { visualizationTemplate } from "./templates/visualization/core";
+import { statisticsTemplate } from "./templates/statistics/core";
+import { machineLearningTemplate } from "./templates/machine-learning/core";
+import { timeSeriesTemplate } from "./templates/time-series/core";
+import { optimizationTemplate } from "./templates/optimization/core";
+import { databaseTemplate } from "./templates/database/core";
+import { reportingTemplate } from "./templates/reporting/core";
+import { bioinformaticsTemplate } from "./templates/bioinformatics/core";
+import { financeTemplate } from "./templates/finance/core";
 
 export class CodeTemplates extends BaseCodeTemplates {
   constructor() {
     super("matlab", {
       idioms: ["Vectorize operations when possible.", "Prefer matrix operations.", "Keep scripts reproducible."],
       templates: {
-        "stdlib.collections": collectionsTemplate(),
-        "concurrency.parallel": asyncTemplate(),
-        "data-analysis.signal-processing": signalTemplate(),
-        "data-analysis.image-processing": imageTemplate(),
-        "data-analysis.control-systems": controlTemplate(),
-        "visualization.plotting": plotTemplate(),
-        "ml.toolbox": mlTemplate(),
-        "database.connection": databaseTemplate()
+        "data-manipulation.core": dataManipulationTemplate(),
+        "visualization.core": visualizationTemplate(),
+        "statistics.core": statisticsTemplate(),
+        "machine-learning.core": machineLearningTemplate(),
+        "time-series.core": timeSeriesTemplate(),
+        "optimization.core": optimizationTemplate(),
+        "database.core": databaseTemplate(),
+        "reporting.core": reportingTemplate(),
+        "bioinformatics.core": bioinformaticsTemplate(),
+        "finance.core": financeTemplate()
       },
       frameworkTemplates: {},
       testTemplates: {}

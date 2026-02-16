@@ -2,25 +2,31 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CodeTemplates = void 0;
 const lang_common_1 = require("@codee/lang-common");
-const collections_1 = require("./templates/stdlib/collections");
-const async_1 = require("./templates/concurrency/async");
-const dataframes_1 = require("./templates/data-analysis/dataframes");
-const plots_1 = require("./templates/visualization/plots");
-const flux_1 = require("./templates/ml/flux");
-const genie_1 = require("./templates/data-analysis/genie");
-const sqlite_1 = require("./templates/database/sqlite");
+const core_1 = require("./templates/data-manipulation/core");
+const core_2 = require("./templates/visualization/core");
+const core_3 = require("./templates/statistics/core");
+const core_4 = require("./templates/machine-learning/core");
+const core_5 = require("./templates/time-series/core");
+const core_6 = require("./templates/optimization/core");
+const core_7 = require("./templates/database/core");
+const core_8 = require("./templates/reporting/core");
+const core_9 = require("./templates/bioinformatics/core");
+const core_10 = require("./templates/finance/core");
 class CodeTemplates extends lang_common_1.BaseCodeTemplates {
     constructor() {
         super("julia", {
             idioms: ["Favor vectorized operations.", "Use multiple dispatch.", "Keep functions type-stable."],
             templates: {
-                "stdlib.collections": (0, collections_1.collectionsTemplate)(),
-                "concurrency.async": (0, async_1.asyncTemplate)(),
-                "data-analysis.dataframes": (0, dataframes_1.dataFramesTemplate)(),
-                "data-analysis.genie": (0, genie_1.genieTemplate)(),
-                "visualization.plots": (0, plots_1.plotsTemplate)(),
-                "ml.flux": (0, flux_1.fluxTemplate)(),
-                "database.sqlite": (0, sqlite_1.sqliteTemplate)()
+                "data-manipulation.core": (0, core_1.dataManipulationTemplate)(),
+                "visualization.core": (0, core_2.visualizationTemplate)(),
+                "statistics.core": (0, core_3.statisticsTemplate)(),
+                "machine-learning.core": (0, core_4.machineLearningTemplate)(),
+                "time-series.core": (0, core_5.timeSeriesTemplate)(),
+                "optimization.core": (0, core_6.optimizationTemplate)(),
+                "database.core": (0, core_7.databaseTemplate)(),
+                "reporting.core": (0, core_8.reportingTemplate)(),
+                "bioinformatics.core": (0, core_9.bioinformaticsTemplate)(),
+                "finance.core": (0, core_10.financeTemplate)()
             },
             frameworkTemplates: {},
             testTemplates: {}

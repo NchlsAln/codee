@@ -17,5 +17,13 @@ exports.sqlIdioms = [
     {
         name: "Window functions",
         description: "Use OVER() for analytics without collapsing rows."
+    },
+    {
+        name: "CTEs",
+        description: "Use CTEs to structure complex queries."
+    },
+    {
+        name: "Index-aware filters",
+        description: "Write predicates that can use indexes."
     }
 ];

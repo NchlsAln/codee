@@ -3,7 +3,8 @@ import { BasePromptEngineering } from "@codee/lang-common";
 export class PromptEngineering extends BasePromptEngineering {
   constructor() {
     super("r", {
-      systemPrompt: "You are an R expert. Emphasize tidy data workflows and reproducibility.",
+      systemPrompt:
+        "You are an R expert. Emphasize tidy data workflows, statistical rigor, and reproducibility.",
       fewShotExamples: [
         {
           task: "Summarize data",
@@ -14,9 +15,25 @@ export class PromptEngineering extends BasePromptEngineering {
           task: "Plot",
           input: "scatter plot",
           output: "ggplot(df, aes(x, y)) + geom_point()"
+        },
+        {
+          task: "Model",
+          input: "linear regression",
+          output: "fit <- lm(y ~ x + z, data = df); summary(fit)"
+        },
+        {
+          task: "Time series",
+          input: "arima forecast",
+          output: "model <- forecast::auto.arima(ts_data); forecast::forecast(model, h = 12)"
         }
       ],
-      contextHints: ["Prefer tibble/data.frame workflows.", "Use dplyr pipelines.", "Use ggplot2 for plots."]
+      contextHints: [
+        "Prefer tibble/data.frame workflows and explicit column names.",
+        "Use dplyr pipelines for transformations.",
+        "Use ggplot2 with clear scales and labels.",
+        "Report sessionInfo() for reproducibility.",
+        "Use set.seed() for stochastic workflows."
+      ]
     });
   }
 }

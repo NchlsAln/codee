@@ -1,28 +1,30 @@
 import { BaseCodeTemplates } from "@codee/lang-common";
-import { collectionsTemplate } from "./templates/stdlib/collections";
-import { asyncTemplate } from "./templates/concurrency/async";
-import { analyticsTemplate } from "./templates/data-analysis/analytics";
-import { chartDataTemplate } from "./templates/visualization/chart-data";
-import { trainingTemplate } from "./templates/ml/training-data";
-import { postgresTemplate } from "./templates/database/postgresql";
-import { mysqlTemplate } from "./templates/database/mysql";
-import { sqliteTemplate } from "./templates/database/sqlite";
-import { migrationTemplate } from "./templates/database/migration";
+import { dataManipulationTemplate } from "./templates/data-manipulation/core";
+import { visualizationTemplate } from "./templates/visualization/core";
+import { statisticsTemplate } from "./templates/statistics/core";
+import { machineLearningTemplate } from "./templates/machine-learning/core";
+import { timeSeriesTemplate } from "./templates/time-series/core";
+import { optimizationTemplate } from "./templates/optimization/core";
+import { databaseTemplate } from "./templates/database/core";
+import { reportingTemplate } from "./templates/reporting/core";
+import { bioinformaticsTemplate } from "./templates/bioinformatics/core";
+import { financeTemplate } from "./templates/finance/core";
 
 export class CodeTemplates extends BaseCodeTemplates {
   constructor() {
     super("sql", {
       idioms: ["Keep queries readable.", "Prefer explicit joins."],
       templates: {
-        "stdlib.collections": collectionsTemplate(),
-        "concurrency.transaction": asyncTemplate(),
-        "data-analysis.analytics": analyticsTemplate(),
-        "visualization.chart-data": chartDataTemplate(),
-        "ml.training-data": trainingTemplate(),
-        "database.postgresql": postgresTemplate(),
-        "database.mysql": mysqlTemplate(),
-        "database.sqlite": sqliteTemplate(),
-        "database.migration": migrationTemplate()
+        "data-manipulation.core": dataManipulationTemplate(),
+        "visualization.core": visualizationTemplate(),
+        "statistics.core": statisticsTemplate(),
+        "machine-learning.core": machineLearningTemplate(),
+        "time-series.core": timeSeriesTemplate(),
+        "optimization.core": optimizationTemplate(),
+        "database.core": databaseTemplate(),
+        "reporting.core": reportingTemplate(),
+        "bioinformatics.core": bioinformaticsTemplate(),
+        "finance.core": financeTemplate()
       },
       frameworkTemplates: {},
       testTemplates: {}

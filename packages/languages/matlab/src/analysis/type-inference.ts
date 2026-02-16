@@ -18,6 +18,30 @@ export function inferMatlabTypes(source: string): Record<string, string> {
     const matrixLiteral = line.match(/(\w+)\s*=\s*\[.*\]/);
     if (matrixLiteral?.[1]) {
       inferred[matrixLiteral[1]] = "matrix";
+      continue;
+    }
+
+    const tableLiteral = line.match(/(\w+)\s*=\s*table\(/);
+    if (tableLiteral?.[1]) {
+      inferred[tableLiteral[1]] = "table";
+      continue;
+    }
+
+    const structLiteral = line.match(/(\w+)\s*=\s*struct\(/);
+    if (structLiteral?.[1]) {
+      inferred[structLiteral[1]] = "struct";
+      continue;
+    }
+
+    const cellLiteral = line.match(/(\w+)\s*=\s*\{.*\}/);
+    if (cellLiteral?.[1]) {
+      inferred[cellLiteral[1]] = "cell";
+      continue;
+    }
+
+    const logicalLiteral = line.match(/(\w+)\s*=\s*(true|false)\b/i);
+    if (logicalLiteral?.[1]) {
+      inferred[logicalLiteral[1]] = "logical";
     }
   }
 

@@ -476,6 +476,18 @@ export const COVERAGE_MATRIX: Record<LanguageId, Record<CoreConcept, ConceptCove
       "functional": { confidence: 0.5, limitations: ["TODO: Fill rust"] },
       "metaprogramming": { confidence: 0.5, limitations: ["TODO: Fill rust"] }
   },
+  "sas": {
+      "generics": { confidence: 0.5, limitations: ["TODO: Fill sas"] },
+      "iterators": { confidence: 0.5, limitations: ["TODO: Fill sas"] },
+      "closures": { confidence: 0.5, limitations: ["TODO: Fill sas"] },
+      "pattern-matching": { confidence: 0.5, limitations: ["TODO: Fill sas"] },
+      "concurrency": { confidence: 0.5, limitations: ["TODO: Fill sas"] },
+      "error-handling": { confidence: 0.5, limitations: ["TODO: Fill sas"] },
+      "memory-management": { confidence: 0.5, limitations: ["TODO: Fill sas"] },
+      "object-oriented": { confidence: 0.5, limitations: ["TODO: Fill sas"] },
+      "functional": { confidence: 0.5, limitations: ["TODO: Fill sas"] },
+      "metaprogramming": { confidence: 0.5, limitations: ["TODO: Fill sas"] }
+  },
   "scala": {
       "generics": { confidence: 0.5, limitations: ["TODO: Fill scala"] },
       "iterators": { confidence: 0.5, limitations: ["TODO: Fill scala"] },

@@ -42,6 +42,7 @@ exports.ALL_LANGUAGES = [
     "r",
     "ruby",
     "rust",
+    "sas",
     "scala",
     "solidity",
     "sql",
