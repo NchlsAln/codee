@@ -1,26 +1,30 @@
 import { BaseCodeTemplates } from "@codee/lang-common";
-import { collectionsTemplate } from "./templates/stdlib/collections";
-import { asyncTemplate } from "./templates/concurrency/async";
-import { chronosTemplate } from "./templates/concurrency/chronos";
-import { cInteropTemplate } from "./templates/systems/c-interop";
-import { allocatorTemplate } from "./templates/systems/allocator";
-import { jesterTemplate } from "./templates/functional/jester";
-import { karaxTemplate } from "./templates/functional/karax";
-import { normTemplate } from "./templates/functional/norm";
+import { stdlibTemplate } from "./templates/stdlib/core";
+import { systemsTemplate } from "./templates/systems/core";
+import { webTemplate } from "./templates/web/core";
+import { databaseTemplate } from "./templates/database/core";
+import { concurrencyTemplate } from "./templates/concurrency/core";
+import { testingTemplate } from "./templates/testing/core";
+import { cliTemplate } from "./templates/cli/core";
+import { httpTemplate } from "./templates/http/core";
+import { serializationTemplate } from "./templates/serialization/core";
+import { ffiTemplate } from "./templates/ffi/core";
 
 export class CodeTemplates extends BaseCodeTemplates {
   constructor() {
     super("nim", {
       idioms: ["Prefer explicit types for public APIs.", "Use templates/macros for reuse.", "Lean on the effect system."],
       templates: {
-        "stdlib.collections": collectionsTemplate(),
-        "systems.c-interop": cInteropTemplate(),
-        "systems.allocator": allocatorTemplate(),
-        "functional.jester": jesterTemplate(),
-        "functional.karax": karaxTemplate(),
-        "functional.norm": normTemplate(),
-        "concurrency.async": asyncTemplate(),
-        "concurrency.chronos": chronosTemplate()
+        "stdlib.core": stdlibTemplate(),
+        "systems.core": systemsTemplate(),
+        "web.core": webTemplate(),
+        "database.core": databaseTemplate(),
+        "concurrency.core": concurrencyTemplate(),
+        "testing.core": testingTemplate(),
+        "cli.core": cliTemplate(),
+        "http.core": httpTemplate(),
+        "serialization.core": serializationTemplate(),
+        "ffi.core": ffiTemplate()
       },
       frameworkTemplates: {},
       testTemplates: {}

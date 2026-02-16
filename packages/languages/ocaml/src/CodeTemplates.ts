@@ -1,22 +1,30 @@
 import { BaseCodeTemplates } from "@codee/lang-common";
-import { collectionsTemplate } from "./templates/stdlib/collections";
-import { asyncTemplate } from "./templates/concurrency/async";
-import { ctypesTemplate } from "./templates/systems/ctypes";
-import { dreamTemplate } from "./templates/functional/dream";
-import { caqtiTemplate } from "./templates/functional/caqti";
-import { alcotestTemplate } from "./templates/functional/alcotest";
+import { stdlibTemplate } from "./templates/stdlib/core";
+import { systemsTemplate } from "./templates/systems/core";
+import { webTemplate } from "./templates/web/core";
+import { databaseTemplate } from "./templates/database/core";
+import { concurrencyTemplate } from "./templates/concurrency/core";
+import { testingTemplate } from "./templates/testing/core";
+import { cliTemplate } from "./templates/cli/core";
+import { httpTemplate } from "./templates/http/core";
+import { serializationTemplate } from "./templates/serialization/core";
+import { ffiTemplate } from "./templates/ffi/core";
 
 export class CodeTemplates extends BaseCodeTemplates {
   constructor() {
     super("ocaml", {
       idioms: ["Prefer pure functions where possible.", "Use pattern matching.", "Structure code with modules."],
       templates: {
-        "stdlib.collections": collectionsTemplate(),
-        "systems.ctypes": ctypesTemplate(),
-        "functional.dream": dreamTemplate(),
-        "functional.caqti": caqtiTemplate(),
-        "functional.alcotest": alcotestTemplate(),
-        "concurrency.lwt": asyncTemplate()
+        "stdlib.core": stdlibTemplate(),
+        "systems.core": systemsTemplate(),
+        "web.core": webTemplate(),
+        "database.core": databaseTemplate(),
+        "concurrency.core": concurrencyTemplate(),
+        "testing.core": testingTemplate(),
+        "cli.core": cliTemplate(),
+        "http.core": httpTemplate(),
+        "serialization.core": serializationTemplate(),
+        "ffi.core": ffiTemplate()
       },
       frameworkTemplates: {},
       testTemplates: {}

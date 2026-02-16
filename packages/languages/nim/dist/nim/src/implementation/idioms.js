@@ -17,5 +17,17 @@ exports.nimIdioms = [
     {
         name: "Result types",
         description: "Prefer Option/Result-like patterns for error handling."
+    },
+    {
+        name: "Distinct types",
+        description: "Use distinct types to prevent accidental mixing of primitives."
+    },
+    {
+        name: "Open arrays",
+        description: "Accept openArray for flexible sequence parameters."
+    },
+    {
+        name: "Compile-time execution",
+        description: "Use static and const to compute values at compile time."
     }
 ];

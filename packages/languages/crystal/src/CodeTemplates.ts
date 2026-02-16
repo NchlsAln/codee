@@ -1,26 +1,30 @@
 import { BaseCodeTemplates } from "@codee/lang-common";
-import { collectionsTemplate } from "./templates/stdlib/collections";
-import { asyncTemplate } from "./templates/concurrency/async";
-import { cInteropTemplate } from "./templates/systems/c-interop";
-import { sliceTemplate } from "./templates/systems/slice";
-import { kemalTemplate } from "./templates/functional/kemal";
-import { amberTemplate } from "./templates/functional/amber";
-import { luckyTemplate } from "./templates/functional/lucky";
-import { graniteTemplate } from "./templates/functional/granite";
+import { stdlibTemplate } from "./templates/stdlib/core";
+import { systemsTemplate } from "./templates/systems/core";
+import { webTemplate } from "./templates/web/core";
+import { databaseTemplate } from "./templates/database/core";
+import { concurrencyTemplate } from "./templates/concurrency/core";
+import { testingTemplate } from "./templates/testing/core";
+import { cliTemplate } from "./templates/cli/core";
+import { httpTemplate } from "./templates/http/core";
+import { serializationTemplate } from "./templates/serialization/core";
+import { ffiTemplate } from "./templates/ffi/core";
 
 export class CodeTemplates extends BaseCodeTemplates {
   constructor() {
     super("crystal", {
       idioms: ["Prefer explicit types where useful.", "Use blocks for iteration.", "Leverage macros for codegen."],
       templates: {
-        "stdlib.collections": collectionsTemplate(),
-        "systems.c-interop": cInteropTemplate(),
-        "systems.slice": sliceTemplate(),
-        "functional.kemal": kemalTemplate(),
-        "functional.amber": amberTemplate(),
-        "functional.lucky": luckyTemplate(),
-        "functional.granite": graniteTemplate(),
-        "concurrency.fibers": asyncTemplate()
+        "stdlib.core": stdlibTemplate(),
+        "systems.core": systemsTemplate(),
+        "web.core": webTemplate(),
+        "database.core": databaseTemplate(),
+        "concurrency.core": concurrencyTemplate(),
+        "testing.core": testingTemplate(),
+        "cli.core": cliTemplate(),
+        "http.core": httpTemplate(),
+        "serialization.core": serializationTemplate(),
+        "ffi.core": ffiTemplate()
       },
       frameworkTemplates: {},
       testTemplates: {}

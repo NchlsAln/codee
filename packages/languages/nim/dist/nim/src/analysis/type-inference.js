@@ -25,6 +25,19 @@ function inferNimTypes(source) {
             inferred[seqLiteral[1]] = "seq";
             continue;
         }
+        const arrayLiteral = line.match(/\b(?:let|var)\s+(\w+)\s*=\s*\[[^\]]+\]/);
+        if (arrayLiteral?.[1]) {
+            inferred[arrayLiteral[1]] = "array";
+            continue;
+        }
+        const optionLiteral = line.match(/\b(?:some|none)\b/);
+        if (optionLiteral) {
+            inferred["option"] = "Option";
+        }
+        const resultLiteral = line.match(/\bok\(|\berr\(/i);
+        if (resultLiteral) {
+            inferred["result"] = "Result";
+        }
         const procLiteral = line.match(/\bproc\s+(\w+)\b/);
         if (procLiteral?.[1]) {
             inferred[procLiteral[1]] = "proc";

@@ -30,6 +30,18 @@ export function inferCrystalTypes(source: string): Record<string, string> {
     const hashLiteral = line.match(/\b(\w+)\s*=\s*\{.*\}/);
     if (hashLiteral?.[1]) {
       inferred[hashLiteral[1]] = "Hash";
+      continue;
+    }
+
+    const nilLiteral = line.match(/\b(\w+)\s*=\s*nil\b/);
+    if (nilLiteral?.[1]) {
+      inferred[nilLiteral[1]] = "Nil";
+      continue;
+    }
+
+    const unionType = line.match(/:\s*([^=]+\|[^=]+)/);
+    if (unionType?.[1]) {
+      inferred["union-types"] = unionType[1].trim();
     }
   }
 

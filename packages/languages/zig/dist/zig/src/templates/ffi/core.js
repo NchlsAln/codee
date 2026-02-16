@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ffiTemplate = ffiTemplate;
+function ffiTemplate() {
+    return [
+        "const std = @import(\"std\");",
+        "const c = @cImport({ @cInclude(\"math.h\"); });",
+        "pub fn main() !void {",
+        "  const v = c.sqrt(9.0);",
+        "  var lib = try std.DynamicLibrary.open(\"libm.so\");",
+        "  defer lib.close();",
+        "  _ = v;",
+        "}"
+    ].join("\n");
+}

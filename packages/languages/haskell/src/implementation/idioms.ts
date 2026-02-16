@@ -18,5 +18,13 @@ export const haskellIdioms: Array<{ name: string; description: string }> = [
 	{
 		name: "Lenses",
 		description: "Use lenses to access and update nested data."
+	},
+	{
+		name: "Newtypes",
+		description: "Use newtype for zero-cost domain types."
+	},
+	{
+		name: "Pattern matching",
+		description: "Use case expressions and pattern guards for clarity."
 	}
 ];

@@ -14,5 +14,17 @@ export const crystalIdioms: Array<{ name: string; description: string }> = [
 	{
 		name: "C bindings",
 		description: "Use lib and fun to bind to C libraries."
+	},
+	{
+		name: "Union types",
+		description: "Model nilable and polymorphic values with union types."
+	},
+	{
+		name: "Nil safety",
+		description: "Use not_nil! sparingly and prefer safe navigation."
+	},
+	{
+		name: "Fibers and channels",
+		description: "Use fibers for concurrency and Channel(T) for coordination."
 	}
 ];

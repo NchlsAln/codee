@@ -2,25 +2,31 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CodeTemplates = void 0;
 const lang_common_1 = require("@codee/lang-common");
-const collections_1 = require("./templates/stdlib/collections");
-const async_1 = require("./templates/concurrency/async");
-const ffi_1 = require("./templates/systems/ffi");
-const servant_1 = require("./templates/functional/servant");
-const persistent_1 = require("./templates/functional/persistent");
-const conduit_1 = require("./templates/functional/conduit");
-const hspec_1 = require("./templates/functional/hspec");
+const core_1 = require("./templates/stdlib/core");
+const core_2 = require("./templates/systems/core");
+const core_3 = require("./templates/web/core");
+const core_4 = require("./templates/database/core");
+const core_5 = require("./templates/concurrency/core");
+const core_6 = require("./templates/testing/core");
+const core_7 = require("./templates/cli/core");
+const core_8 = require("./templates/http/core");
+const core_9 = require("./templates/serialization/core");
+const core_10 = require("./templates/ffi/core");
 class CodeTemplates extends lang_common_1.BaseCodeTemplates {
     constructor() {
         super("haskell", {
             idioms: ["Prefer pure functions.", "Use type signatures.", "Lean on type classes."],
             templates: {
-                "stdlib.collections": (0, collections_1.collectionsTemplate)(),
-                "systems.ffi": (0, ffi_1.ffiTemplate)(),
-                "functional.servant": (0, servant_1.servantTemplate)(),
-                "functional.persistent": (0, persistent_1.persistentTemplate)(),
-                "functional.conduit": (0, conduit_1.conduitTemplate)(),
-                "functional.hspec": (0, hspec_1.hspecTemplate)(),
-                "concurrency.stm": (0, async_1.asyncTemplate)()
+                "stdlib.core": (0, core_1.stdlibTemplate)(),
+                "systems.core": (0, core_2.systemsTemplate)(),
+                "web.core": (0, core_3.webTemplate)(),
+                "database.core": (0, core_4.databaseTemplate)(),
+                "concurrency.core": (0, core_5.concurrencyTemplate)(),
+                "testing.core": (0, core_6.testingTemplate)(),
+                "cli.core": (0, core_7.cliTemplate)(),
+                "http.core": (0, core_8.httpTemplate)(),
+                "serialization.core": (0, core_9.serializationTemplate)(),
+                "ffi.core": (0, core_10.ffiTemplate)()
             },
             frameworkTemplates: {},
             testTemplates: {}

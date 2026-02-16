@@ -17,5 +17,17 @@ exports.ocamlIdioms = [
     {
         name: "Refs for state",
         description: "Use refs sparingly for mutable state."
+    },
+    {
+        name: "Pipe operator",
+        description: "Use |>, @@, and let bindings for readable pipelines."
+    },
+    {
+        name: "Options and results",
+        description: "Prefer option/result types for error handling."
+    },
+    {
+        name: "Tail recursion",
+        description: "Rewrite recursive functions to be tail-recursive for performance."
     }
 ];

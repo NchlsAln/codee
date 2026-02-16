@@ -19,6 +19,23 @@ function inferHaskellTypes(source) {
         if (stringLiteral?.[1]) {
             inferred[stringLiteral[1]] = "String";
         }
+        const listLiteral = line.match(/^\s*(\w+)\s*=\s*\[/);
+        if (listLiteral?.[1]) {
+            inferred[listLiteral[1]] = "[a]";
+            continue;
+        }
+        const maybeLiteral = line.match(/\bJust\b|\bNothing\b/);
+        if (maybeLiteral) {
+            inferred["maybe"] = "Maybe";
+        }
+        const eitherLiteral = line.match(/\bLeft\b|\bRight\b/);
+        if (eitherLiteral) {
+            inferred["either"] = "Either";
+        }
+        const ioLiteral = line.match(/\bmain\b\s*=\s*do\b/);
+        if (ioLiteral) {
+            inferred["io"] = "IO";
+        }
     }
     return inferred;
 }

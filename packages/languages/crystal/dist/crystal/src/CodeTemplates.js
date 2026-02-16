@@ -2,27 +2,31 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CodeTemplates = void 0;
 const lang_common_1 = require("@codee/lang-common");
-const collections_1 = require("./templates/stdlib/collections");
-const async_1 = require("./templates/concurrency/async");
-const c_interop_1 = require("./templates/systems/c-interop");
-const slice_1 = require("./templates/systems/slice");
-const kemal_1 = require("./templates/functional/kemal");
-const amber_1 = require("./templates/functional/amber");
-const lucky_1 = require("./templates/functional/lucky");
-const granite_1 = require("./templates/functional/granite");
+const core_1 = require("./templates/stdlib/core");
+const core_2 = require("./templates/systems/core");
+const core_3 = require("./templates/web/core");
+const core_4 = require("./templates/database/core");
+const core_5 = require("./templates/concurrency/core");
+const core_6 = require("./templates/testing/core");
+const core_7 = require("./templates/cli/core");
+const core_8 = require("./templates/http/core");
+const core_9 = require("./templates/serialization/core");
+const core_10 = require("./templates/ffi/core");
 class CodeTemplates extends lang_common_1.BaseCodeTemplates {
     constructor() {
         super("crystal", {
             idioms: ["Prefer explicit types where useful.", "Use blocks for iteration.", "Leverage macros for codegen."],
             templates: {
-                "stdlib.collections": (0, collections_1.collectionsTemplate)(),
-                "systems.c-interop": (0, c_interop_1.cInteropTemplate)(),
-                "systems.slice": (0, slice_1.sliceTemplate)(),
-                "functional.kemal": (0, kemal_1.kemalTemplate)(),
-                "functional.amber": (0, amber_1.amberTemplate)(),
-                "functional.lucky": (0, lucky_1.luckyTemplate)(),
-                "functional.granite": (0, granite_1.graniteTemplate)(),
-                "concurrency.fibers": (0, async_1.asyncTemplate)()
+                "stdlib.core": (0, core_1.stdlibTemplate)(),
+                "systems.core": (0, core_2.systemsTemplate)(),
+                "web.core": (0, core_3.webTemplate)(),
+                "database.core": (0, core_4.databaseTemplate)(),
+                "concurrency.core": (0, core_5.concurrencyTemplate)(),
+                "testing.core": (0, core_6.testingTemplate)(),
+                "cli.core": (0, core_7.cliTemplate)(),
+                "http.core": (0, core_8.httpTemplate)(),
+                "serialization.core": (0, core_9.serializationTemplate)(),
+                "ffi.core": (0, core_10.ffiTemplate)()
             },
             frameworkTemplates: {},
             testTemplates: {}

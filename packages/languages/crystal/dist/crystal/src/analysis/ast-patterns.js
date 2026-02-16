@@ -7,5 +7,10 @@ exports.crystalAstPatterns = [
     { pattern: "\\bmacro\\s+\\w+", description: "Macro definition" },
     { pattern: "\\blib\\s+\\w+", description: "C binding" },
     { pattern: "\\bspawn\\b|\\bChannel\\b", description: "Concurrency primitive" },
-    { pattern: "\\brequire\\b", description: "Require directive" }
+    { pattern: "\\brequire\\b", description: "Require directive" },
+    { pattern: "\\bnot_nil!\\b", description: "Nil assertion (review safety)" },
+    { pattern: "\\bPointer\\.malloc|pointerof", description: "Unsafe pointer usage" },
+    { pattern: "\\bas\?\\b|\\bas\\b", description: "Type casting" },
+    { pattern: "\\bNil\\b|\\bnil\\b", description: "Nilable values" },
+    { pattern: "\\braise\\b", description: "Exception raising" }
 ];

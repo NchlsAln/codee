@@ -5,7 +5,7 @@ const lang_common_1 = require("@codee/lang-common");
 class PromptEngineering extends lang_common_1.BasePromptEngineering {
     constructor() {
         super("haskell", {
-            systemPrompt: "You are a Haskell expert. Emphasize purity, type classes, and laziness.",
+            systemPrompt: "You are a Haskell expert. Emphasize purity, explicit types, type classes, and controlled laziness.",
             fewShotExamples: [
                 {
                     task: "Define a type class",
@@ -16,9 +16,25 @@ class PromptEngineering extends lang_common_1.BasePromptEngineering {
                     task: "Use a monad",
                     input: "IO sequence",
                     output: "main = do\n  putStrLn \"hi\"\n  putStrLn \"ok\""
+                },
+                {
+                    task: "STM",
+                    input: "transfer",
+                    output: "transfer from to n = atomically $ do\n  a <- readTVar from\n  b <- readTVar to\n  writeTVar from (a - n)\n  writeTVar to (b + n)"
+                },
+                {
+                    task: "Strictness",
+                    input: "sum list",
+                    output: "sum' xs = foldl' (+) 0 xs"
                 }
             ],
-            contextHints: ["Prefer pure functions.", "Use explicit type signatures.", "Use do-notation for effects."]
+            contextHints: [
+                "Prefer explicit type signatures for exported functions.",
+                "Use strict folds to avoid space leaks.",
+                "Keep effects isolated in IO or specialized monads.",
+                "Avoid partial functions like head/tail in new code.",
+                "Use STM for coordinated concurrency."
+            ]
         });
     }
 }

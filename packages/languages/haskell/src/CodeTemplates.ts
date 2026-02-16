@@ -1,24 +1,30 @@
 import { BaseCodeTemplates } from "@codee/lang-common";
-import { collectionsTemplate } from "./templates/stdlib/collections";
-import { asyncTemplate } from "./templates/concurrency/async";
-import { ffiTemplate } from "./templates/systems/ffi";
-import { servantTemplate } from "./templates/functional/servant";
-import { persistentTemplate } from "./templates/functional/persistent";
-import { conduitTemplate } from "./templates/functional/conduit";
-import { hspecTemplate } from "./templates/functional/hspec";
+import { stdlibTemplate } from "./templates/stdlib/core";
+import { systemsTemplate } from "./templates/systems/core";
+import { webTemplate } from "./templates/web/core";
+import { databaseTemplate } from "./templates/database/core";
+import { concurrencyTemplate } from "./templates/concurrency/core";
+import { testingTemplate } from "./templates/testing/core";
+import { cliTemplate } from "./templates/cli/core";
+import { httpTemplate } from "./templates/http/core";
+import { serializationTemplate } from "./templates/serialization/core";
+import { ffiTemplate } from "./templates/ffi/core";
 
 export class CodeTemplates extends BaseCodeTemplates {
   constructor() {
     super("haskell", {
       idioms: ["Prefer pure functions.", "Use type signatures.", "Lean on type classes."],
       templates: {
-        "stdlib.collections": collectionsTemplate(),
-        "systems.ffi": ffiTemplate(),
-        "functional.servant": servantTemplate(),
-        "functional.persistent": persistentTemplate(),
-        "functional.conduit": conduitTemplate(),
-        "functional.hspec": hspecTemplate(),
-        "concurrency.stm": asyncTemplate()
+        "stdlib.core": stdlibTemplate(),
+        "systems.core": systemsTemplate(),
+        "web.core": webTemplate(),
+        "database.core": databaseTemplate(),
+        "concurrency.core": concurrencyTemplate(),
+        "testing.core": testingTemplate(),
+        "cli.core": cliTemplate(),
+        "http.core": httpTemplate(),
+        "serialization.core": serializationTemplate(),
+        "ffi.core": ffiTemplate()
       },
       frameworkTemplates: {},
       testTemplates: {}

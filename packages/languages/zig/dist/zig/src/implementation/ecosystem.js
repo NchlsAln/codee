@@ -2,15 +2,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.zigEcosystem = void 0;
 exports.zigEcosystem = {
-    fileExtensions: [
-        ".zig"
-    ],
-    paradigms: [
-        "procedural",
-        "systems",
-        "metaprogramming"
-    ],
-    tooling: ["zig build", "zig fmt", "zig test", "zls", "zigmod"],
-    frameworks: ["http.zig"],
-    packageIndex: "none"
+    fileExtensions: [".zig"],
+    paradigms: ["procedural", "systems", "metaprogramming"],
+    packageManagers: ["zig build", "zigmod"],
+    buildTools: ["zig build", "zig test"],
+    testing: ["zig test"],
+    integrationTesting: ["custom harnesses"],
+    linting: ["zig fmt --check"],
+    formatting: ["zig fmt"],
+    typeChecking: ["zig build"],
+    docs: ["zig doc"],
+    ciCd: ["GitHub Actions", "GitLab CI"],
+    deploymentTargets: ["embedded", "cli", "services", "wasm"],
+    runtimes: ["native", "wasi"],
+    frameworks: ["http.zig", "zap"],
+    packageIndex: "community",
+    observability: ["std.log", "tracing via adapters"]
 };

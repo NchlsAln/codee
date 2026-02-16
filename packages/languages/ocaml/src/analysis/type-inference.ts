@@ -21,6 +21,28 @@ export function inferOcamlTypes(source: string): Record<string, string> {
       continue;
     }
 
+    const optionLiteral = line.match(/\bSome\b|\bNone\b/);
+    if (optionLiteral) {
+      inferred["option"] = "option";
+    }
+
+    const resultLiteral = line.match(/\bOk\b|\bError\b/);
+    if (resultLiteral) {
+      inferred["result"] = "result";
+    }
+
+    const arrayLiteral = line.match(/\blet\s+(\w+)\s*=\s*Array\./);
+    if (arrayLiteral?.[1]) {
+      inferred[arrayLiteral[1]] = "array";
+      continue;
+    }
+
+    const mapLiteral = line.match(/\blet\s+(\w+)\s*=\s*Hashtbl\./);
+    if (mapLiteral?.[1]) {
+      inferred[mapLiteral[1]] = "hashtbl";
+      continue;
+    }
+
     const fnLiteral = line.match(/\blet\s+(\w+)\s+\w+\s*=\s*fun\b/);
     if (fnLiteral?.[1]) {
       inferred[fnLiteral[1]] = "function";
