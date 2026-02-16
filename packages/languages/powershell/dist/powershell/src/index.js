@@ -21,10 +21,8 @@ const type_inference_1 = require("./analysis/type-inference");
 Object.defineProperty(exports, "inferPowershellTypes", { enumerable: true, get: function () { return type_inference_1.inferPowershellTypes; } });
 exports.powershellDefinition = {
     id: "powershell",
-    name: "Powershell",
-    extensions: [
-        ".ext"
-    ],
+    name: "PowerShell",
+    extensions: [".ps1", ".psm1", ".psd1"],
     serverFactory: (projectPath) => new LanguageServer_1.LanguageServer(projectPath),
     analyzerFactory: () => new LanguageAnalyzer_1.LanguageAnalyzer(),
     templates: new CodeTemplates_1.CodeTemplates(),

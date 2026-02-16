@@ -12,9 +12,7 @@ import { inferBashTypes } from "./analysis/type-inference";
 export const bashDefinition: LanguageDefinition = {
   id: "bash",
   name: "Bash",
-  extensions: [
-  ".ext"
-],
+  extensions: [".sh", ".bash", ".bashrc", ".bash_profile"],
   serverFactory: (projectPath) => new LanguageServer(projectPath),
   analyzerFactory: () => new LanguageAnalyzer(),
   templates: new CodeTemplates(),

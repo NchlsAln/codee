@@ -26,6 +26,18 @@ exports.COVERAGE_MATRIX = {
         "functional": { confidence: 0.5, limitations: ["TODO: Fill assembly"] },
         "metaprogramming": { confidence: 0.5, limitations: ["TODO: Fill assembly"] }
     },
+    "awk": {
+        "generics": { confidence: 0.5, limitations: ["TODO: Fill awk"] },
+        "iterators": { confidence: 0.5, limitations: ["TODO: Fill awk"] },
+        "closures": { confidence: 0.5, limitations: ["TODO: Fill awk"] },
+        "pattern-matching": { confidence: 0.5, limitations: ["TODO: Fill awk"] },
+        "concurrency": { confidence: 0.5, limitations: ["TODO: Fill awk"] },
+        "error-handling": { confidence: 0.5, limitations: ["TODO: Fill awk"] },
+        "memory-management": { confidence: 0.5, limitations: ["TODO: Fill awk"] },
+        "object-oriented": { confidence: 0.5, limitations: ["TODO: Fill awk"] },
+        "functional": { confidence: 0.5, limitations: ["TODO: Fill awk"] },
+        "metaprogramming": { confidence: 0.5, limitations: ["TODO: Fill awk"] }
+    },
     "bash": {
         "generics": { confidence: 0.5, limitations: ["TODO: Fill bash"] },
         "iterators": { confidence: 0.5, limitations: ["TODO: Fill bash"] },
@@ -481,6 +493,18 @@ exports.COVERAGE_MATRIX = {
         "object-oriented": { confidence: 0.5, limitations: ["TODO: Fill sas"] },
         "functional": { confidence: 0.5, limitations: ["TODO: Fill sas"] },
         "metaprogramming": { confidence: 0.5, limitations: ["TODO: Fill sas"] }
+    },
+    "sed": {
+        "generics": { confidence: 0.5, limitations: ["TODO: Fill sed"] },
+        "iterators": { confidence: 0.5, limitations: ["TODO: Fill sed"] },
+        "closures": { confidence: 0.5, limitations: ["TODO: Fill sed"] },
+        "pattern-matching": { confidence: 0.5, limitations: ["TODO: Fill sed"] },
+        "concurrency": { confidence: 0.5, limitations: ["TODO: Fill sed"] },
+        "error-handling": { confidence: 0.5, limitations: ["TODO: Fill sed"] },
+        "memory-management": { confidence: 0.5, limitations: ["TODO: Fill sed"] },
+        "object-oriented": { confidence: 0.5, limitations: ["TODO: Fill sed"] },
+        "functional": { confidence: 0.5, limitations: ["TODO: Fill sed"] },
+        "metaprogramming": { confidence: 0.5, limitations: ["TODO: Fill sed"] }
     },
     "scala": {
         "generics": { confidence: 0.5, limitations: ["TODO: Fill scala"] },

@@ -5,6 +5,7 @@ exports.ALL_LANGUAGE_IDS = void 0;
 exports.ALL_LANGUAGE_IDS = [
     "ansible",
     "assembly",
+    "awk",
     "bash",
     "c",
     "clojure",
@@ -43,6 +44,7 @@ exports.ALL_LANGUAGE_IDS = [
     "ruby",
     "rust",
     "sas",
+    "sed",
     "scala",
     "solidity",
     "sql",

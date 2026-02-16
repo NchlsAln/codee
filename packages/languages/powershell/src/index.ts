@@ -11,10 +11,8 @@ import { inferPowershellTypes } from "./analysis/type-inference";
 
 export const powershellDefinition: LanguageDefinition = {
   id: "powershell",
-  name: "Powershell",
-  extensions: [
-  ".ext"
-],
+  name: "PowerShell",
+  extensions: [".ps1", ".psm1", ".psd1"],
   serverFactory: (projectPath) => new LanguageServer(projectPath),
   analyzerFactory: () => new LanguageAnalyzer(),
   templates: new CodeTemplates(),

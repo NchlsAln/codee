@@ -22,9 +22,7 @@ Object.defineProperty(exports, "inferBashTypes", { enumerable: true, get: functi
 exports.bashDefinition = {
     id: "bash",
     name: "Bash",
-    extensions: [
-        ".ext"
-    ],
+    extensions: [".sh", ".bash", ".bashrc", ".bash_profile"],
     serverFactory: (projectPath) => new LanguageServer_1.LanguageServer(projectPath),
     analyzerFactory: () => new LanguageAnalyzer_1.LanguageAnalyzer(),
     templates: new CodeTemplates_1.CodeTemplates(),

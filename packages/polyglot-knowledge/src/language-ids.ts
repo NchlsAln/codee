@@ -2,6 +2,7 @@
 export const ALL_LANGUAGE_IDS = [
   "ansible",
   "assembly",
+  "awk",
   "bash",
   "c",
   "clojure",
@@ -40,6 +41,7 @@ export const ALL_LANGUAGE_IDS = [
   "ruby",
   "rust",
   "sas",
+  "sed",
   "scala",
   "solidity",
   "sql",

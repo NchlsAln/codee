@@ -18,6 +18,7 @@ const COMMENT_PREFIX = {
     dart: "//",
     ansible: "#",
     assembly: ";",
+    awk: "#",
     bash: "#",
     c: "//",
     clojure: ";;",
@@ -47,6 +48,7 @@ const COMMENT_PREFIX = {
     r: "#",
     ruby: "#",
     sas: "*",
+    sed: "#",
     solidity: "//",
     sql: "--",
     terraform: "#",
@@ -70,6 +72,7 @@ const LANG_DISPLAY = {
     dart: "Dart",
     ansible: "Ansible",
     assembly: "Assembly",
+    awk: "AWK",
     bash: "Bash",
     c: "C",
     clojure: "Clojure",
@@ -99,6 +102,7 @@ const LANG_DISPLAY = {
     r: "R",
     ruby: "Ruby",
     sas: "SAS",
+    sed: "sed",
     solidity: "Solidity",
     sql: "SQL",
     terraform: "Terraform",
@@ -337,7 +341,7 @@ function detectListPattern(code) {
     return null;
 }
 function detectMapPattern(code) {
-    const kotlinMap = code.match(/mapOf\((?<entries>[^\)]+)\)/);
+    const kotlinMap = code.match(/mapOf\((?<entries>[^)]+)\)/);
     if (kotlinMap?.groups) {
         const entries = kotlinMap.groups.entries ?? "";
         return {
@@ -613,21 +617,21 @@ function renderMap(params, to) {
         case "typescript":
             return `{ ${key}: ${value} }`;
         case "rust":
-            return `let map = std::collections::HashMap::from([(\"${key}\", ${value})]);`;
+            return `let map = std::collections::HashMap::from([("${key}", ${value})]);`;
         case "go":
-            return `map[string]int{\"${key}\": ${value}}`;
+            return `map[string]int{"${key}": ${value}}`;
         case "java":
-            return `Map.of(\"${key}\", ${value});`;
+            return `Map.of("${key}", ${value});`;
         case "cpp":
-            return `std::unordered_map<std::string, int>{{\"${key}\", ${value}}};`;
+            return `std::unordered_map<std::string, int>{{"${key}", ${value}}};`;
         case "kotlin":
             return `mapOf(${entries})`;
         case "scala":
             return `Map(${entries})`;
         case "csharp":
-            return `new Dictionary<string, int> { [\"${key}\"] = ${value} };`;
+            return `new Dictionary<string, int> { ["${key}"] = ${value} };`;
         case "swift":
-            return `[\"${key}\": ${value}]`;
+            return `["${key}": ${value}]`;
         case "dart":
             return `{ '${key}': ${value} }`;
         default:
