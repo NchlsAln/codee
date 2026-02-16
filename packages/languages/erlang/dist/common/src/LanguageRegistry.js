@@ -67,13 +67,23 @@ var all_languages_2 = require("./all-languages");
 Object.defineProperty(exports, "ALL_LANGUAGES", { enumerable: true, get: function () { return all_languages_2.ALL_LANGUAGES; } });
 function registerAllLanguages(registry) {
     all_languages_1.ALL_LANGUAGES.forEach((lang) => {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const module = require(`@codee/lang-${lang}`);
-        const definitionKey = `${toCamelCase(lang)}Definition`;
-        const definition = module[definitionKey] ?? module.default;
-        if (!definition) {
-            return;
+        const moduleName = `@codee/lang-${lang}`;
+        try {
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            const module = require(moduleName);
+            const definitionKey = `${toCamelCase(lang)}Definition`;
+            const definition = module[definitionKey] ?? module.default;
+            if (!definition) {
+                return;
+            }
+            registry.registerLanguage(definition);
         }
-        registry.registerLanguage(definition);
+        catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            if (message.includes(moduleName)) {
+                return;
+            }
+            throw error;
+        }
     });
 }

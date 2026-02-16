@@ -1,3 +1,12 @@
 export function asyncTemplate(): string {
-  return "// TODO: Add Erlang concurrency/async example.";
+  return [
+    "-module(async_demo).",
+    "-export([run/0]).",
+    "run() ->",
+    "  Parent = self(),",
+    "  spawn(fun() -> Parent ! {done, 42} end),",
+    "  receive",
+    "    {done, Value} -> Value",
+    "  end."
+  ].join("\n");
 }

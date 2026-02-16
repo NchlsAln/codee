@@ -5,6 +5,14 @@ function inferClojureTypes(source) {
     const inferred = {};
     const lines = source.split(/\r?\n/);
     for (const line of lines) {
+        const spec = line.match(/\(s\/def\s+(\w+)\s+(.+)\)/);
+        if (spec?.[1] && spec?.[2]) {
+            inferred[spec[1]] = spec[2].trim();
+        }
+        const typeHint = line.match(/\^([\w\.]+)\s+(\w+)/);
+        if (typeHint?.[1] && typeHint?.[2]) {
+            inferred[typeHint[2]] = typeHint[1];
+        }
         const stringLiteral = line.match(/\(def\s+(\w+)\s+\"[^\"]*\"\)/);
         if (stringLiteral?.[1]) {
             inferred[stringLiteral[1]] = "string";

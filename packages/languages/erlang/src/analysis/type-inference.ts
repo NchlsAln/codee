@@ -3,6 +3,16 @@ export function inferErlangTypes(source: string): Record<string, string> {
   const lines = source.split(/\r?\n/);
 
   for (const line of lines) {
+    const spec = line.match(/-spec\s+(\w+)\s*\(([^)]*)\)\s*->\s*(.+)\./);
+    if (spec?.[1] && spec?.[3]) {
+      inferred[spec[1]] = spec[3].trim();
+    }
+
+    const record = line.match(/-record\((\w+),/);
+    if (record?.[1]) {
+      inferred[record[1]] = "record";
+    }
+
     const stringLiteral = line.match(/\b([A-Z][A-Za-z0-9_]*)\s*=\s*".*"/);
     if (stringLiteral?.[1]) {
       inferred[stringLiteral[1]] = "string";

@@ -4,5 +4,10 @@ export const erlangAstPatterns: Array<{ pattern: string; description: string }> 
 	{ pattern: "\\breceive\\b", description: "Receive block" },
 	{ pattern: "->", description: "Clause arrow" },
 	{ pattern: "\\bfun\\b", description: "Anonymous function" },
-	{ pattern: "#\\w+", description: "Record usage" }
+	{ pattern: "#\\w+", description: "Record usage" },
+	{ pattern: "gen_server", description: "gen_server usage" },
+	{ pattern: "supervisor", description: "Supervisor usage" },
+	{ pattern: "spawn\\b", description: "Process spawning" },
+	{ pattern: "ets:", description: "ETS usage" },
+	{ pattern: "os:cmd", description: "Shell execution (review inputs)" }
 ];

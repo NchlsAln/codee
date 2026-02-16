@@ -22,5 +22,21 @@ export const clojureIdioms: Array<{ name: string; description: string }> = [
 	{
 		name: "STM and agents",
 		description: "Use atoms/refs/agents for coordinated state updates."
+	},
+	{
+		name: "Transducers",
+		description: "Use transducers for allocation-free transformations."
+	},
+	{
+		name: "Spec",
+		description: "Use clojure.spec for validation and generative testing."
+	},
+	{
+		name: "Avoid reflection",
+		description: "Add type hints to remove reflective calls."
+	},
+	{
+		name: "Java interop",
+		description: "Use interop sparingly and isolate in namespaces."
 	}
 ];

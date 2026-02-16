@@ -18,5 +18,25 @@ export const rubyIdioms: Array<{ name: string; description: string }> = [
 	{
 		name: "Monkey patching",
 		description: "Be cautious when reopening core classes to add behavior."
+	},
+	{
+		name: "Frozen string literals",
+		description: "Enable frozen_string_literal for reduced allocations."
+	},
+	{
+		name: "Enumerables",
+		description: "Prefer map/select/reduce over manual loops."
+	},
+	{
+		name: "Keyword arguments",
+		description: "Use keyword arguments for clarity in public APIs."
+	},
+	{
+		name: "Errors as exceptions",
+		description: "Raise exceptions for exceptional conditions and rescue narrowly."
+	},
+	{
+		name: "Service objects",
+		description: "Use small service objects for orchestration and side effects."
 	}
 ];

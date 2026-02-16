@@ -5,6 +5,25 @@ function inferPhpTypes(source) {
     const inferred = {};
     const lines = source.split(/\r?\n/);
     for (const line of lines) {
+        const phpdocVar = line.match(/@var\s+([\w\\|?<>]+)\s+\$(\w+)/);
+        if (phpdocVar?.[1] && phpdocVar?.[2]) {
+            inferred[phpdocVar[2]] = phpdocVar[1];
+            continue;
+        }
+        const typedProperty = line.match(/\b(public|protected|private)\s+([\w\\|?<>]+)\s+\$(\w+)/);
+        if (typedProperty?.[2] && typedProperty?.[3]) {
+            inferred[typedProperty[3]] = typedProperty[2].trim();
+            continue;
+        }
+        const typedParam = line.match(/function\s+\w+\s*\(([^)]*)\)/);
+        if (typedParam?.[1] && typedParam[1].includes("$")) {
+            typedParam[1].split(",").forEach((param) => {
+                const match = param.trim().match(/([\w\\|?<>]+)\s+\$(\w+)/);
+                if (match?.[1] && match?.[2]) {
+                    inferred[match[2]] = match[1];
+                }
+            });
+        }
         const stringLiteral = line.match(/\$(\w+)\s*=\s*".*"/);
         if (stringLiteral?.[1]) {
             inferred[stringLiteral[1]] = "string";
@@ -33,6 +52,12 @@ function inferPhpTypes(source) {
         const newInstance = line.match(/\$(\w+)\s*=\s*new\s+([A-Z][A-Za-z0-9_]*)/);
         if (newInstance?.[1] && newInstance?.[2]) {
             inferred[newInstance[1]] = newInstance[2];
+        }
+        if (line.includes("?->")) {
+            inferred["nullable-access"] = "true";
+        }
+        if (line.includes("|")) {
+            inferred["union-types"] = "true";
         }
     }
     return inferred;

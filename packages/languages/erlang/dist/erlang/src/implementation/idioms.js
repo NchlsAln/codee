@@ -21,5 +21,21 @@ exports.erlangIdioms = [
     {
         name: "Message passing",
         description: "Communicate via send/receive between processes."
+    },
+    {
+        name: "Supervisors",
+        description: "Model fault tolerance with supervisors and restart strategies."
+    },
+    {
+        name: "Behaviours",
+        description: "Use behaviour callbacks (gen_server, gen_statem) for structure."
+    },
+    {
+        name: "Records and maps",
+        description: "Prefer maps for modern data shapes; use records for legacy code."
+    },
+    {
+        name: "ETS",
+        description: "Use ETS for shared read-heavy data."
     }
 ];

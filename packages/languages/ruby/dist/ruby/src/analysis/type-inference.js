@@ -5,6 +5,14 @@ function inferRubyTypes(source) {
     const inferred = {};
     const lines = source.split(/\r?\n/);
     for (const line of lines) {
+        const sorbetSig = line.match(/sig\s*\{\s*params\(([^)]*)\)/);
+        if (sorbetSig?.[1]) {
+            inferred["sorbet-sig"] = sorbetSig[1].replace(/\s+/g, " ");
+        }
+        const rbsType = line.match(/\bclass\s+\w+\s*\[.*\]/);
+        if (rbsType) {
+            inferred["rbs-generic"] = "true";
+        }
         const stringLiteral = line.match(/\b(\w+)\s*=\s*".*"/);
         if (stringLiteral?.[1]) {
             inferred[stringLiteral[1]] = "String";

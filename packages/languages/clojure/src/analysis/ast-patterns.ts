@@ -8,5 +8,11 @@ export const clojureAstPatterns: Array<{ pattern: string; description: string }>
 	{ pattern: "\\(defmulti\\b", description: "Multimethod definition" },
 	{ pattern: "\\(defmethod\\b", description: "Multimethod implementation" },
 	{ pattern: "\\(go\\b", description: "core.async go block" },
-	{ pattern: "\\(chan\\b", description: "core.async channel" }
+	{ pattern: "\\(chan\\b", description: "core.async channel" },
+	{ pattern: "\\(spec/def\\b|\\(s/def\\b", description: "Spec definition" },
+	{ pattern: "\\(defrecord\\b", description: "Record definition" },
+	{ pattern: "\\(reify\\b", description: "Reify usage" },
+	{ pattern: "\\bprintln\\b", description: "Direct output" },
+	{ pattern: "\\bslurp\\b|\\bspit\\b", description: "File IO" },
+	{ pattern: "\\bread-string\\b", description: "Eval risk (review inputs)" }
 ];

@@ -1,7 +1,18 @@
 export declare const phpEcosystem: {
     fileExtensions: string[];
     paradigms: string[];
-    tooling: string[];
+    packageManagers: string[];
+    buildTools: string[];
+    testing: string[];
+    integrationTesting: string[];
+    linting: string[];
+    formatting: string[];
+    typeChecking: string[];
+    docs: string[];
+    ciCd: string[];
+    deploymentTargets: string[];
+    runtimes: string[];
     frameworks: string[];
     packageIndex: string;
+    observability: string[];
 };

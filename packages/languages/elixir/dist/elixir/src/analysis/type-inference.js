@@ -5,6 +5,14 @@ function inferElixirTypes(source) {
     const inferred = {};
     const lines = source.split(/\r?\n/);
     for (const line of lines) {
+        const spec = line.match(/@spec\s+(\w+)\s*\(([^)]*)\)\s*::\s*(.+)/);
+        if (spec?.[1] && spec?.[3]) {
+            inferred[spec[1]] = spec[3].trim();
+        }
+        const struct = line.match(/%([A-Z][A-Za-z0-9_]+)\{/);
+        if (struct?.[1]) {
+            inferred[struct[1]] = "struct";
+        }
         const stringLiteral = line.match(/\b(\w+)\s*=\s*".*"/);
         if (stringLiteral?.[1]) {
             inferred[stringLiteral[1]] = "String";
