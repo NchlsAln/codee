@@ -10,4 +10,10 @@ import { terraformAstPatterns } from "./analysis/ast-patterns";
 import { inferTerraformTypes } from "./analysis/type-inference";
 export declare const terraformDefinition: LanguageDefinition;
 export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
-export { terraformRuntime, terraformEcosystem, terraformIdioms, terraformAstPatterns, inferTerraformTypes };
+export {
+  terraformRuntime,
+  terraformEcosystem,
+  terraformIdioms,
+  terraformAstPatterns,
+  inferTerraformTypes,
+};

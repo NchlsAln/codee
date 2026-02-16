@@ -10,4 +10,10 @@ import { dockerfileAstPatterns } from "./analysis/ast-patterns";
 import { inferDockerfileTypes } from "./analysis/type-inference";
 export declare const dockerfileDefinition: LanguageDefinition;
 export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
-export { dockerfileRuntime, dockerfileEcosystem, dockerfileIdioms, dockerfileAstPatterns, inferDockerfileTypes };
+export {
+  dockerfileRuntime,
+  dockerfileEcosystem,
+  dockerfileIdioms,
+  dockerfileAstPatterns,
+  inferDockerfileTypes,
+};

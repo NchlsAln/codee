@@ -9,11 +9,11 @@ function inferTerraformTypes(source) {
     if (varType?.[1]) {
       inferred[`var:${inferred.__lastVar ?? "unknown"}`] = varType[1];
     }
-    const variable = line.match(/variable\s+\"(\w+)\"/);
+    const variable = line.match(/variable\s+"(\w+)"/);
     if (variable?.[1]) {
       inferred.__lastVar = variable[1];
     }
-    const assign = line.match(/(\w+)\s*=\s*\"([^\"]*)\"/);
+    const assign = line.match(/(\w+)\s*=\s*"([^"]*)"/);
     if (assign?.[1]) {
       inferred[assign[1]] = "string";
     }
