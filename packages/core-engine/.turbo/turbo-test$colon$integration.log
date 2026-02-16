@@ -3,10 +3,10 @@
 > jest -c jest.config.cjs --testPathPattern="src/test/integration|test/integration"
 
 PASS src/test/integration/CodeContextAssembler.test.ts
-PASS test/integration/engine-flow.test.ts
+PASS test/integration/engine-flow.test.ts (13.054 s)
 
 Test Suites: 2 passed, 2 total
 Tests:       2 passed, 2 total
 Snapshots:   0 total
-Time:        2.979 s, estimated 3 s
+Time:        16.609 s
 Ran all test suites matching /src\\test\\integration|test\\integration/i.

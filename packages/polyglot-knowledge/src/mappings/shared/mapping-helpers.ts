@@ -1,4 +1,9 @@
-import type { ConceptMappingRule, LanguageId, TranslationOptions, TranslationResult } from "../../types";
+import type {
+  ConceptMappingRule,
+  LanguageId,
+  TranslationOptions,
+  TranslationResult,
+} from "../../types";
 import { translateWithEngine } from "../../engine/translation-engine";
 
 type BasicPattern = {
@@ -36,6 +41,7 @@ const COMMENT_PREFIX: Record<LanguageId, string> = {
   awk: "#",
   bash: "#",
   c: "//",
+  chef: "#",
   clojure: ";;",
   coffeescript: "#",
   css: "/*",
@@ -59,6 +65,7 @@ const COMMENT_PREFIX: Record<LanguageId, string> = {
   ocaml: "(*",
   perl: "#",
   php: "//",
+  puppet: "#",
   powershell: "#",
   r: "#",
   ruby: "#",
@@ -71,7 +78,7 @@ const COMMENT_PREFIX: Record<LanguageId, string> = {
   vbnet: "'",
   xml: "<!--",
   yaml: "#",
-  zig: "//"
+  zig: "//",
 };
 
 const LANG_DISPLAY: Record<LanguageId, string> = {
@@ -92,6 +99,7 @@ const LANG_DISPLAY: Record<LanguageId, string> = {
   awk: "AWK",
   bash: "Bash",
   c: "C",
+  chef: "Chef",
   clojure: "Clojure",
   coffeescript: "CoffeeScript",
   css: "CSS",
@@ -115,6 +123,7 @@ const LANG_DISPLAY: Record<LanguageId, string> = {
   ocaml: "OCaml",
   perl: "Perl",
   php: "PHP",
+  puppet: "Puppet",
   powershell: "PowerShell",
   r: "R",
   ruby: "Ruby",
@@ -127,7 +136,7 @@ const LANG_DISPLAY: Record<LanguageId, string> = {
   vbnet: "VB.NET",
   xml: "XML",
   yaml: "YAML",
-  zig: "Zig"
+  zig: "Zig",
 };
 
 export function buildDefaultRules(from: LanguageId, to: LanguageId): ConceptMappingRule[] {
@@ -138,62 +147,86 @@ export function buildDefaultRules(from: LanguageId, to: LanguageId): ConceptMapp
       conceptId: "data-structures.list",
       from,
       to,
-      steps: [`Translate list/sequence pipelines from ${source} to ${target}`, "Preserve filter/map semantics"]
+      steps: [
+        `Translate list/sequence pipelines from ${source} to ${target}`,
+        "Preserve filter/map semantics",
+      ],
     },
     {
       conceptId: "data-structures.map",
       from,
       to,
-      steps: [`Convert dictionary/map literals to ${target} map types`, "Normalize key/value syntax"]
+      steps: [
+        `Convert dictionary/map literals to ${target} map types`,
+        "Normalize key/value syntax",
+      ],
     },
     {
       conceptId: "paradigms.dataclasses",
       from,
       to,
-      steps: [`Convert data classes/records to ${target} value types`, "Preserve field ordering and names"]
+      steps: [
+        `Convert data classes/records to ${target} value types`,
+        "Preserve field ordering and names",
+      ],
     },
     {
       conceptId: "paradigms.decorators",
       from,
       to,
-      steps: [`Map decorators/annotations to ${target} attributes`, "Inline wrapper behavior when needed"]
+      steps: [
+        `Map decorators/annotations to ${target} attributes`,
+        "Inline wrapper behavior when needed",
+      ],
     },
     {
       conceptId: "control-flow.async-await",
       from,
       to,
-      steps: [`Translate async/await constructs to ${target} async model`, "Preserve await boundaries"]
+      steps: [
+        `Translate async/await constructs to ${target} async model`,
+        "Preserve await boundaries",
+      ],
     },
     {
       conceptId: "control-flow.exceptions",
       from,
       to,
-      steps: [`Map try/catch/throw to ${target} exception handling`, "Preserve error variables"]
+      steps: [`Map try/catch/throw to ${target} exception handling`, "Preserve error variables"],
     },
     {
       conceptId: "paradigms.generics",
       from,
       to,
-      steps: [`Translate generic type parameters to ${target} syntax`, "Keep constraints as comments if needed"]
+      steps: [
+        `Translate generic type parameters to ${target} syntax`,
+        "Keep constraints as comments if needed",
+      ],
     },
     {
       conceptId: "data-structures.iterators",
       from,
       to,
-      steps: [`Convert iterator/sequence usage to ${target} iteration`, "Preserve lazy behavior where possible"]
+      steps: [
+        `Convert iterator/sequence usage to ${target} iteration`,
+        "Preserve lazy behavior where possible",
+      ],
     },
     {
       conceptId: "control-flow.pattern-matching",
       from,
       to,
-      steps: [`Translate match/when/switch to ${target} equivalents`, "Preserve default cases"]
+      steps: [`Translate match/when/switch to ${target} equivalents`, "Preserve default cases"],
     },
     {
       conceptId: "concurrency.patterns",
       from,
       to,
-      steps: [`Map concurrency primitives to ${target} equivalents`, "Preserve join/wait semantics"]
-    }
+      steps: [
+        `Map concurrency primitives to ${target} equivalents`,
+        "Preserve join/wait semantics",
+      ],
+    },
   ];
 }
 
@@ -201,12 +234,13 @@ export function translateWithFallback(
   from: LanguageId,
   to: LanguageId,
   code: string,
-  options: TranslationOptions = {}
+  options: TranslationOptions = {},
 ): TranslationResult {
   const engine = translateWithEngine(from, to, code, options);
-  const shouldFallback = /TODO: Translation not implemented|No supported patterns detected|Translation skipped/.test(
-    engine.output
-  );
+  const shouldFallback =
+    /TODO: Translation not implemented|No supported patterns detected|Translation skipped/.test(
+      engine.output,
+    );
 
   const base = shouldFallback ? basicTranslate(from, to, code) : engine;
   const comment = COMMENT_PREFIX[to] ?? "//";
@@ -217,8 +251,11 @@ export function translateWithFallback(
   return {
     ...base,
     output,
-    notes: [...(base.notes ?? []), "Applied mapping fallback with comment preservation and import hints."],
-    warnings: base.warnings
+    notes: [
+      ...(base.notes ?? []),
+      "Applied mapping fallback with comment preservation and import hints.",
+    ],
+    warnings: base.warnings,
   };
 }
 
@@ -230,7 +267,12 @@ function preserveLeadingComments(code: string, from: LanguageId, targetComment: 
     if (!trimmed) {
       continue;
     }
-    if (trimmed.startsWith("//") || trimmed.startsWith("#") || trimmed.startsWith("/*") || trimmed.startsWith("--")) {
+    if (
+      trimmed.startsWith("//") ||
+      trimmed.startsWith("#") ||
+      trimmed.startsWith("/*") ||
+      trimmed.startsWith("--")
+    ) {
       collected.push(trimmed.replace(/^(\/\/|#|\/\*|--)/, targetComment));
       continue;
     }
@@ -242,7 +284,12 @@ function preserveLeadingComments(code: string, from: LanguageId, targetComment: 
   return collected.join("\n");
 }
 
-function buildImportHints(result: TranslationResult, from: LanguageId, to: LanguageId, comment: string): string {
+function buildImportHints(
+  result: TranslationResult,
+  from: LanguageId,
+  to: LanguageId,
+  comment: string,
+): string {
   const hints = recommendImports(from, to, result);
   if (!hints.length) {
     return "";
@@ -252,16 +299,23 @@ function buildImportHints(result: TranslationResult, from: LanguageId, to: Langu
 
 function recommendImports(from: LanguageId, to: LanguageId, result: TranslationResult): string[] {
   const imports: string[] = [];
-  if (result.concepts?.includes("control-flow.async-await") || result.concepts?.includes("concurrency.patterns")) {
+  if (
+    result.concepts?.includes("control-flow.async-await") ||
+    result.concepts?.includes("concurrency.patterns")
+  ) {
     if (to === "kotlin") imports.push("kotlinx.coroutines.*");
-    if (to === "scala") imports.push("scala.concurrent.Future", "scala.concurrent.ExecutionContext");
+    if (to === "scala")
+      imports.push("scala.concurrent.Future", "scala.concurrent.ExecutionContext");
     if (to === "csharp") imports.push("System.Threading.Tasks");
     if (to === "swift") imports.push("Foundation");
     if (to === "dart") imports.push("dart:async");
     if (to === "java") imports.push("java.util.concurrent.*");
     if (to === "cpp") imports.push("<future>");
   }
-  if (result.concepts?.includes("data-structures.list") || result.concepts?.includes("data-structures.map")) {
+  if (
+    result.concepts?.includes("data-structures.list") ||
+    result.concepts?.includes("data-structures.map")
+  ) {
     if (to === "java") imports.push("java.util.*");
     if (to === "cpp") imports.push("<vector>", "<unordered_map>");
     if (to === "csharp") imports.push("System.Collections.Generic");
@@ -281,7 +335,7 @@ function basicTranslate(from: LanguageId, to: LanguageId, code: string): Transla
       concepts: [],
       notes: ["Basic translator did not match a supported concept."],
       warnings: ["No basic patterns detected."],
-      confidence: 0
+      confidence: 0,
     };
   }
 
@@ -290,8 +344,9 @@ function basicTranslate(from: LanguageId, to: LanguageId, code: string): Transla
     output,
     concepts: [pattern.id],
     notes: pattern.notes,
-    warnings: pattern.confidence < 0.6 ? ["Basic translation has low confidence; review recommended."] : [],
-    confidence: pattern.confidence
+    warnings:
+      pattern.confidence < 0.6 ? ["Basic translation has low confidence; review recommended."] : [],
+    confidence: pattern.confidence,
   };
 }
 
@@ -321,7 +376,9 @@ function detectBasicPattern(language: LanguageId, code: string): BasicPattern | 
 }
 
 function detectListPattern(code: string): BasicPattern | null {
-  const pythonComp = code.match(/\[(?<transform>[^\]\n]+?)\s+for\s+(?<item>\w+)\s+in\s+(?<source>[^\]\n]+?)(?:\s+if\s+(?<filter>[^\]\n]+))?\]/);
+  const pythonComp = code.match(
+    /\[(?<transform>[^\]\n]+?)\s+for\s+(?<item>\w+)\s+in\s+(?<source>[^\]\n]+?)(?:\s+if\s+(?<filter>[^\]\n]+))?\]/,
+  );
   if (pythonComp?.groups) {
     const source = pythonComp.groups.source ?? "items";
     const item = pythonComp.groups.item ?? "item";
@@ -333,14 +390,14 @@ function detectListPattern(code: string): BasicPattern | null {
         source: source.trim(),
         item: item.trim(),
         transform: transform.trim(),
-        filter: pythonComp.groups.filter?.trim() ?? ""
+        filter: pythonComp.groups.filter?.trim() ?? "",
       },
-      notes: ["Detected list comprehension."]
+      notes: ["Detected list comprehension."],
     };
   }
 
   const mapChain = code.match(
-    /(?<source>\w+(?:\.\w+)*)\.(?:filter|where|Where)\s*\((?<filter>[^)]+)\)\s*\.\s*map\s*\((?<map>[^)]+)\)|(?<source2>\w+(?:\.\w+)*)\.map\s*\((?<map2>[^)]+)\)/
+    /(?<source>\w+(?:\.\w+)*)\.(?:filter|where|Where)\s*\((?<filter>[^)]+)\)\s*\.\s*map\s*\((?<map>[^)]+)\)|(?<source2>\w+(?:\.\w+)*)\.map\s*\((?<map2>[^)]+)\)/,
   );
   if (mapChain?.groups) {
     return {
@@ -349,9 +406,9 @@ function detectListPattern(code: string): BasicPattern | null {
       params: {
         source: (mapChain.groups.source ?? mapChain.groups.source2 ?? "items").trim(),
         mapFn: (mapChain.groups.map ?? mapChain.groups.map2 ?? "(item) => item").trim(),
-        filterFn: (mapChain.groups.filter ?? "").trim()
+        filterFn: (mapChain.groups.filter ?? "").trim(),
       },
-      notes: ["Detected map/filter chain."]
+      notes: ["Detected map/filter chain."],
     };
   }
   return null;
@@ -365,7 +422,7 @@ function detectMapPattern(code: string): BasicPattern | null {
       id: "data-structures.map",
       confidence: 0.62,
       params: { entries: entries.trim() },
-      notes: ["Detected mapOf literal."]
+      notes: ["Detected mapOf literal."],
     };
   }
   const dictLiteral = code.match(/\{\s*(?<key>["'\w]+)\s*[:=>]\s*(?<value>[^,}]+)[^}]*\}/);
@@ -377,9 +434,9 @@ function detectMapPattern(code: string): BasicPattern | null {
       confidence: 0.55,
       params: {
         key: key.replace(/['"]/g, "").trim(),
-        value: value.trim()
+        value: value.trim(),
       },
-      notes: ["Detected map/dict literal."]
+      notes: ["Detected map/dict literal."],
     };
   }
   return null;
@@ -395,9 +452,9 @@ function detectDataclassPattern(code: string): BasicPattern | null {
       confidence: 0.7,
       params: {
         name: name.trim(),
-        fields: fields.trim()
+        fields: fields.trim(),
       },
-      notes: ["Detected Kotlin data class."]
+      notes: ["Detected Kotlin data class."],
     };
   }
   const caseClass = code.match(/case\s+class\s+(?<name>\w+)\s*\((?<fields>[^)]*)\)/);
@@ -408,7 +465,7 @@ function detectDataclassPattern(code: string): BasicPattern | null {
       id: "paradigms.dataclasses",
       confidence: 0.7,
       params: { name: name.trim(), fields: fields.trim() },
-      notes: ["Detected Scala case class."]
+      notes: ["Detected Scala case class."],
     };
   }
   const record = code.match(/record\s+(?<name>\w+)\s*\((?<fields>[^)]*)\)/);
@@ -419,7 +476,7 @@ function detectDataclassPattern(code: string): BasicPattern | null {
       id: "paradigms.dataclasses",
       confidence: 0.7,
       params: { name: name.trim(), fields: fields.trim() },
-      notes: ["Detected C# record."]
+      notes: ["Detected C# record."],
     };
   }
   const swiftStruct = code.match(/struct\s+(?<name>\w+)\s*\{(?<body>[\s\S]*?)\}/);
@@ -435,7 +492,7 @@ function detectDataclassPattern(code: string): BasicPattern | null {
       id: "paradigms.dataclasses",
       confidence: 0.6,
       params: { name: name.trim(), fields },
-      notes: ["Detected Swift struct."]
+      notes: ["Detected Swift struct."],
     };
   }
   const dartClass = code.match(/class\s+(?<name>\w+)\s*\{(?<body>[\s\S]*?)\}/);
@@ -451,7 +508,7 @@ function detectDataclassPattern(code: string): BasicPattern | null {
       id: "paradigms.dataclasses",
       confidence: 0.55,
       params: { name: name.trim(), fields },
-      notes: ["Detected Dart class."]
+      notes: ["Detected Dart class."],
     };
   }
   return null;
@@ -465,7 +522,7 @@ function detectDecoratorPattern(code: string): BasicPattern | null {
       id: "paradigms.decorators",
       confidence: 0.55,
       params: { decorator: name.trim() },
-      notes: ["Detected decorator/annotation."]
+      notes: ["Detected decorator/annotation."],
     };
   }
   const attribute = code.match(/^\[(?<decorator>\w+)\].*$/m);
@@ -475,7 +532,7 @@ function detectDecoratorPattern(code: string): BasicPattern | null {
       id: "paradigms.decorators",
       confidence: 0.55,
       params: { decorator: name.trim() },
-      notes: ["Detected attribute."]
+      notes: ["Detected attribute."],
     };
   }
   return null;
@@ -487,7 +544,7 @@ function detectAsyncPattern(code: string): BasicPattern | null {
       id: "control-flow.async-await",
       confidence: 0.6,
       params: {},
-      notes: ["Detected async/await usage."]
+      notes: ["Detected async/await usage."],
     };
   }
   if (/Future\s*<|CompletableFuture|Task\s*</.test(code)) {
@@ -495,7 +552,7 @@ function detectAsyncPattern(code: string): BasicPattern | null {
       id: "control-flow.async-await",
       confidence: 0.55,
       params: {},
-      notes: ["Detected async future/task usage."]
+      notes: ["Detected async future/task usage."],
     };
   }
   return null;
@@ -507,7 +564,7 @@ function detectErrorHandlingPattern(code: string): BasicPattern | null {
       id: "control-flow.exceptions",
       confidence: 0.6,
       params: {},
-      notes: ["Detected try/catch handling."]
+      notes: ["Detected try/catch handling."],
     };
   }
   return null;
@@ -519,7 +576,7 @@ function detectGenericsPattern(code: string): BasicPattern | null {
       id: "paradigms.generics",
       confidence: 0.55,
       params: {},
-      notes: ["Detected generic type parameters."]
+      notes: ["Detected generic type parameters."],
     };
   }
   return null;
@@ -531,7 +588,7 @@ function detectIteratorPattern(code: string): BasicPattern | null {
       id: "data-structures.iterators",
       confidence: 0.55,
       params: {},
-      notes: ["Detected iterator usage."]
+      notes: ["Detected iterator usage."],
     };
   }
   return null;
@@ -543,7 +600,7 @@ function detectPatternMatchingPattern(code: string): BasicPattern | null {
       id: "control-flow.pattern-matching",
       confidence: 0.55,
       params: {},
-      notes: ["Detected pattern matching."]
+      notes: ["Detected pattern matching."],
     };
   }
   return null;
@@ -555,7 +612,7 @@ function detectConcurrencyPattern(code: string): BasicPattern | null {
       id: "concurrency.patterns",
       confidence: 0.55,
       params: {},
-      notes: ["Detected concurrency pattern."]
+      notes: ["Detected concurrency pattern."],
     };
   }
   return null;
@@ -608,8 +665,10 @@ function renderList(params: Record<string, string>, to: LanguageId): string {
         filter ? `  if ${filter} {` : "",
         `  result = append(result, ${transform})`,
         filter ? "  }" : "",
-        "}"
-      ].filter(Boolean).join("\n");
+        "}",
+      ]
+        .filter(Boolean)
+        .join("\n");
     case "java":
       return `${source}.stream()${filter ? `.filter(${item} -> ${filter})` : ""}.map(${item} -> ${transform}).toList();`;
     case "cpp":
@@ -619,8 +678,10 @@ function renderList(params: Record<string, string>, to: LanguageId): string {
         filter ? `  if (${filter}) {` : "",
         `  result.push_back(${transform});`,
         filter ? "  }" : "",
-        "}"
-      ].filter(Boolean).join("\n");
+        "}",
+      ]
+        .filter(Boolean)
+        .join("\n");
     case "kotlin":
       return `${source}${filter ? `.filter { ${item} -> ${filter} }` : ""}.map { ${item} -> ${transform} }`;
     case "scala":
@@ -745,7 +806,7 @@ function renderErrorHandling(to: LanguageId): string {
     case "typescript":
       return "try { risky(); } catch (err) { console.error(err); }";
     case "rust":
-      return "if let Err(err) = risky() { eprintln!(\"{}\", err); }";
+      return 'if let Err(err) = risky() { eprintln!("{}", err); }';
     case "go":
       return "if err := risky(); err != nil { fmt.Println(err) }";
     case "java":
@@ -803,7 +864,7 @@ function renderIterators(to: LanguageId): string {
     case "typescript":
       return "for (const item of items) { console.log(item); }";
     case "rust":
-      return "for item in items.iter() { println!(\"{}\", item); }";
+      return 'for item in items.iter() { println!("{}", item); }';
     case "go":
       return "for _, item := range items { fmt.Println(item) }";
     case "java":

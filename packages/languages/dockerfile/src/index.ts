@@ -12,14 +12,18 @@ import { inferDockerfileTypes } from "./analysis/type-inference";
 export const dockerfileDefinition: LanguageDefinition = {
   id: "dockerfile",
   name: "Dockerfile",
-  extensions: [
-  ".ext"
-],
+  extensions: ["Dockerfile", ".dockerfile", "Dockerfile.*"],
   serverFactory: (projectPath) => new LanguageServer(projectPath),
   analyzerFactory: () => new LanguageAnalyzer(),
   templates: new CodeTemplates(),
-  promptEngineering: new PromptEngineering()
+  promptEngineering: new PromptEngineering(),
 };
 
 export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
-export { dockerfileRuntime, dockerfileEcosystem, dockerfileIdioms, dockerfileAstPatterns, inferDockerfileTypes };
+export {
+  dockerfileRuntime,
+  dockerfileEcosystem,
+  dockerfileIdioms,
+  dockerfileAstPatterns,
+  inferDockerfileTypes,
+};

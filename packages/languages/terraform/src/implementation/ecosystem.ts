@@ -1,10 +1,12 @@
 export const terraformEcosystem = {
-  fileExtensions: [
-  ".ext"
-],
-  paradigms: [
-  "oop",
-  "functional",
-  "procedural"
-]
+  fileExtensions: [".tf", ".tfvars", ".hcl"],
+  paradigms: ["declarative", "immutable-infra"],
+  registry: ["Terraform Registry"],
+  providers: ["AWS", "Azure", "GCP", "Kubernetes"],
+  modules: ["Public and private modules"],
+  backends: ["S3", "GCS", "AzureRM", "Terraform Cloud"],
+  tooling: ["tflint", "tfsec", "checkov"],
+  testing: ["terraform validate", "terratest"],
+  ciCd: ["GitHub Actions", "Terraform Cloud"],
+  deploymentTargets: ["cloud", "kubernetes", "networking"],
 };

@@ -2,7 +2,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dockerfileRuntime = void 0;
 exports.dockerfileRuntime = {
-    runtimeModel: "Garbage collection? Ownership? VM?",
-    packageManager: "npm? pip? cargo? go mod?",
-    lspServer: "official language server name"
+  name: "Docker Engine",
+  supportedVersions: ["24.x"],
+  executionModel: {
+    build: "Layered image builds",
+    caching: "Layer caching with BuildKit",
+    multiStage: "Named stages for optimized images",
+  },
+  artifacts: ["Dockerfile"],
+  performance: {
+    notes: ["Order layers for caching", "Use .dockerignore", "Pin base images"],
+  },
+  tooling: {
+    build: ["BuildKit", "docker buildx"],
+    scanning: ["docker scan", "trivy"],
+    registry: ["Docker Hub", "GHCR"],
+  },
 };

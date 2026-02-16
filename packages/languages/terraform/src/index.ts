@@ -12,14 +12,18 @@ import { inferTerraformTypes } from "./analysis/type-inference";
 export const terraformDefinition: LanguageDefinition = {
   id: "terraform",
   name: "Terraform",
-  extensions: [
-  ".ext"
-],
+  extensions: [".tf", ".tfvars", ".hcl"],
   serverFactory: (projectPath) => new LanguageServer(projectPath),
   analyzerFactory: () => new LanguageAnalyzer(),
   templates: new CodeTemplates(),
-  promptEngineering: new PromptEngineering()
+  promptEngineering: new PromptEngineering(),
 };
 
 export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
-export { terraformRuntime, terraformEcosystem, terraformIdioms, terraformAstPatterns, inferTerraformTypes };
+export {
+  terraformRuntime,
+  terraformEcosystem,
+  terraformIdioms,
+  terraformAstPatterns,
+  inferTerraformTypes,
+};

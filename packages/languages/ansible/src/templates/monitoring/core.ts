@@ -1,0 +1,25 @@
+export function monitoringTemplate(): string {
+  return [
+    "- name: Monitoring",
+    "  hosts: localhost",
+    "  tasks:",
+    "    - name: CloudWatch alarm",
+    "      amazon.aws.cloudwatch_metric_alarm:",
+    "        name: cpu-high",
+    "        metric: CPUUtilization",
+    "    - name: Datadog monitor",
+    "      datadog.datadog.monitor:",
+    "        name: app latency",
+    "        query: avg(last_5m):avg:app.latency{*} > 1",
+    "    - name: New Relic policy",
+    "      newrelic.newrelic.alert_policy:",
+    "        name: app policy",
+    "    - name: PagerDuty service",
+    "      pagerduty.pagerduty.service:",
+    "        name: app",
+    "    - name: Slack alert",
+    "      community.general.slack:",
+    "        channel: '#alerts'",
+    "        msg: 'Alarm fired'",
+  ].join("\n");
+}

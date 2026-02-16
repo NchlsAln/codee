@@ -1,0 +1,32 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.networkingTemplate = networkingTemplate;
+function networkingTemplate() {
+  return [
+    "- name: Networking",
+    "  hosts: localhost",
+    "  tasks:",
+    "    - name: VPC",
+    "      amazon.aws.ec2_vpc_net:",
+    "        name: main",
+    "        cidr_block: 10.0.0.0/16",
+    "    - name: Subnet",
+    "      amazon.aws.ec2_vpc_subnet:",
+    "        vpc_id: vpc-123",
+    "        cidr: 10.0.1.0/24",
+    "    - name: Security group",
+    "      amazon.aws.ec2_group:",
+    "        name: web",
+    "        description: web sg",
+    "    - name: Load balancer",
+    "      amazon.aws.elb_application_lb:",
+    "        name: app",
+    "        state: present",
+    "    - name: Route53 record",
+    "      amazon.aws.route53:",
+    "        zone: example.com",
+    "        record: app.example.com",
+    "        type: A",
+    "        value: 1.2.3.4",
+  ].join("\n");
+}

@@ -12,13 +12,11 @@ import { inferAnsibleTypes } from "./analysis/type-inference";
 export const ansibleDefinition: LanguageDefinition = {
   id: "ansible",
   name: "Ansible",
-  extensions: [
-  ".ext"
-],
+  extensions: [".yml", ".yaml", ".ansible.yml"],
   serverFactory: (projectPath) => new LanguageServer(projectPath),
   analyzerFactory: () => new LanguageAnalyzer(),
   templates: new CodeTemplates(),
-  promptEngineering: new PromptEngineering()
+  promptEngineering: new PromptEngineering(),
 };
 
 export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };

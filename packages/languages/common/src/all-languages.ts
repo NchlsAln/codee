@@ -5,6 +5,7 @@ export const ALL_LANGUAGES = [
   "awk",
   "bash",
   "c",
+  "chef",
   "clojure",
   "coffeescript",
   "cpp",
@@ -35,6 +36,7 @@ export const ALL_LANGUAGES = [
   "ocaml",
   "perl",
   "php",
+  "puppet",
   "powershell",
   "python",
   "r",
@@ -52,6 +54,6 @@ export const ALL_LANGUAGES = [
   "vbnet",
   "xml",
   "yaml",
-  "zig"
+  "zig",
 ] as const;
-export type LanguageId = typeof ALL_LANGUAGES[number];
+export type LanguageId = (typeof ALL_LANGUAGES)[number];
