@@ -1,0 +1,4 @@
+
+> @codee/lang-css@0.9.0-beta.1 typecheck
+> tsc -p tsconfig.json --noEmit
+

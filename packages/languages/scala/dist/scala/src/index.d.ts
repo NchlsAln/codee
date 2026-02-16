@@ -1,0 +1,13 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+import { scalaRuntime } from "./implementation/runtime";
+import { scalaEcosystem } from "./implementation/ecosystem";
+import { scalaIdioms } from "./implementation/idioms";
+import { scalaAstPatterns } from "./analysis/ast-patterns";
+import { inferScalaTypes } from "./analysis/type-inference";
+export declare const scalaDefinition: LanguageDefinition;
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { scalaRuntime, scalaEcosystem, scalaIdioms, scalaAstPatterns, inferScalaTypes };

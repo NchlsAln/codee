@@ -1,0 +1,29 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.inferRTypes = inferRTypes;
+function inferRTypes(source) {
+    const inferred = {};
+    const lines = source.split(/\r?\n/);
+    for (const line of lines) {
+        const stringLiteral = line.match(/(\w+)\s*<-\s*\".*\"/);
+        if (stringLiteral?.[1]) {
+            inferred[stringLiteral[1]] = "string";
+            continue;
+        }
+        const numericLiteral = line.match(/(\w+)\s*<-\s*\d+(?:\.\d+)?/);
+        if (numericLiteral?.[1]) {
+            inferred[numericLiteral[1]] = "numeric";
+            continue;
+        }
+        const vectorLiteral = line.match(/(\w+)\s*<-\s*c\(/);
+        if (vectorLiteral?.[1]) {
+            inferred[vectorLiteral[1]] = "vector";
+            continue;
+        }
+        const dataFrame = line.match(/(\w+)\s*<-\s*(data\.frame|tibble)\(/);
+        if (dataFrame?.[1]) {
+            inferred[dataFrame[1]] = "data.frame";
+        }
+    }
+    return inferred;
+}

@@ -2,6 +2,7 @@ import { BaseLanguageAnalyzer } from "./BaseLanguageAnalyzer";
 import { BaseLanguageServer } from "./BaseLanguageServer";
 import { BaseCodeTemplates } from "./BaseCodeTemplates";
 import { BasePromptEngineering } from "./BasePromptEngineering";
+import { ALL_LANGUAGES } from "./all-languages";
 
 export interface LanguageDefinition {
   id: string;
@@ -77,4 +78,38 @@ export class LanguageRegistry {
     const key = projectPath || "<global>";
     return Array.from(this.activeServers.get(key)?.values() ?? []);
   }
+}
+
+const toCamelCase = (value: string): string => {
+  const parts = value.split(/[\s_-]+/).filter(Boolean);
+  if (parts.length === 0) {
+    return "";
+  }
+  const first = parts[0] ?? "";
+  const rest = parts.slice(1);
+  return `${first.toLowerCase()}${rest.map((part) => `${part[0]?.toUpperCase() || ""}${part.slice(1)}`).join("")}`;
+};
+
+export { ALL_LANGUAGES } from "./all-languages";
+
+export function registerAllLanguages(registry: LanguageRegistry): void {
+  ALL_LANGUAGES.forEach((lang) => {
+    const moduleName = `@codee/lang-${lang}`;
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const module = require(moduleName);
+      const definitionKey = `${toCamelCase(lang)}Definition`;
+      const definition = module[definitionKey] ?? module.default;
+      if (!definition) {
+        return;
+      }
+      registry.registerLanguage(definition);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      if (message.includes(moduleName)) {
+        return;
+      }
+      throw error;
+    }
+  });
 }

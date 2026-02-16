@@ -9,7 +9,12 @@
       "@codee/languages": ["packages/languages/src"],
       "@codee/lang-common": ["packages/languages/common/src"],
       "@codee/lang-python": ["packages/languages/python/src"],
-      "@codee/lang-typescript": ["packages/languages/typescript/src"]
+      "@codee/lang-typescript": ["packages/languages/typescript/src"],
+      "@codee/lang-rust": ["packages/languages/rust/src"],
+      "@codee/lang-go": ["packages/languages/go/src"],
+      "@codee/lang-java": ["packages/languages/java/src"],
+      "@codee/lang-cpp": ["packages/languages/cpp/src"],
+      "@codee/polyglot-knowledge": ["packages/polyglot-knowledge/src"]
     },
     "strict": true,
     "noImplicitAny": true,

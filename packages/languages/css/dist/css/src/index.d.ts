@@ -1,0 +1,13 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+import { cssRuntime } from "./implementation/runtime";
+import { cssEcosystem } from "./implementation/ecosystem";
+import { cssIdioms } from "./implementation/idioms";
+import { cssAstPatterns } from "./analysis/ast-patterns";
+import { inferCssTypes } from "./analysis/type-inference";
+export declare const cssDefinition: LanguageDefinition;
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { cssRuntime, cssEcosystem, cssIdioms, cssAstPatterns, inferCssTypes };

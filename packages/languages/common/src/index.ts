@@ -2,7 +2,7 @@ export { BaseLanguageServer } from "./BaseLanguageServer";
 export { BaseLanguageAnalyzer } from "./BaseLanguageAnalyzer";
 export { BaseCodeTemplates } from "./BaseCodeTemplates";
 export { BasePromptEngineering } from "./BasePromptEngineering";
-export { LanguageRegistry } from "./LanguageRegistry";
+export { LanguageRegistry, ALL_LANGUAGES, registerAllLanguages } from "./LanguageRegistry";
 export type { LanguageDefinition } from "./LanguageRegistry";
 export type {
   AnalyzerResult,

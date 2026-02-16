@@ -1,15 +1,182 @@
 {
   "files": [],
   "references": [
-    { "path": "./apps/codee-vscode" },
-    { "path": "./apps/codee-desktop" },
-    { "path": "./packages/core-engine" },
-    { "path": "./packages/data-layer" },
-    { "path": "./packages/ui-system" },
-    { "path": "./packages/languages/common" },
-    { "path": "./packages/languages" },
-    { "path": "./packages/languages/python" },
-    { "path": "./packages/languages/typescript" },
-    { "path": "./tools/build-config" }
+    {
+      "path": "./apps/codee-vscode"
+    },
+    {
+      "path": "./apps/codee-desktop"
+    },
+    {
+      "path": "./packages/core-engine"
+    },
+    {
+      "path": "./packages/data-layer"
+    },
+    {
+      "path": "./packages/ui-system"
+    },
+    {
+      "path": "./packages/languages/common"
+    },
+    {
+      "path": "./packages/languages"
+    },
+    {
+      "path": "./tools/build-config"
+    },
+    {
+      "path": "./packages/languages/common"
+    },
+    {
+      "path": "./packages/languages"
+    },
+    {
+      "path": "./packages/languages/ansible"
+    },
+    {
+      "path": "./packages/languages/assembly"
+    },
+    {
+      "path": "./packages/languages/bash"
+    },
+    {
+      "path": "./packages/languages/c"
+    },
+    {
+      "path": "./packages/languages/clojure"
+    },
+    {
+      "path": "./packages/languages/coffeescript"
+    },
+    {
+      "path": "./packages/languages/cpp"
+    },
+    {
+      "path": "./packages/languages/crystal"
+    },
+    {
+      "path": "./packages/languages/csharp"
+    },
+    {
+      "path": "./packages/languages/css"
+    },
+    {
+      "path": "./packages/languages/dart"
+    },
+    {
+      "path": "./packages/languages/dockerfile"
+    },
+    {
+      "path": "./packages/languages/elixir"
+    },
+    {
+      "path": "./packages/languages/erlang"
+    },
+    {
+      "path": "./packages/languages/fortran"
+    },
+    {
+      "path": "./packages/languages/fsharp"
+    },
+    {
+      "path": "./packages/languages/go"
+    },
+    {
+      "path": "./packages/languages/graphql"
+    },
+    {
+      "path": "./packages/languages/groovy"
+    },
+    {
+      "path": "./packages/languages/haskell"
+    },
+    {
+      "path": "./packages/languages/html"
+    },
+    {
+      "path": "./packages/languages/java"
+    },
+    {
+      "path": "./packages/languages/javascript"
+    },
+    {
+      "path": "./packages/languages/json"
+    },
+    {
+      "path": "./packages/languages/julia"
+    },
+    {
+      "path": "./packages/languages/kotlin"
+    },
+    {
+      "path": "./packages/languages/lua"
+    },
+    {
+      "path": "./packages/languages/markdown"
+    },
+    {
+      "path": "./packages/languages/matlab"
+    },
+    {
+      "path": "./packages/languages/nim"
+    },
+    {
+      "path": "./packages/languages/objective-c"
+    },
+    {
+      "path": "./packages/languages/ocaml"
+    },
+    {
+      "path": "./packages/languages/perl"
+    },
+    {
+      "path": "./packages/languages/php"
+    },
+    {
+      "path": "./packages/languages/powershell"
+    },
+    {
+      "path": "./packages/languages/python"
+    },
+    {
+      "path": "./packages/languages/r"
+    },
+    {
+      "path": "./packages/languages/ruby"
+    },
+    {
+      "path": "./packages/languages/rust"
+    },
+    {
+      "path": "./packages/languages/scala"
+    },
+    {
+      "path": "./packages/languages/solidity"
+    },
+    {
+      "path": "./packages/languages/sql"
+    },
+    {
+      "path": "./packages/languages/swift"
+    },
+    {
+      "path": "./packages/languages/terraform"
+    },
+    {
+      "path": "./packages/languages/typescript"
+    },
+    {
+      "path": "./packages/languages/vbnet"
+    },
+    {
+      "path": "./packages/languages/xml"
+    },
+    {
+      "path": "./packages/languages/yaml"
+    },
+    {
+      "path": "./packages/languages/zig"
+    }
   ]
 }

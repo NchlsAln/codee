@@ -10,6 +10,7 @@ import { EngineInspectorPanel } from "../panels/engine-inspector-panel";
 import { ChatController } from "../bridge/ChatController";
 import { ContextProvider } from "../bridge/ContextProvider";
 import { TelemetryService } from "../telemetry/TelemetryService";
+import { LearningModeService } from "../coding-assistant/learning-mode-service";
 import {
   explainSelected,
   generateUnitTests,
@@ -20,7 +21,14 @@ import {
   openEngineLogs,
   restartEngine,
   downloadModel,
-  exportDebugLog
+  exportDebugLog,
+  convertToLanguage,
+  explainPattern,
+  openLearningMode,
+  openPatternExplorer,
+  compareLanguages,
+  findPattern,
+  translateProject
 } from "../bridge/CommandImplementations";
 
 export function registerCommands(
@@ -34,12 +42,16 @@ export function registerCommands(
   helpPanel: HelpPanel,
   onboardingPanel: OnboardingPanel,
   inspectorPanel: EngineInspectorPanel,
-  telemetry?: TelemetryService
+  telemetry?: TelemetryService,
+  learningMode?: LearningModeService
 ): void {
-  const withTelemetry = <T>(commandId: string, handler: () => T): (() => T) => {
-    return () => {
+  const withTelemetry = <T, A extends unknown[]>(
+    commandId: string,
+    handler: (...args: A) => T
+  ): ((...args: A) => T) => {
+    return (...args: A) => {
       telemetry?.trackCommand(commandId);
-      return handler();
+      return handler(...args);
     };
   };
 
@@ -122,6 +134,40 @@ export function registerCommands(
       "codee.exportDebugLog",
       withTelemetry("codee.exportDebugLog", () =>
         exportDebugLog(engineHost, chatController, contextProvider)
+      )
+    ),
+    vscode.commands.registerCommand(
+      "codee.convertLanguage",
+      withTelemetry(
+        "codee.convertLanguage",
+        (target: "python" | "typescript" | "rust" | "go" | "java" | "cpp") =>
+        convertToLanguage(engineHost, contextProvider, target)
+      )
+    ),
+    vscode.commands.registerCommand(
+      "codee.explainPattern",
+      withTelemetry("codee.explainPattern", () => explainPattern())
+    ),
+    vscode.commands.registerCommand(
+      "codee.learningMode",
+      withTelemetry("codee.learningMode", () => openLearningMode(learningMode))
+    ),
+    vscode.commands.registerCommand(
+      "codee.openPatternExplorer",
+      withTelemetry("codee.openPatternExplorer", () => openPatternExplorer(chatPanel))
+    ),
+    vscode.commands.registerCommand(
+      "codee.compareLanguages",
+      withTelemetry("codee.compareLanguages", () => compareLanguages(chatPanel))
+    ),
+    vscode.commands.registerCommand(
+      "codee.findPattern",
+      withTelemetry("codee.findPattern", () => findPattern(engineHost, chatPanel))
+    ),
+    vscode.commands.registerCommand(
+      "codee.translateProject",
+      withTelemetry("codee.translateProject", () =>
+        translateProject(engineHost, contextProvider, context.extensionUri)
       )
     )
   );

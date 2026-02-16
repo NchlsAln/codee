@@ -1,0 +1,13 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+import { phpRuntime } from "./implementation/runtime";
+import { phpEcosystem } from "./implementation/ecosystem";
+import { phpIdioms } from "./implementation/idioms";
+import { phpAstPatterns } from "./analysis/ast-patterns";
+import { inferPhpTypes } from "./analysis/type-inference";
+export declare const phpDefinition: LanguageDefinition;
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { phpRuntime, phpEcosystem, phpIdioms, phpAstPatterns, inferPhpTypes };

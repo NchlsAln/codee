@@ -1,4 +1,4 @@
-import { BaseCodeTemplates } from "../../common/src/BaseCodeTemplates";
+import { BaseCodeTemplates } from "@codee/lang-common";
 
 export class CodeTemplates extends BaseCodeTemplates {
   constructor() {

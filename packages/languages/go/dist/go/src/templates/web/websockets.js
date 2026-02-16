@@ -1,0 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.websocketsTemplate = websocketsTemplate;
+function websocketsTemplate() {
+    return "package main\n\nimport (\n  \"log\"\n  \"net/http\"\n\n  \"github.com/gorilla/websocket\"\n)\n\nvar upgrader = websocket.Upgrader{}\n\nfunc ws(w http.ResponseWriter, r *http.Request) {\n  conn, err := upgrader.Upgrade(w, r, nil)\n  if err != nil {\n    return\n  }\n  defer conn.Close()\n  for {\n    _, msg, err := conn.ReadMessage()\n    if err != nil {\n      break\n    }\n    _ = conn.WriteMessage(websocket.TextMessage, msg)\n  }\n}\n\nfunc main() {\n  http.HandleFunc(\"/ws\", ws)\n  log.Fatal(http.ListenAndServe(\":8080\", nil))\n}\n";
+}

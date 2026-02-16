@@ -15,3 +15,11 @@ export const pythonDefinition: LanguageDefinition = {
 };
 
 export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { pythonRuntime } from "./implementation/runtime";
+export { pythonEcosystem } from "./implementation/ecosystem";
+export { pythonIdioms } from "./implementation/idioms";
+export { pythonAstPatterns } from "./analysis/ast-patterns";
+export { inferPythonTypes } from "./analysis/type-inference";
+export { djangoTemplate } from "./templates/django";
+export { fastApiTemplate } from "./templates/fastapi";
+export { pytorchTemplate } from "./templates/pytorch";

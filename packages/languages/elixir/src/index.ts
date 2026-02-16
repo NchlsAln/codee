@@ -1,0 +1,26 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+import { elixirRuntime } from "./implementation/runtime";
+import { elixirEcosystem } from "./implementation/ecosystem";
+import { elixirIdioms } from "./implementation/idioms";
+import { elixirAstPatterns } from "./analysis/ast-patterns";
+import { inferElixirTypes } from "./analysis/type-inference";
+
+export const elixirDefinition: LanguageDefinition = {
+  id: "elixir",
+  name: "Elixir",
+  extensions: [
+    ".ex",
+    ".exs"
+  ],
+  serverFactory: (projectPath) => new LanguageServer(projectPath),
+  analyzerFactory: () => new LanguageAnalyzer(),
+  templates: new CodeTemplates(),
+  promptEngineering: new PromptEngineering()
+};
+
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { elixirRuntime, elixirEcosystem, elixirIdioms, elixirAstPatterns, inferElixirTypes };

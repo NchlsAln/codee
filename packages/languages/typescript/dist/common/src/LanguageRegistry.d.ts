@@ -22,3 +22,5 @@ export declare class LanguageRegistry {
     stopServer(projectPath: string, languageId: string): Promise<void>;
     listActiveServers(projectPath: string): BaseLanguageServer[];
 }
+export { ALL_LANGUAGES } from "./all-languages";
+export declare function registerAllLanguages(registry: LanguageRegistry): void;

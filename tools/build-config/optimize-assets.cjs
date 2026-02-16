@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires, no-console */
 const { optimize } = require("svgo");
 const { readFileSync, writeFileSync } = require("fs");
 const { globSync } = require("glob");

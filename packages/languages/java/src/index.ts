@@ -1,0 +1,26 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+
+export const javaDefinition: LanguageDefinition = {
+  id: "java",
+  name: "Java",
+  extensions: [".java"],
+  serverFactory: (projectPath) => new LanguageServer(projectPath),
+  analyzerFactory: () => new LanguageAnalyzer(),
+  templates: new CodeTemplates(),
+  promptEngineering: new PromptEngineering()
+};
+
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { javaRuntime } from "./implementation/runtime";
+export { javaEcosystem } from "./implementation/ecosystem";
+export { javaIdioms } from "./implementation/idioms";
+export { javaAstPatterns } from "./analysis/ast-patterns";
+export { inferJavaTypes } from "./analysis/type-inference";
+export { collectionsTemplate, ioTemplate } from "./templates/stdlib";
+export { controllersTemplate, servicesTemplate, repositoriesTemplate } from "./templates/spring";
+export { jpaTemplate } from "./templates/jpa";
+export { androidTemplate } from "./templates/android";

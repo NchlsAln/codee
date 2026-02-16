@@ -10,11 +10,12 @@
       "@codee/languages": ["../languages/dist"],
       "@codee/lang-common": ["../languages/common/dist"],
       "@codee/lang-python": ["../languages/python/dist"],
-      "@codee/lang-typescript": ["../languages/typescript/dist"]
+      "@codee/lang-typescript": ["../languages/typescript/dist"],
+      "@codee/polyglot-knowledge": ["../polyglot-knowledge/dist"]
     },
     "types": ["node"]
   },
   "include": ["src"],
   "exclude": ["src/test"],
-  "references": [{ "path": "../languages" }]
+  "references": [{ "path": "../languages" }, { "path": "../polyglot-knowledge" }]
 }

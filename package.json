@@ -38,7 +38,9 @@
     "release:version": "standard-version",
     "format": "prettier -w .",
     "prepare": "husky install",
-    "generate:language": "node tools/scripts/generate-language.cjs"
+    "generate:language": "node tools/scripts/generate-language.cjs",
+    "tree:generate": "node tools/scripts/file-tree.cjs",
+    "tree:watch": "node tools/scripts/file-tree.cjs --watch"
   },
   "devDependencies": {
     "@playwright/test": "^1.43.0",

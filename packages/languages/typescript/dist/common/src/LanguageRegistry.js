@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LanguageRegistry = void 0;
+exports.ALL_LANGUAGES = exports.LanguageRegistry = void 0;
+exports.registerAllLanguages = registerAllLanguages;
+const all_languages_1 = require("./all-languages");
 class LanguageRegistry {
     languages = new Map();
     activeServers = new Map();
@@ -52,3 +54,36 @@ class LanguageRegistry {
     }
 }
 exports.LanguageRegistry = LanguageRegistry;
+const toCamelCase = (value) => {
+    const parts = value.split(/[\s_-]+/).filter(Boolean);
+    if (parts.length === 0) {
+        return "";
+    }
+    const first = parts[0] ?? "";
+    const rest = parts.slice(1);
+    return `${first.toLowerCase()}${rest.map((part) => `${part[0]?.toUpperCase() || ""}${part.slice(1)}`).join("")}`;
+};
+var all_languages_2 = require("./all-languages");
+Object.defineProperty(exports, "ALL_LANGUAGES", { enumerable: true, get: function () { return all_languages_2.ALL_LANGUAGES; } });
+function registerAllLanguages(registry) {
+    all_languages_1.ALL_LANGUAGES.forEach((lang) => {
+        const moduleName = `@codee/lang-${lang}`;
+        try {
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            const module = require(moduleName);
+            const definitionKey = `${toCamelCase(lang)}Definition`;
+            const definition = module[definitionKey] ?? module.default;
+            if (!definition) {
+                return;
+            }
+            registry.registerLanguage(definition);
+        }
+        catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            if (message.includes(moduleName)) {
+                return;
+            }
+            throw error;
+        }
+    });
+}

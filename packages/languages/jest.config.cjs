@@ -16,7 +16,11 @@ module.exports = {
   moduleNameMapper: {
     "^@codee/lang-common$": "<rootDir>/common/src",
     "^@codee/lang-typescript$": "<rootDir>/typescript/src",
-    "^@codee/lang-python$": "<rootDir>/python/src"
+    "^@codee/lang-python$": "<rootDir>/python/src",
+    "^@codee/lang-rust$": "<rootDir>/rust/src",
+    "^@codee/lang-go$": "<rootDir>/go/src",
+    "^@codee/lang-java$": "<rootDir>/java/src",
+    "^@codee/lang-cpp$": "<rootDir>/cpp/src"
   },
   collectCoverageFrom: [
     "<rootDir>/src/**/*.ts",

@@ -1,0 +1,13 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+import { groovyRuntime } from "./implementation/runtime";
+import { groovyEcosystem } from "./implementation/ecosystem";
+import { groovyIdioms } from "./implementation/idioms";
+import { groovyAstPatterns } from "./analysis/ast-patterns";
+import { inferGroovyTypes } from "./analysis/type-inference";
+export declare const groovyDefinition: LanguageDefinition;
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { groovyRuntime, groovyEcosystem, groovyIdioms, groovyAstPatterns, inferGroovyTypes };

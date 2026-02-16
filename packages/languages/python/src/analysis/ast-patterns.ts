@@ -1,0 +1,20 @@
+export const pythonAstPatterns = [
+  "idiom: use enumerate() instead of range(len())",
+  "idiom: prefer f-strings over str.format",
+  "idiom: context manager wrapping open()/close()",
+  "smell: bare except or except Exception without logging",
+  "smell: mutable default arguments (e.g., def f(x=[]))",
+  "smell: deep nesting beyond 3 levels",
+  "perf: string concatenation in loops",
+  "perf: list append in tight loops (consider list comp)",
+  "perf: repeated regex compilation",
+  "security: eval/exec on untrusted input",
+  "security: yaml.load without SafeLoader",
+  "security: subprocess with shell=True and user input",
+  "refactor: extract context manager",
+  "refactor: replace manual loop with list comprehension",
+  "refactor: split long function into helpers",
+  "async: missing await in coroutine call",
+  "types: non-optional attribute accessed without None checks",
+  "testing: direct IO in unit tests (mock required)"
+];

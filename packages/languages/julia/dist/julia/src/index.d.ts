@@ -1,0 +1,13 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+import { juliaRuntime } from "./implementation/runtime";
+import { juliaEcosystem } from "./implementation/ecosystem";
+import { juliaIdioms } from "./implementation/idioms";
+import { juliaAstPatterns } from "./analysis/ast-patterns";
+import { inferJuliaTypes } from "./analysis/type-inference";
+export declare const juliaDefinition: LanguageDefinition;
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { juliaRuntime, juliaEcosystem, juliaIdioms, juliaAstPatterns, inferJuliaTypes };

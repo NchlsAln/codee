@@ -22,6 +22,17 @@ graph TD
   VSCode --> Desktop[Electron Shell]
 ```
 
+## Polyglot Translation Flow
+```mermaid
+flowchart LR
+  Input[Input Code] --> Parse[Pattern Detection]
+  Parse --> Concept[Concept Mapping]
+  Concept --> Decision[Ambiguity Resolution]
+  Decision --> Generate[Idiomatic Generation]
+  Generate --> Validate[Syntax + Behavior Validation]
+  Validate --> Output[Translated Output]
+```
+
 ## Package Dependencies
 ```mermaid
 graph LR

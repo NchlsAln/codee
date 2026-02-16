@@ -1,0 +1,12 @@
+export function channelsTemplate(): string {
+  return [
+    "let stream = AsyncStream<String> { continuation in",
+    "  continuation.yield(\"work\")",
+    "  continuation.finish()",
+    "}",
+    "",
+    "for await value in stream {",
+    "  print(value)",
+    "}"
+  ].join("\n");
+}

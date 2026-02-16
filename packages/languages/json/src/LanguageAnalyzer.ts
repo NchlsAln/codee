@@ -1,7 +1,8 @@
-import { BaseLanguageAnalyzer } from "../../common/src/BaseLanguageAnalyzer";
+import { BaseLanguageAnalyzer } from "@codee/lang-common";
 
 export class LanguageAnalyzer extends BaseLanguageAnalyzer {
   constructor() {
     super("json", "tree-sitter-json");
   }
 }
+

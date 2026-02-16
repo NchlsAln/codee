@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="380" viewBox="0 0 900 380">
+  <rect width="900" height="380" fill="#0f172a" />
+  <rect x="40" y="40" width="820" height="300" rx="16" fill="#111827" stroke="#334155" />
+  <text x="70" y="95" fill="#e2e8f0" font-family="Segoe UI, sans-serif" font-size="20">Polyglot Conversion</text>
+  <rect x="70" y="120" width="340" height="190" rx="12" fill="#0b1220" stroke="#1e293b" />
+  <rect x="490" y="120" width="340" height="190" rx="12" fill="#0b1220" stroke="#1e293b" />
+  <text x="90" y="150" fill="#94a3b8" font-family="Consolas, monospace" font-size="14">squares = [x**2 for x in range(10)</text>
+  <text x="90" y="172" fill="#94a3b8" font-family="Consolas, monospace" font-size="14">  if x % 2 == 0]</text>
+  <text x="510" y="150" fill="#94a3b8" font-family="Consolas, monospace" font-size="14">let result: Vec&lt;_&gt; = squares.iter()</text>
+  <text x="510" y="172" fill="#94a3b8" font-family="Consolas, monospace" font-size="14">  .filter(|x| x % 2 == 0)</text>
+  <text x="510" y="194" fill="#94a3b8" font-family="Consolas, monospace" font-size="14">  .map(|x| x.pow(2))</text>
+  <text x="510" y="216" fill="#94a3b8" font-family="Consolas, monospace" font-size="14">  .collect();</text>
+  <text x="70" y="320" fill="#38bdf8" font-family="Segoe UI, sans-serif" font-size="12">Replace with recorded GIF when available.</text>
+</svg>

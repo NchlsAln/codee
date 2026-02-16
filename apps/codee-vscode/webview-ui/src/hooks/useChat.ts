@@ -2,7 +2,14 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { ChatAttachment, ChatMessage, WebviewAction } from "../types";
 import { getVSCodeApi } from "../utils/vscode";
 import { useStreaming } from "./useStreaming";
-import { ContextFile, ConversationSummary, ExtensionMessage, WebviewMessage } from "../protocol";
+import {
+  ContextFile,
+  ConversationSummary,
+  ExtensionMessage,
+  WebviewMessage,
+  PatternConcept,
+  PatternImplementation
+} from "../protocol";
 
 const vscode = getVSCodeApi();
 
@@ -14,6 +21,13 @@ type WebviewState = {
   tokenCount: number;
   activeConversationId?: string;
   conversationMap?: Record<string, ChatMessage[]>;
+  activeView?: "chat" | "pattern-explorer";
+  patternConcepts?: PatternConcept[];
+  patternImplementations?: Record<string, PatternImplementation[]>;
+  learningQueue?: string[];
+  selectedConceptId?: string;
+  selectedFromLanguage?: string;
+  selectedToLanguage?: string;
 };
 
 export const useChat = () => {
@@ -26,6 +40,17 @@ export const useChat = () => {
   const [conversations, setConversations] = useState<ConversationSummary[]>(saved?.conversations ?? []);
   const [activeConversationId, setActiveConversationId] = useState<string | undefined>(saved?.activeConversationId);
   const [conversationMap, setConversationMap] = useState<Record<string, ChatMessage[]>>(saved?.conversationMap ?? {});
+  const [activeView, setActiveView] = useState<"chat" | "pattern-explorer">(
+    saved?.activeView ?? initialViewFromLocation()
+  );
+  const [patternConcepts, setPatternConcepts] = useState<PatternConcept[]>(saved?.patternConcepts ?? []);
+  const [patternImplementations, setPatternImplementations] = useState<Record<string, PatternImplementation[]>>(
+    saved?.patternImplementations ?? {}
+  );
+  const [learningQueue, setLearningQueue] = useState<string[]>(saved?.learningQueue ?? []);
+  const [selectedConceptId, setSelectedConceptId] = useState<string | undefined>(saved?.selectedConceptId);
+  const [selectedFromLanguage, setSelectedFromLanguage] = useState<string | undefined>(saved?.selectedFromLanguage);
+  const [selectedToLanguage, setSelectedToLanguage] = useState<string | undefined>(saved?.selectedToLanguage);
   const suggestions = useMemo(() => ["Explain selection", "Generate tests", "Refactor"], []);
   const mentionState = useMemo(() => buildMentionState(input, contextFiles), [input, contextFiles]);
 
@@ -50,6 +75,21 @@ export const useChat = () => {
       if (payload.type === "setTheme") {
         document.body.dataset.codeeTheme = payload.theme;
       }
+      if (payload.type === "patternExplorerData") {
+        setPatternConcepts(payload.concepts);
+        setPatternImplementations(payload.implementations);
+        setLearningQueue(payload.learningQueue);
+      }
+      if (payload.type === "updateLearningQueue") {
+        setLearningQueue(payload.learningQueue);
+      }
+      if (payload.type === "showPatternExplorer") {
+        setActiveView("pattern-explorer");
+        setSelectedConceptId(payload.selectedConceptId);
+        setSelectedFromLanguage(payload.fromLanguage);
+        setSelectedToLanguage(payload.toLanguage);
+        vscode.postMessage({ type: "requestPatternExplorerData" } satisfies WebviewMessage);
+      }
     };
 
     window.addEventListener("message", handleMessage as (event: MessageEvent) => void);
@@ -64,10 +104,40 @@ export const useChat = () => {
       contextFiles,
       tokenCount,
       activeConversationId,
-      conversationMap
+      conversationMap,
+      activeView,
+      patternConcepts,
+      patternImplementations,
+      learningQueue,
+      selectedConceptId,
+      selectedFromLanguage,
+      selectedToLanguage
     };
     vscode.setState(nextState);
-  }, [attachments, contextFiles, conversations, messages, tokenCount, activeConversationId, conversationMap]);
+  }, [
+    attachments,
+    contextFiles,
+    conversations,
+    messages,
+    tokenCount,
+    activeConversationId,
+    conversationMap,
+    activeView,
+    patternConcepts,
+    patternImplementations,
+    learningQueue,
+    selectedConceptId,
+    selectedFromLanguage,
+    selectedToLanguage
+  ]);
+
+  useEffect(() => {
+    if (activeView === "pattern-explorer") {
+      window.location.hash = "#/pattern-explorer";
+    } else {
+      window.location.hash = "#/chat";
+    }
+  }, [activeView]);
 
   useEffect(() => {
     if (!activeConversationId) {
@@ -134,6 +204,11 @@ export const useChat = () => {
     vscode.postMessage({ type: "openSettings" } satisfies WebviewMessage);
   }, []);
 
+  const openPatternExplorer = useCallback(() => {
+    setActiveView("pattern-explorer");
+    vscode.postMessage({ type: "openPatternExplorer" } satisfies WebviewMessage);
+  }, []);
+
   const openContextManager = useCallback(() => {
     openSettings();
   }, [openSettings]);
@@ -187,6 +262,23 @@ export const useChat = () => {
     }
   }, []);
 
+  const learnPattern = useCallback((conceptId: string) => {
+    vscode.postMessage({ type: "learnPattern", conceptId } satisfies WebviewMessage);
+  }, []);
+
+  const sendTranslationFeedback = useCallback(
+    (payload: {
+      sourceLanguage: string;
+      targetLanguage: string;
+      sourceCode: string;
+      targetCode: string;
+      feedback: string;
+    }) => {
+      vscode.postMessage({ type: "translationFeedback", ...payload } satisfies WebviewMessage);
+    },
+    []
+  );
+
   return {
     messages,
     input,
@@ -194,6 +286,13 @@ export const useChat = () => {
     contextFiles,
     tokenCount,
     conversations,
+    activeView,
+    patternConcepts,
+    patternImplementations,
+    learningQueue,
+    selectedConceptId,
+    selectedFromLanguage,
+    selectedToLanguage,
     mentionSuggestions: mentionState.suggestions,
     suggestions,
     streaming: streaming.active,
@@ -203,13 +302,27 @@ export const useChat = () => {
     stopStreaming,
     handleAction,
     openSettings,
+    openPatternExplorer,
     openContextManager,
     attachFile,
     selectMention,
     loadConversation,
-    deleteConversation
+    deleteConversation,
+    setActiveView,
+    setSelectedConceptId,
+    setSelectedFromLanguage,
+    setSelectedToLanguage,
+    learnPattern,
+    sendTranslationFeedback
   };
 };
+
+function initialViewFromLocation(): "chat" | "pattern-explorer" {
+  if (window.location.hash.includes("pattern-explorer")) {
+    return "pattern-explorer";
+  }
+  return "chat";
+}
 
 type MentionState = {
   suggestions: ContextFile[];

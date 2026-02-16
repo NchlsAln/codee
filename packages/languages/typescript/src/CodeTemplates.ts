@@ -1,4 +1,44 @@
 import { BaseCodeTemplates } from "@codee/lang-common";
+import { collectionsTemplate } from "./templates/stdlib/collections";
+import { stringsTemplate } from "./templates/stdlib/strings";
+import { ioTemplate } from "./templates/stdlib/io";
+import { mathTemplate } from "./templates/stdlib/math";
+import { routingTemplate } from "./templates/web/routing";
+import { middlewareTemplate } from "./templates/web/middleware";
+import { authTemplate } from "./templates/web/auth";
+import { websocketsTemplate } from "./templates/web/websockets";
+import { ormTemplate } from "./templates/database/orm";
+import { migrationsTemplate } from "./templates/database/migrations";
+import { queriesTemplate } from "./templates/database/queries";
+import { connectionsTemplate } from "./templates/database/connections";
+import { asyncTemplate } from "./templates/concurrency/async";
+import { parallelTemplate } from "./templates/concurrency/parallel";
+import { actorsTemplate } from "./templates/concurrency/actors";
+import { channelsTemplate } from "./templates/concurrency/channels";
+import { unitTemplate } from "./templates/testing/unit";
+import { mockTemplate } from "./templates/testing/mock";
+import { propertyTemplate } from "./templates/testing/property";
+import { benchmarkTemplate } from "./templates/testing/benchmark";
+import { cliArgsTemplate } from "./templates/cli/args";
+import { cliConfigTemplate } from "./templates/cli/config";
+import { cliLoggingTemplate } from "./templates/cli/logging";
+import { httpClientTemplate } from "./templates/http/client";
+import { httpServerTemplate } from "./templates/http/server";
+import { httpRestTemplate } from "./templates/http/rest";
+import { httpGraphqlTemplate } from "./templates/http/graphql";
+import { jsonTemplate } from "./templates/serialization/json";
+import { xmlTemplate } from "./templates/serialization/xml";
+import { binaryTemplate } from "./templates/serialization/binary";
+import { protobufTemplate } from "./templates/serialization/protobuf";
+import { hashingTemplate } from "./templates/crypto/hashing";
+import { encryptionTemplate } from "./templates/crypto/encryption";
+import { jwtTemplate } from "./templates/crypto/jwt";
+import { ffiCTemplate } from "./templates/ffi/c";
+import { ffiWasmTemplate } from "./templates/ffi/wasm";
+import { ffiNativeTemplate } from "./templates/ffi/native";
+import { reactTemplate } from "./templates/react";
+import { nextjsTemplate } from "./templates/nextjs";
+import { nestjsTemplate } from "./templates/nestjs";
 
 export class CodeTemplates extends BaseCodeTemplates {
   constructor() {
@@ -6,23 +46,55 @@ export class CodeTemplates extends BaseCodeTemplates {
       idioms: [
         "Prefer type inference when clear.",
         "Use interfaces for public contracts.",
-        "Keep functions small and composable."
+        "Keep functions small and composable.",
+        "Prefer unknown over any and narrow safely."
       ],
       templates: {
-        "react.component":
-          "import React from \"react\";\n\nexport const Component: React.FC = () => {\n  return (\n    <div>Component</div>\n  );\n};\n",
-        "next.api":
-          "import type { NextApiRequest, NextApiResponse } from \"next\";\n\nexport default function handler(req: NextApiRequest, res: NextApiResponse) {\n  res.status(200).json({ ok: true });\n}\n",
-        "vue.component":
-          "<script setup lang=\"ts\">\nconst props = defineProps<{ message: string }>();\n</script>\n\n<template>\n  <div>{{ props.message }}</div>\n</template>\n"
+        "stdlib.collections": collectionsTemplate(),
+        "stdlib.strings": stringsTemplate(),
+        "stdlib.io": ioTemplate(),
+        "stdlib.math": mathTemplate(),
+        "web.routing": routingTemplate(),
+        "web.middleware": middlewareTemplate(),
+        "web.auth": authTemplate(),
+        "web.websockets": websocketsTemplate(),
+        "database.orm": ormTemplate(),
+        "database.migrations": migrationsTemplate(),
+        "database.queries": queriesTemplate(),
+        "database.connections": connectionsTemplate(),
+        "concurrency.async": asyncTemplate(),
+        "concurrency.parallel": parallelTemplate(),
+        "concurrency.actors": actorsTemplate(),
+        "concurrency.channels": channelsTemplate(),
+        "testing.unit": unitTemplate(),
+        "testing.mock": mockTemplate(),
+        "testing.property": propertyTemplate(),
+        "testing.benchmark": benchmarkTemplate(),
+        "cli.args": cliArgsTemplate(),
+        "cli.config": cliConfigTemplate(),
+        "cli.logging": cliLoggingTemplate(),
+        "http.client": httpClientTemplate(),
+        "http.server": httpServerTemplate(),
+        "http.rest": httpRestTemplate(),
+        "http.graphql": httpGraphqlTemplate(),
+        "serialization.json": jsonTemplate(),
+        "serialization.xml": xmlTemplate(),
+        "serialization.binary": binaryTemplate(),
+        "serialization.protobuf": protobufTemplate(),
+        "crypto.hashing": hashingTemplate(),
+        "crypto.encryption": encryptionTemplate(),
+        "crypto.jwt": jwtTemplate(),
+        "ffi.c": ffiCTemplate(),
+        "ffi.wasm": ffiWasmTemplate(),
+        "ffi.native": ffiNativeTemplate()
       },
       frameworkTemplates: {
-        "express.route":
-          "import { Router } from \"express\";\n\nconst router = Router();\n\nrouter.get(\"/health\", (_req, res) => {\n  res.json({ ok: true });\n});\n\nexport default router;\n"
+        "react.component": reactTemplate(),
+        "next.api": nextjsTemplate(),
+        "nestjs.controller": nestjsTemplate()
       },
       testTemplates: {
-        jest:
-          "import { describe, expect, it } from \"@jest/globals\";\n\ndescribe(\"subject\", () => {\n  it(\"works\", () => {\n    expect(true).toBe(true);\n  });\n});\n"
+        jest: unitTemplate()
       }
     });
   }

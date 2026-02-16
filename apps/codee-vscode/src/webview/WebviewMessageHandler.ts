@@ -3,6 +3,7 @@ import { z } from "zod";
 import { randomUUID } from "crypto";
 import { ChatController } from "../bridge/ChatController";
 import { ContextProvider } from "../bridge/ContextProvider";
+import { EngineHost } from "../bridge/EngineHost";
 import { CodeActionHandler } from "./CodeActionHandler";
 import { WebviewStateManager } from "./WebviewStateManager";
 import { ExtensionMessage, WebviewMessage } from "./MessageProtocol";
@@ -21,6 +22,17 @@ const insertSchema = z.object({
 });
 const copySchema = z.object({ type: z.literal("copyCode"), code: z.string() });
 const openSettingsSchema = z.object({ type: z.literal("openSettings") });
+const openPatternExplorerSchema = z.object({ type: z.literal("openPatternExplorer") });
+const requestPatternExplorerSchema = z.object({ type: z.literal("requestPatternExplorerData") });
+const learnPatternSchema = z.object({ type: z.literal("learnPattern"), conceptId: z.string() });
+const translationFeedbackSchema = z.object({
+  type: z.literal("translationFeedback"),
+  sourceLanguage: z.string(),
+  targetLanguage: z.string(),
+  sourceCode: z.string(),
+  targetCode: z.string(),
+  feedback: z.string()
+});
 const loadConversationSchema = z.object({ type: z.literal("loadConversation"), id: z.string() });
 const deleteConversationSchema = z.object({ type: z.literal("deleteConversation"), id: z.string() });
 const attachFileSchema = z.object({ type: z.literal("attachFile"), path: z.string() });
@@ -31,6 +43,10 @@ const messageSchema = z.union([
   insertSchema,
   copySchema,
   openSettingsSchema,
+  openPatternExplorerSchema,
+  requestPatternExplorerSchema,
+  learnPatternSchema,
+  translationFeedbackSchema,
   loadConversationSchema,
   deleteConversationSchema,
   attachFileSchema
@@ -45,6 +61,7 @@ export class WebviewMessageHandler implements vscode.Disposable {
     private readonly webview: vscode.Webview,
     private readonly chatController: ChatController,
     private readonly contextProvider: ContextProvider,
+    private readonly engineHost: EngineHost,
     private readonly codeActionHandler: CodeActionHandler,
     private readonly stateManager: WebviewStateManager
   ) {
@@ -85,6 +102,18 @@ export class WebviewMessageHandler implements vscode.Disposable {
         return;
       case "openSettings":
         void vscode.commands.executeCommand("codee.openSettings");
+        return;
+      case "openPatternExplorer":
+        await this.handleOpenPatternExplorer();
+        return;
+      case "requestPatternExplorerData":
+        await this.handlePatternExplorerData();
+        return;
+      case "learnPattern":
+        this.handleLearnPattern(payload.conceptId);
+        return;
+      case "translationFeedback":
+        this.handleTranslationFeedback(payload);
         return;
       case "loadConversation":
         this.chatController.setSession(payload.id);
@@ -154,5 +183,45 @@ export class WebviewMessageHandler implements vscode.Disposable {
 
   private postMessage(message: ExtensionMessage): void {
     void this.webview.postMessage(message);
+  }
+
+  private async handleOpenPatternExplorer(): Promise<void> {
+    await this.handlePatternExplorerData();
+    this.postMessage({ type: "showPatternExplorer" });
+  }
+
+  private async handlePatternExplorerData(): Promise<void> {
+    const concepts = this.engineHost.listConcepts();
+    const implementations = this.engineHost.listConceptImplementations();
+    const learningQueue = this.stateManager.getLearningQueue();
+    this.postMessage({
+      type: "patternExplorerData",
+      concepts,
+      implementations,
+      learningQueue
+    });
+  }
+
+  private handleLearnPattern(conceptId: string): void {
+    const current = this.stateManager.getLearningQueue();
+    if (current.includes(conceptId)) {
+      return;
+    }
+    const next = [...current, conceptId];
+    this.stateManager.updateLearningQueue(next);
+  }
+
+  private handleTranslationFeedback(payload: {
+    sourceLanguage: string;
+    targetLanguage: string;
+    sourceCode: string;
+    targetCode: string;
+    feedback: string;
+  }): void {
+    this.stateManager.addTranslationFeedback({
+      ...payload,
+      createdAt: new Date().toISOString()
+    });
+    void vscode.window.showInformationMessage("Thanks for the feedback. It was saved locally.");
   }
 }

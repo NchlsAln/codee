@@ -15,6 +15,7 @@ import { ChatController } from "./bridge/ChatController";
 import { ContextProvider } from "./bridge/ContextProvider";
 import { SettingsSync } from "./bridge/SettingsSync";
 import { TelemetryService } from "./telemetry/TelemetryService";
+import { LearningModeService } from "./coding-assistant/learning-mode-service";
 
 export function activate(context: vscode.ExtensionContext): void {
   const engineHost = EngineHost.getInstance();
@@ -26,12 +27,13 @@ export function activate(context: vscode.ExtensionContext): void {
   const statusBar = new StatusBarService(context, engineHost);
 
   const sidebarProvider = new SidebarProvider(engineHost, chatController);
-  const chatPanel = new ChatPanel(context.extensionUri, chatController, contextProvider, context);
+  const chatPanel = new ChatPanel(context.extensionUri, chatController, contextProvider, context, engineHost);
   const settingsPanel = new SettingsPanel(context.extensionUri, settingsManager);
   const helpPanel = new HelpPanel(context.extensionUri);
   const onboardingPanel = new OnboardingPanel(context.extensionUri, context, engineHost);
   const inspectorPanel = new EngineInspectorPanel(context.extensionUri, engineHost);
   const settingsSync = new SettingsSync(engineHost, settingsManager);
+  const learningMode = new LearningModeService(engineHost, context, chatPanel);
 
   void settingsManager.ensureDatabaseKey().then((key) => {
     if (key) {
@@ -46,7 +48,7 @@ export function activate(context: vscode.ExtensionContext): void {
       webviewOptions: { retainContextWhenHidden: true }
     }),
     vscode.languages.registerCodeActionsProvider({ scheme: "file" }, new CodeActionProvider()),
-    vscode.languages.registerHoverProvider({ scheme: "file" }, new HoverProvider()),
+    vscode.languages.registerHoverProvider({ scheme: "file" }, new HoverProvider(engineHost)),
     vscode.workspace.onDidOpenTextDocument((document) => {
       if (document.uri.scheme !== "file") {
         return;
@@ -58,6 +60,7 @@ export function activate(context: vscode.ExtensionContext): void {
       void engineHost.warmLanguageServer(projectPath, document.languageId);
     }),
     settingsSync,
+    learningMode,
     telemetry,
     engineHost.onEvent((event) => {
       if (event.type === "engine.error") {
@@ -80,7 +83,8 @@ export function activate(context: vscode.ExtensionContext): void {
     helpPanel,
     onboardingPanel,
     inspectorPanel,
-    telemetry
+    telemetry,
+    learningMode
   );
   statusBar.initialize();
   void settingsSync.initialize();

@@ -18,7 +18,11 @@ module.exports = {
     "^@codee/languages$": "<rootDir>/../languages/src",
     "^@codee/lang-common$": "<rootDir>/../languages/common/src",
     "^@codee/lang-typescript$": "<rootDir>/../languages/typescript/src",
-    "^@codee/lang-python$": "<rootDir>/../languages/python/src"
+    "^@codee/lang-python$": "<rootDir>/../languages/python/src",
+    "^@codee/lang-rust$": "<rootDir>/../languages/rust/src",
+    "^@codee/lang-go$": "<rootDir>/../languages/go/src",
+    "^@codee/lang-java$": "<rootDir>/../languages/java/src",
+    "^@codee/lang-cpp$": "<rootDir>/../languages/cpp/src"
   },
   collectCoverageFrom: [
     "<rootDir>/src/**/*.ts",

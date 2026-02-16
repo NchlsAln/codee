@@ -1,0 +1,13 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+import { graphqlRuntime } from "./implementation/runtime";
+import { graphqlEcosystem } from "./implementation/ecosystem";
+import { graphqlIdioms } from "./implementation/idioms";
+import { graphqlAstPatterns } from "./analysis/ast-patterns";
+import { inferGraphqlTypes } from "./analysis/type-inference";
+export declare const graphqlDefinition: LanguageDefinition;
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { graphqlRuntime, graphqlEcosystem, graphqlIdioms, graphqlAstPatterns, inferGraphqlTypes };

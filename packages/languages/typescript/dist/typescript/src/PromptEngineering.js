@@ -5,7 +5,7 @@ const lang_common_1 = require("@codee/lang-common");
 class PromptEngineering extends lang_common_1.BasePromptEngineering {
     constructor() {
         super("typescript", {
-            systemPrompt: "You are a TypeScript expert. Use strict typing, modern ES features, and clear naming.",
+            systemPrompt: "You are a TypeScript expert. Use strict typing, modern ES features, and clear naming. Prefer safe narrowing and avoid any.",
             fewShotExamples: [
                 {
                     task: "explain",
@@ -16,11 +16,24 @@ class PromptEngineering extends lang_common_1.BasePromptEngineering {
                     task: "refactor",
                     input: "const data:any = fetchData();",
                     output: "Replace any with a typed interface and add error handling."
+                },
+                {
+                    task: "api",
+                    input: "Create an Express health route",
+                    output: "Use typed Request/Response, return JSON, and add status codes."
+                },
+                {
+                    task: "types",
+                    input: "Model a result type",
+                    output: "Use a discriminated union with ok/error branches and helpers."
                 }
             ],
             contextHints: [
                 "Prefer explicit return types for public APIs.",
-                "Avoid using any unless unavoidable."
+                "Avoid using any unless unavoidable.",
+                "Prefer unknown over any and narrow with guards.",
+                "Use readonly for immutable data.",
+                "Keep modules small and composable."
             ]
         });
     }

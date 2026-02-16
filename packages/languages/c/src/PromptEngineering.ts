@@ -1,4 +1,4 @@
-import { BasePromptEngineering } from "../../common/src/BasePromptEngineering";
+import { BasePromptEngineering } from "@codee/lang-common";
 
 export class PromptEngineering extends BasePromptEngineering {
   constructor() {
@@ -9,3 +9,4 @@ export class PromptEngineering extends BasePromptEngineering {
     });
   }
 }
+

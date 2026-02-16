@@ -13,6 +13,23 @@ Codee is a local-first AI coding assistant with offline-first workflows, fast in
 - VS Code: install `codee-vscode.vsix` via the Extensions view (Install from VSIX).
 - First run: open Codee and complete the onboarding wizard.
 
+## Polyglot Coding
+![Polyglot conversion demo](docs/assets/demo/polyglot-conversion.svg)
+
+**Learn one language, know them all.** Codee converts idiomatic Python, TypeScript, Rust, Go, Java, C++, Kotlin, Scala, C#, Swift, and Dart without line-by-line translation.
+Codee now speaks 11 languages: Python, TypeScript, Rust, Go, Java, C++, Kotlin, Scala, C#, Swift, and Dart.
+
+Supported patterns (beta):
+
+| Pattern | Python | TypeScript | Rust | Go | Java | C++ | Kotlin | Scala | C# | Swift | Dart |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| List/sequence pipelines | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Map/dictionary literals | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Dataclasses / records / structs | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Async/await flows | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Error handling (try/catch/Result) | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Decorators / attributes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+
 ## Documentation
 - User Guide: docs/user-guide.md
 - FAQ: docs/faq.md

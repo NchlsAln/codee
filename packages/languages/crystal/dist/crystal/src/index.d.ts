@@ -1,0 +1,13 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+import { crystalRuntime } from "./implementation/runtime";
+import { crystalEcosystem } from "./implementation/ecosystem";
+import { crystalIdioms } from "./implementation/idioms";
+import { crystalAstPatterns } from "./analysis/ast-patterns";
+import { inferCrystalTypes } from "./analysis/type-inference";
+export declare const crystalDefinition: LanguageDefinition;
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { crystalRuntime, crystalEcosystem, crystalIdioms, crystalAstPatterns, inferCrystalTypes };

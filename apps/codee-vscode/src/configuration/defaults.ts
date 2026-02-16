@@ -19,7 +19,7 @@ export const DEFAULT_CONFIG: CodeeConfig = {
     readOnlyMode: false
   },
   languages: {
-    enabled: ["typescript", "javascript", "python"],
+    enabled: ["typescript", "javascript", "python", "go", "java", "cpp"],
     lspPaths: {}
   },
   privacy: {

@@ -1,8 +1,6 @@
-import { LanguageRegistry } from "@codee/lang-common";
-import { typescriptDefinition } from "@codee/lang-typescript";
-import { pythonDefinition } from "@codee/lang-python";
+import { LanguageRegistry, ALL_LANGUAGES, registerAllLanguages } from "@codee/lang-common";
 
-export { LanguageRegistry } from "@codee/lang-common";
+export { LanguageRegistry, ALL_LANGUAGES, registerAllLanguages } from "@codee/lang-common";
 export type { LanguageDefinition } from "@codee/lang-common";
 export type {
   AnalyzerResult,
@@ -19,8 +17,11 @@ export type {
 } from "@codee/lang-common";
 export { typescriptDefinition } from "@codee/lang-typescript";
 export { pythonDefinition } from "@codee/lang-python";
+export { rustDefinition } from "@codee/lang-rust";
+export { goDefinition } from "@codee/lang-go";
+export { javaDefinition } from "@codee/lang-java";
+export { cppDefinition } from "@codee/lang-cpp";
 
 export function registerDefaultLanguages(registry: LanguageRegistry): void {
-  registry.registerLanguage(typescriptDefinition);
-  registry.registerLanguage(pythonDefinition);
+  registerAllLanguages(registry);
 }

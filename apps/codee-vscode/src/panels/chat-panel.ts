@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { TextDecoder } from "util";
 import { ChatController } from "../bridge/ChatController";
 import { ContextProvider } from "../bridge/ContextProvider";
+import { EngineHost } from "../bridge/EngineHost";
 import { CodeActionHandler } from "../webview/CodeActionHandler";
 import { FileMentionProvider } from "../webview/FileMentionProvider";
 import { SymbolMentionProvider } from "../webview/SymbolMentionProvider";
@@ -17,7 +18,8 @@ export class ChatPanel implements vscode.WebviewViewProvider {
     private readonly extensionUri: vscode.Uri,
     private readonly chatController: ChatController,
     private readonly contextProvider: ContextProvider,
-    private readonly extensionContext: vscode.ExtensionContext
+    private readonly extensionContext: vscode.ExtensionContext,
+    private readonly engineHost: EngineHost
   ) {}
 
   resolveWebviewView(view: vscode.WebviewView): void {
@@ -40,6 +42,7 @@ export class ChatPanel implements vscode.WebviewViewProvider {
       view.webview,
       this.chatController,
       this.contextProvider,
+      this.engineHost,
       new CodeActionHandler(),
       this.stateManager
     );
@@ -62,6 +65,18 @@ export class ChatPanel implements vscode.WebviewViewProvider {
 
   showSystemMessage(text: string): void {
     this.stateManager?.postMessage({ type: "streamError", messageId: "system", error: text });
+  }
+
+  showPatternExplorer(options?: { selectedConceptId?: string; fromLanguage?: string; toLanguage?: string }): void {
+    if (!this.view) {
+      return;
+    }
+    this.view.show?.(true);
+    this.stateManager?.postMessage({ type: "showPatternExplorer", ...options });
+  }
+
+  updateLearningQueue(queue: string[]): void {
+    this.stateManager?.updateLearningQueue(queue);
   }
 
   private async loadHtml(webview: vscode.Webview): Promise<void> {

@@ -1,0 +1,13 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+import { matlabRuntime } from "./implementation/runtime";
+import { matlabEcosystem } from "./implementation/ecosystem";
+import { matlabIdioms } from "./implementation/idioms";
+import { matlabAstPatterns } from "./analysis/ast-patterns";
+import { inferMatlabTypes } from "./analysis/type-inference";
+export declare const matlabDefinition: LanguageDefinition;
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { matlabRuntime, matlabEcosystem, matlabIdioms, matlabAstPatterns, inferMatlabTypes };

@@ -6,10 +6,159 @@
     "rootDir": "src",
     "isolatedModules": true
   },
-  "include": ["src"],
+  "include": [
+    "src"
+  ],
   "references": [
-    { "path": "./common" },
-    { "path": "./python" },
-    { "path": "./typescript" }
+    {
+      "path": "./common"
+    },
+    {
+      "path": "./ansible"
+    },
+    {
+      "path": "./assembly"
+    },
+    {
+      "path": "./bash"
+    },
+    {
+      "path": "./c"
+    },
+    {
+      "path": "./clojure"
+    },
+    {
+      "path": "./coffeescript"
+    },
+    {
+      "path": "./cpp"
+    },
+    {
+      "path": "./crystal"
+    },
+    {
+      "path": "./csharp"
+    },
+    {
+      "path": "./css"
+    },
+    {
+      "path": "./dart"
+    },
+    {
+      "path": "./dockerfile"
+    },
+    {
+      "path": "./elixir"
+    },
+    {
+      "path": "./erlang"
+    },
+    {
+      "path": "./fortran"
+    },
+    {
+      "path": "./fsharp"
+    },
+    {
+      "path": "./go"
+    },
+    {
+      "path": "./graphql"
+    },
+    {
+      "path": "./groovy"
+    },
+    {
+      "path": "./haskell"
+    },
+    {
+      "path": "./html"
+    },
+    {
+      "path": "./java"
+    },
+    {
+      "path": "./javascript"
+    },
+    {
+      "path": "./json"
+    },
+    {
+      "path": "./julia"
+    },
+    {
+      "path": "./kotlin"
+    },
+    {
+      "path": "./lua"
+    },
+    {
+      "path": "./markdown"
+    },
+    {
+      "path": "./matlab"
+    },
+    {
+      "path": "./nim"
+    },
+    {
+      "path": "./objective-c"
+    },
+    {
+      "path": "./ocaml"
+    },
+    {
+      "path": "./perl"
+    },
+    {
+      "path": "./php"
+    },
+    {
+      "path": "./powershell"
+    },
+    {
+      "path": "./python"
+    },
+    {
+      "path": "./r"
+    },
+    {
+      "path": "./ruby"
+    },
+    {
+      "path": "./rust"
+    },
+    {
+      "path": "./scala"
+    },
+    {
+      "path": "./solidity"
+    },
+    {
+      "path": "./sql"
+    },
+    {
+      "path": "./swift"
+    },
+    {
+      "path": "./terraform"
+    },
+    {
+      "path": "./typescript"
+    },
+    {
+      "path": "./vbnet"
+    },
+    {
+      "path": "./xml"
+    },
+    {
+      "path": "./yaml"
+    },
+    {
+      "path": "./zig"
+    }
   ]
 }

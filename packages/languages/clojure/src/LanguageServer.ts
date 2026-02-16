@@ -1,7 +1,8 @@
-import { BaseLanguageServer } from "../../common/src/BaseLanguageServer";
+import { BaseLanguageServer } from "@codee/lang-common";
 
 export class LanguageServer extends BaseLanguageServer {
   constructor(projectPath?: string) {
-    super({ languageId: "clojure", command: "clojure-language-server", args: ["--stdio"], projectPath });
+    super({ languageId: "clojure", command: "clojure-lsp", args: ["--stdio"], projectPath });
   }
 }
+

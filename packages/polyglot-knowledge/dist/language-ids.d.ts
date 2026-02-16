@@ -1,0 +1,2 @@
+export declare const ALL_LANGUAGE_IDS: readonly ["ansible", "assembly", "bash", "c", "clojure", "coffeescript", "cpp", "crystal", "csharp", "css", "dart", "dockerfile", "elixir", "erlang", "fortran", "fsharp", "go", "graphql", "groovy", "haskell", "html", "java", "javascript", "json", "julia", "kotlin", "lua", "markdown", "matlab", "nim", "objective-c", "ocaml", "perl", "php", "powershell", "python", "r", "ruby", "rust", "scala", "solidity", "sql", "swift", "terraform", "typescript", "vbnet", "xml", "yaml", "zig"];
+export type LanguageId = typeof ALL_LANGUAGE_IDS[number];

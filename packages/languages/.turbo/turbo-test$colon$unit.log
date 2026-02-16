@@ -9,5 +9,5 @@ PASS src/test/unit/LanguageRegistry.test.ts
 Test Suites: 3 passed, 3 total
 Tests:       4 passed, 4 total
 Snapshots:   0 total
-Time:        1.431 s, estimated 2 s
+Time:        2.135 s
 Ran all test suites.

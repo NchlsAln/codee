@@ -15,3 +15,11 @@ export const typescriptDefinition: LanguageDefinition = {
 };
 
 export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { typescriptRuntime } from "./implementation/runtime";
+export { typescriptEcosystem } from "./implementation/ecosystem";
+export { typescriptIdioms } from "./implementation/idioms";
+export { typescriptAstPatterns } from "./analysis/ast-patterns";
+export { inferTypeScriptTypes } from "./analysis/type-inference";
+export { reactTemplate } from "./templates/react";
+export { nextjsTemplate } from "./templates/nextjs";
+export { nestjsTemplate } from "./templates/nestjs";

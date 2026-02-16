@@ -1,0 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.queriesTemplate = queriesTemplate;
+function queriesTemplate() {
+    return "import java.sql.Connection;\nimport java.sql.DriverManager;\nimport java.sql.ResultSet;\nimport java.sql.Statement;\n\npublic class QuerySample {\n  public static void main(String[] args) throws Exception {\n    try (Connection conn = DriverManager.getConnection(\"jdbc:postgresql://localhost/app\", \"user\", \"pass\")) {\n      try (Statement stmt = conn.createStatement()) {\n        ResultSet rs = stmt.executeQuery(\"SELECT id, email FROM users WHERE is_active = true\");\n        while (rs.next()) {\n          System.out.println(rs.getString(\"email\"));\n        }\n      }\n    }\n  }\n}\n";
+}

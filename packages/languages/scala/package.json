@@ -1,0 +1,16 @@
+{
+  "name": "@codee/lang-scala",
+  "version": "0.9.0-beta.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b -w",
+    "test": "echo \"No tests yet\"",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@codee/lang-common": "0.9.0-beta.1"
+  }
+}

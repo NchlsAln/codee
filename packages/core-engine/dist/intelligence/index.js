@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CorrectionStore = exports.TestGenerator = exports.NaturalLanguageToCode = exports.MultiFileRefactor = exports.DocumentationGenerator = exports.ArchitectureAnalyzer = void 0;
+exports.CorrectionStore = exports.TestGenerator = exports.ProjectTranslator = exports.PolyglotTranslator = exports.NaturalLanguageToCode = exports.MultiFileRefactor = exports.DocumentationGenerator = exports.ArchitectureAnalyzer = void 0;
 var ArchitectureAnalyzer_1 = require("./ArchitectureAnalyzer");
 Object.defineProperty(exports, "ArchitectureAnalyzer", { enumerable: true, get: function () { return ArchitectureAnalyzer_1.ArchitectureAnalyzer; } });
 var DocumentationGenerator_1 = require("./DocumentationGenerator");
@@ -9,6 +9,10 @@ var MultiFileRefactor_1 = require("./MultiFileRefactor");
 Object.defineProperty(exports, "MultiFileRefactor", { enumerable: true, get: function () { return MultiFileRefactor_1.MultiFileRefactor; } });
 var NaturalLanguageToCode_1 = require("./NaturalLanguageToCode");
 Object.defineProperty(exports, "NaturalLanguageToCode", { enumerable: true, get: function () { return NaturalLanguageToCode_1.NaturalLanguageToCode; } });
+var PolyglotTranslator_1 = require("./PolyglotTranslator");
+Object.defineProperty(exports, "PolyglotTranslator", { enumerable: true, get: function () { return PolyglotTranslator_1.PolyglotTranslator; } });
+var ProjectTranslator_1 = require("./ProjectTranslator");
+Object.defineProperty(exports, "ProjectTranslator", { enumerable: true, get: function () { return ProjectTranslator_1.ProjectTranslator; } });
 var TestGenerator_1 = require("./TestGenerator");
 Object.defineProperty(exports, "TestGenerator", { enumerable: true, get: function () { return TestGenerator_1.TestGenerator; } });
 var learning_1 = require("./learning");

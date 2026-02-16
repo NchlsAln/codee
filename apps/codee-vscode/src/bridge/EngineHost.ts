@@ -5,6 +5,8 @@ import {
   EngineEvent as CoreEngineEvent,
   EngineUserError,
   MultiFileRefactor,
+  PolyglotTranslator,
+  ProjectTranslator,
   RefactorResult,
   TestGenerator,
   TestSuiteResult,
@@ -15,6 +17,7 @@ import { EngineHostEvent } from "./MessageProtocol";
 export class EngineHost implements vscode.Disposable {
   private static instance?: EngineHost;
   private readonly engine: CodeeEngine;
+  private readonly translator = new PolyglotTranslator();
   private readonly eventEmitter = new vscode.EventEmitter<EngineHostEvent>();
   private initialized = false;
   private lastStatus: EngineHostEvent | null = null;
@@ -121,6 +124,27 @@ export class EngineHost implements vscode.Disposable {
     });
   }
 
+  translateCode(
+    from: "python" | "typescript" | "rust" | "go" | "java" | "cpp",
+    to: "python" | "typescript" | "rust" | "go" | "java" | "cpp",
+    code: string,
+    options?: import("@codee/polyglot-knowledge").TranslationOptions
+  ) {
+    return this.translator.translate(from, to, code, options);
+  }
+
+  listConcepts() {
+    return this.translator.listConcepts();
+  }
+
+  listConceptImplementations() {
+    return this.translator.listConceptImplementations();
+  }
+
+  detectPatterns(code: string, languageId: "python" | "typescript" | "rust" | "go" | "java" | "cpp") {
+    return this.translator.detectPatterns(code, languageId);
+  }
+
   async refactorSelection(options: {
     projectPath: string;
     sourceFile: string;
@@ -142,6 +166,11 @@ export class EngineHost implements vscode.Disposable {
   async applyRefactor(projectPath: string, result: RefactorResult): Promise<void> {
     const refactor = new MultiFileRefactor(projectPath);
     await refactor.applyChangeSet(result.changeSet, true);
+  }
+
+  async translateProject(options: import("@codee/core-engine").ProjectTranslationOptions) {
+    const translator = new ProjectTranslator(options.projectRoot);
+    return translator.translateProject(options);
   }
 
   dispose(): void {

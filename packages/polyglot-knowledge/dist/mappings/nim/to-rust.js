@@ -1,0 +1,35 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.nimToRustRules = void 0;
+exports.nimToRust = nimToRust;
+const translation_engine_1 = require("../../engine/translation-engine");
+const rules = [
+    {
+        conceptId: "concurrency.async",
+        from: "nim",
+        to: "rust",
+        steps: ["Translate asyncdispatch/Chronos to tokio async/await", "Map Future[T] to Future<Output=T>"]
+    },
+    {
+        conceptId: "metaprogramming.macros",
+        from: "nim",
+        to: "rust",
+        steps: ["Translate Nim macros to procedural macros", "Use build.rs for code generation"]
+    },
+    {
+        conceptId: "memory.manual",
+        from: "nim",
+        to: "rust",
+        steps: ["Translate ARC/ORC to ownership and borrowing", "Use Drop for cleanup"]
+    },
+    {
+        conceptId: "paradigms.functional",
+        from: "nim",
+        to: "rust",
+        steps: ["Translate sequtils map/filter to iterator chains", "Use fold for reductions"]
+    }
+];
+function nimToRust(code) {
+    return (0, translation_engine_1.translateWithEngine)("nim", "rust", code);
+}
+exports.nimToRustRules = rules;

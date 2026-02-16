@@ -1,0 +1,13 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+import { ansibleRuntime } from "./implementation/runtime";
+import { ansibleEcosystem } from "./implementation/ecosystem";
+import { ansibleIdioms } from "./implementation/idioms";
+import { ansibleAstPatterns } from "./analysis/ast-patterns";
+import { inferAnsibleTypes } from "./analysis/type-inference";
+export declare const ansibleDefinition: LanguageDefinition;
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { ansibleRuntime, ansibleEcosystem, ansibleIdioms, ansibleAstPatterns, inferAnsibleTypes };

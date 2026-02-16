@@ -1,0 +1,30 @@
+{
+  "title": "Polyglot Architecture",
+  "description": "Walkthrough of the polyglot translation pipeline.",
+  "steps": [
+    {
+      "file": "packages/polyglot-knowledge/src/analysis/pattern-detector.ts",
+      "title": "Pattern Detection",
+      "description": "Detects language idioms and extracts parameters for translation.",
+      "line": 1
+    },
+    {
+      "file": "packages/polyglot-knowledge/src/engine/translation-engine.ts",
+      "title": "Translation Engine",
+      "description": "Maps detected patterns to target-language idioms and applies decisions.",
+      "line": 1
+    },
+    {
+      "file": "packages/polyglot-knowledge/src/validators/syntax-validator.ts",
+      "title": "Syntax Validation",
+      "description": "Runs best-effort syntax validation using available compilers.",
+      "line": 1
+    },
+    {
+      "file": "apps/codee-vscode/src/bridge/CommandImplementations.ts",
+      "title": "VS Code Integration",
+      "description": "Conversion commands, decision prompts, and diff preview flow.",
+      "line": 1
+    }
+  ]
+}

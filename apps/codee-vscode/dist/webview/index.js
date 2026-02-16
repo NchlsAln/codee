@@ -33401,8 +33401,265 @@ ${remaining.slice(end + 3)}`;
     ] });
   };
 
+  // src/components/PatternExplorer.tsx
+  var import_react6 = __toESM(require_react());
+
+  // src/components/CodeComparison.tsx
+  var import_jsx_runtime9 = __toESM(require_jsx_runtime());
+  var CodeComparison = ({
+    sourceLabel,
+    targetLabel,
+    sourceCode,
+    targetCode,
+    semanticDifferences,
+    explanation,
+    onFeedback
+  }) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "code-comparison", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "code-comparison-pane", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h3", { children: sourceLabel }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("pre", { children: sourceCode })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "code-comparison-pane", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h3", { children: targetLabel }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("pre", { children: targetCode })
+      ] }),
+      semanticDifferences && semanticDifferences.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "code-comparison-notes", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h4", { children: "Semantic differences" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("ul", { children: semanticDifferences.map((note) => /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("li", { children: note }, note)) })
+      ] }),
+      explanation && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "code-comparison-explanation", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h4", { children: "Why this way?" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { children: explanation })
+      ] }),
+      onFeedback && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "code-comparison-feedback", children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("vscode-button", { appearance: "secondary", onClick: onFeedback, children: "This translation was poor" }) })
+    ] });
+  };
+
+  // src/components/LanguageBridge.tsx
+  var import_jsx_runtime10 = __toESM(require_jsx_runtime());
+  var LanguageBridge = ({ from, to, notes, progress }) => {
+    const percentage = progress.total > 0 ? Math.round(progress.learned / progress.total * 100) : 0;
+    return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "language-bridge", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "language-bridge-header", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("h3", { children: [
+          from,
+          " \u2192 ",
+          to
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("span", { className: "language-bridge-progress", children: [
+          progress.learned,
+          "/",
+          progress.total,
+          " learned (",
+          percentage,
+          "%)"
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "language-bridge-graph", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "bridge-node", children: from }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "bridge-path" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "bridge-node", children: to })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("ul", { className: "language-bridge-notes", children: notes.map((note) => /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("li", { children: note }, note)) })
+    ] });
+  };
+
+  // src/components/PatternExplorer.tsx
+  var import_jsx_runtime11 = __toESM(require_jsx_runtime());
+  var categoryLabels = {
+    "control-flow": "Control Flow",
+    "data-structures": "Data Structures",
+    concurrency: "Concurrency",
+    paradigms: "Paradigms"
+  };
+  var PatternExplorer = ({
+    concepts,
+    implementations,
+    learningQueue,
+    selectedConceptId,
+    selectedFromLanguage,
+    selectedToLanguage,
+    onSelectConcept,
+    onLearnPattern,
+    onFeedback
+  }) => {
+    const categories = (0, import_react6.useMemo)(() => {
+      return Array.from(new Set(concepts.map((concept) => concept.category)));
+    }, [concepts]);
+    const [activeCategory, setActiveCategory] = (0, import_react6.useState)(
+      selectedConceptId ? concepts.find((concept) => concept.id === selectedConceptId)?.category ?? "control-flow" : "control-flow"
+    );
+    const filteredConcepts = concepts.filter((concept) => concept.category === activeCategory);
+    const activeConcept = selectedConceptId ? concepts.find((concept) => concept.id === selectedConceptId) : filteredConcepts[0];
+    const conceptImplementations = activeConcept ? implementations[activeConcept.id] ?? [] : [];
+    const [fromLanguage, setFromLanguage] = (0, import_react6.useState)(
+      selectedFromLanguage ?? conceptImplementations[0]?.language ?? "python"
+    );
+    const [toLanguage, setToLanguage] = (0, import_react6.useState)(
+      selectedToLanguage ?? conceptImplementations[1]?.language ?? "rust"
+    );
+    (0, import_react6.useEffect)(() => {
+      if (selectedConceptId) {
+        const category = concepts.find((concept) => concept.id === selectedConceptId)?.category;
+        if (category) {
+          setActiveCategory(category);
+        }
+      }
+    }, [concepts, selectedConceptId]);
+    (0, import_react6.useEffect)(() => {
+      if (!activeConcept) {
+        return;
+      }
+      const nextImplementations = implementations[activeConcept.id] ?? [];
+      if (nextImplementations.length === 0) {
+        return;
+      }
+      setFromLanguage((current) => {
+        if (current && nextImplementations.some((impl) => impl.language === current)) {
+          return current;
+        }
+        return nextImplementations[0].language;
+      });
+      setToLanguage((current) => {
+        if (current && nextImplementations.some((impl) => impl.language === current)) {
+          return current;
+        }
+        return nextImplementations[1]?.language ?? nextImplementations[0].language;
+      });
+    }, [activeConcept, implementations]);
+    const fromSnippet = conceptImplementations.find((impl) => impl.language === fromLanguage);
+    const toSnippet = conceptImplementations.find((impl) => impl.language === toLanguage);
+    const semanticNotes = activeConcept ? buildSemanticNotes(activeConcept.id) : [];
+    const explanation = activeConcept ? buildExplanation(activeConcept.id) : "";
+    const handleFeedback = () => {
+      const feedback = window.prompt("What should be improved about this translation?");
+      if (!feedback) {
+        return;
+      }
+      onFeedback({
+        sourceLanguage: fromLanguage,
+        targetLanguage: toLanguage,
+        sourceCode: fromSnippet?.snippet ?? "",
+        targetCode: toSnippet?.snippet ?? "",
+        feedback
+      });
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "pattern-explorer", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("aside", { className: "pattern-explorer-sidebar", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "pattern-category-list", children: categories.map((category) => /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          "button",
+          {
+            className: category === activeCategory ? "active" : "",
+            onClick: () => setActiveCategory(category),
+            children: categoryLabels[category]
+          },
+          category
+        )) }),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "pattern-list", children: filteredConcepts.map((concept) => /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+          "button",
+          {
+            className: concept.id === activeConcept?.id ? "active" : "",
+            onClick: () => onSelectConcept(concept.id),
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { children: concept.name }),
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("small", { children: concept.description })
+            ]
+          },
+          concept.id
+        )) })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("section", { className: "pattern-explorer-content", children: activeConcept ? /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(import_jsx_runtime11.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("header", { className: "pattern-header", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("h2", { children: activeConcept.name }),
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { children: activeConcept.description }),
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "pattern-tags", children: activeConcept.tags.map((tag) => /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { children: tag }, tag)) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "pattern-actions", children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+            "vscode-button",
+            {
+              appearance: learningQueue.includes(activeConcept.id) ? "secondary" : "primary",
+              onClick: () => onLearnPattern(activeConcept.id),
+              children: learningQueue.includes(activeConcept.id) ? "In Learning Queue" : "Learn this pattern"
+            }
+          ) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "pattern-comparison-controls", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("label", { children: [
+            "From",
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("select", { value: fromLanguage, onChange: (event) => setFromLanguage(event.target.value), children: conceptImplementations.map((impl) => /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("option", { value: impl.language, children: impl.language }, impl.language)) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("label", { children: [
+            "To",
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("select", { value: toLanguage, onChange: (event) => setToLanguage(event.target.value), children: conceptImplementations.map((impl) => /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("option", { value: impl.language, children: impl.language }, impl.language)) })
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          CodeComparison,
+          {
+            sourceLabel: fromLanguage,
+            targetLabel: toLanguage,
+            sourceCode: fromSnippet?.snippet ?? "",
+            targetCode: toSnippet?.snippet ?? "",
+            semanticDifferences: semanticNotes,
+            explanation,
+            onFeedback: handleFeedback
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          LanguageBridge,
+          {
+            from: fromLanguage,
+            to: toLanguage,
+            notes: semanticNotes,
+            progress: { learned: learningQueue.length, total: concepts.length }
+          }
+        )
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "pattern-empty", children: "Select a concept to explore cross-language patterns." }) })
+    ] });
+  };
+  function buildSemanticNotes(conceptId) {
+    switch (conceptId) {
+      case "data-structures.list":
+        return [
+          "Filters run before transforms to keep iterators lazy.",
+          "Rust iterators avoid intermediate allocations."
+        ];
+      case "control-flow.async-await":
+        return [
+          "Promises map to futures; Rust requires explicit Result handling.",
+          "Async functions return awaitable types in every language."
+        ];
+      case "control-flow.exceptions":
+        return ["Rust uses Result instead of throwing exceptions.", "TypeScript prefers typed errors."];
+      case "paradigms.dataclasses":
+        return ["Rust derives create boilerplate for structs.", "TypeScript interfaces are structural."];
+      case "paradigms.decorators":
+        return ["Rust attributes compile-time expand; decorators are runtime."];
+      default:
+        return ["Idiomatic structure matches the target ecosystem."];
+    }
+  }
+  function buildExplanation(conceptId) {
+    switch (conceptId) {
+      case "data-structures.list":
+        return "Collections map to lazy iterators in Rust to avoid allocations while keeping intent clear.";
+      case "control-flow.async-await":
+        return "Async code is modeled as futures in Rust, so we return Result and await explicitly.";
+      case "control-flow.exceptions":
+        return "Rust prefers explicit error values instead of exceptions for predictable control flow.";
+      case "paradigms.dataclasses":
+        return "Structs with derives capture data shapes while keeping ownership explicit.";
+      case "paradigms.decorators":
+        return "Attributes are compile-time hooks in Rust, so we express decorator intent as macros.";
+      default:
+        return "This translation favors the idioms of the target language.";
+    }
+  }
+
   // src/hooks/useChat.ts
-  var import_react7 = __toESM(require_react());
+  var import_react8 = __toESM(require_react());
 
   // src/utils/vscode.ts
   function getVSCodeApi() {
@@ -33417,12 +33674,12 @@ ${remaining.slice(end + 3)}`;
   }
 
   // src/hooks/useStreaming.ts
-  var import_react6 = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
   var useStreaming = (setMessages) => {
-    const [active, setActive] = (0, import_react6.useState)(false);
-    const bufferRef = (0, import_react6.useRef)({});
-    const frameRef = (0, import_react6.useRef)(null);
-    const handleStream = (0, import_react6.useCallback)(
+    const [active, setActive] = (0, import_react7.useState)(false);
+    const bufferRef = (0, import_react7.useRef)({});
+    const frameRef = (0, import_react7.useRef)(null);
+    const handleStream = (0, import_react7.useCallback)(
       (payload) => {
         if (payload.type === "streamStart") {
           setActive(true);
@@ -33458,7 +33715,7 @@ ${remaining.slice(end + 3)}`;
       },
       [setMessages]
     );
-    const flush = (0, import_react6.useCallback)(() => {
+    const flush = (0, import_react7.useCallback)(() => {
       const buffers = { ...bufferRef.current };
       setMessages((current) => {
         let updated = [...current];
@@ -33479,7 +33736,7 @@ ${remaining.slice(end + 3)}`;
       });
       frameRef.current = null;
     }, [setMessages]);
-    const finalizeMessage = (0, import_react6.useCallback)(
+    const finalizeMessage = (0, import_react7.useCallback)(
       (messageId) => {
         setMessages(
           (current) => current.map(
@@ -33490,7 +33747,7 @@ ${remaining.slice(end + 3)}`;
       },
       [setMessages]
     );
-    const stop = (0, import_react6.useCallback)(() => {
+    const stop = (0, import_react7.useCallback)(() => {
       setActive(false);
       bufferRef.current = {};
     }, []);
@@ -33501,18 +33758,29 @@ ${remaining.slice(end + 3)}`;
   var vscode = getVSCodeApi();
   var useChat = () => {
     const saved = vscode.getState();
-    const [messages, setMessages] = (0, import_react7.useState)(saved?.messages ?? []);
-    const [input, setInput] = (0, import_react7.useState)("");
-    const [attachments, setAttachments] = (0, import_react7.useState)(saved?.attachments ?? []);
-    const [contextFiles, setContextFiles] = (0, import_react7.useState)(saved?.contextFiles ?? []);
-    const [tokenCount, setTokenCount] = (0, import_react7.useState)(saved?.tokenCount ?? 0);
-    const [conversations, setConversations] = (0, import_react7.useState)(saved?.conversations ?? []);
-    const [activeConversationId, setActiveConversationId] = (0, import_react7.useState)(saved?.activeConversationId);
-    const [conversationMap, setConversationMap] = (0, import_react7.useState)(saved?.conversationMap ?? {});
-    const suggestions = (0, import_react7.useMemo)(() => ["Explain selection", "Generate tests", "Refactor"], []);
-    const mentionState = (0, import_react7.useMemo)(() => buildMentionState(input, contextFiles), [input, contextFiles]);
+    const [messages, setMessages] = (0, import_react8.useState)(saved?.messages ?? []);
+    const [input, setInput] = (0, import_react8.useState)("");
+    const [attachments, setAttachments] = (0, import_react8.useState)(saved?.attachments ?? []);
+    const [contextFiles, setContextFiles] = (0, import_react8.useState)(saved?.contextFiles ?? []);
+    const [tokenCount, setTokenCount] = (0, import_react8.useState)(saved?.tokenCount ?? 0);
+    const [conversations, setConversations] = (0, import_react8.useState)(saved?.conversations ?? []);
+    const [activeConversationId, setActiveConversationId] = (0, import_react8.useState)(saved?.activeConversationId);
+    const [conversationMap, setConversationMap] = (0, import_react8.useState)(saved?.conversationMap ?? {});
+    const [activeView, setActiveView] = (0, import_react8.useState)(
+      saved?.activeView ?? initialViewFromLocation()
+    );
+    const [patternConcepts, setPatternConcepts] = (0, import_react8.useState)(saved?.patternConcepts ?? []);
+    const [patternImplementations, setPatternImplementations] = (0, import_react8.useState)(
+      saved?.patternImplementations ?? {}
+    );
+    const [learningQueue, setLearningQueue] = (0, import_react8.useState)(saved?.learningQueue ?? []);
+    const [selectedConceptId, setSelectedConceptId] = (0, import_react8.useState)(saved?.selectedConceptId);
+    const [selectedFromLanguage, setSelectedFromLanguage] = (0, import_react8.useState)(saved?.selectedFromLanguage);
+    const [selectedToLanguage, setSelectedToLanguage] = (0, import_react8.useState)(saved?.selectedToLanguage);
+    const suggestions = (0, import_react8.useMemo)(() => ["Explain selection", "Generate tests", "Refactor"], []);
+    const mentionState = (0, import_react8.useMemo)(() => buildMentionState(input, contextFiles), [input, contextFiles]);
     const streaming = useStreaming(setMessages);
-    (0, import_react7.useEffect)(() => {
+    (0, import_react8.useEffect)(() => {
       const handleMessage = (event) => {
         const payload = event.data;
         if (payload.type === "streamStart" || payload.type === "streamChunk" || payload.type === "streamEnd" || payload.type === "streamError") {
@@ -33531,11 +33799,26 @@ ${remaining.slice(end + 3)}`;
         if (payload.type === "setTheme") {
           document.body.dataset.codeeTheme = payload.theme;
         }
+        if (payload.type === "patternExplorerData") {
+          setPatternConcepts(payload.concepts);
+          setPatternImplementations(payload.implementations);
+          setLearningQueue(payload.learningQueue);
+        }
+        if (payload.type === "updateLearningQueue") {
+          setLearningQueue(payload.learningQueue);
+        }
+        if (payload.type === "showPatternExplorer") {
+          setActiveView("pattern-explorer");
+          setSelectedConceptId(payload.selectedConceptId);
+          setSelectedFromLanguage(payload.fromLanguage);
+          setSelectedToLanguage(payload.toLanguage);
+          vscode.postMessage({ type: "requestPatternExplorerData" });
+        }
       };
       window.addEventListener("message", handleMessage);
       return () => window.removeEventListener("message", handleMessage);
     }, [streaming]);
-    (0, import_react7.useEffect)(() => {
+    (0, import_react8.useEffect)(() => {
       const nextState = {
         messages,
         attachments,
@@ -33543,11 +33826,40 @@ ${remaining.slice(end + 3)}`;
         contextFiles,
         tokenCount,
         activeConversationId,
-        conversationMap
+        conversationMap,
+        activeView,
+        patternConcepts,
+        patternImplementations,
+        learningQueue,
+        selectedConceptId,
+        selectedFromLanguage,
+        selectedToLanguage
       };
       vscode.setState(nextState);
-    }, [attachments, contextFiles, conversations, messages, tokenCount, activeConversationId, conversationMap]);
-    (0, import_react7.useEffect)(() => {
+    }, [
+      attachments,
+      contextFiles,
+      conversations,
+      messages,
+      tokenCount,
+      activeConversationId,
+      conversationMap,
+      activeView,
+      patternConcepts,
+      patternImplementations,
+      learningQueue,
+      selectedConceptId,
+      selectedFromLanguage,
+      selectedToLanguage
+    ]);
+    (0, import_react8.useEffect)(() => {
+      if (activeView === "pattern-explorer") {
+        window.location.hash = "#/pattern-explorer";
+      } else {
+        window.location.hash = "#/chat";
+      }
+    }, [activeView]);
+    (0, import_react8.useEffect)(() => {
       if (!activeConversationId) {
         return;
       }
@@ -33556,7 +33868,7 @@ ${remaining.slice(end + 3)}`;
         [activeConversationId]: messages
       }));
     }, [activeConversationId, messages]);
-    const sendMessage = (0, import_react7.useCallback)(() => {
+    const sendMessage = (0, import_react8.useCallback)(() => {
       if (!input.trim()) {
         return;
       }
@@ -33584,15 +33896,15 @@ ${remaining.slice(end + 3)}`;
       setInput("");
       setAttachments([]);
     }, [attachments, input]);
-    const sendSuggestion = (0, import_react7.useCallback)((suggestion) => {
+    const sendSuggestion = (0, import_react8.useCallback)((suggestion) => {
       setInput(suggestion);
     }, []);
-    const stopStreaming = (0, import_react7.useCallback)(() => {
+    const stopStreaming = (0, import_react8.useCallback)(() => {
       const payload = { type: "stopGeneration" };
       vscode.postMessage(payload);
       streaming.stop();
     }, [streaming]);
-    const handleAction = (0, import_react7.useCallback)((action) => {
+    const handleAction = (0, import_react8.useCallback)((action) => {
       if (action.type === "copy") {
         vscode.postMessage({ type: "copyCode", code: action.payload.code });
       }
@@ -33603,13 +33915,17 @@ ${remaining.slice(end + 3)}`;
         vscode.postMessage({ type: "insertCode", code: action.payload.code, position: "newFile" });
       }
     }, []);
-    const openSettings = (0, import_react7.useCallback)(() => {
+    const openSettings = (0, import_react8.useCallback)(() => {
       vscode.postMessage({ type: "openSettings" });
     }, []);
-    const openContextManager = (0, import_react7.useCallback)(() => {
+    const openPatternExplorer = (0, import_react8.useCallback)(() => {
+      setActiveView("pattern-explorer");
+      vscode.postMessage({ type: "openPatternExplorer" });
+    }, []);
+    const openContextManager = (0, import_react8.useCallback)(() => {
       openSettings();
     }, [openSettings]);
-    const attachFile = (0, import_react7.useCallback)((file) => {
+    const attachFile = (0, import_react8.useCallback)((file) => {
       if (file.kind !== "file") {
         return;
       }
@@ -33626,7 +33942,7 @@ ${remaining.slice(end + 3)}`;
       });
       vscode.postMessage({ type: "attachFile", path: file.path });
     }, []);
-    const selectMention = (0, import_react7.useCallback)(
+    const selectMention = (0, import_react8.useCallback)(
       (item) => {
         const result = applyMention(input, mentionState.tokenStart, item);
         setInput(result.nextText);
@@ -33636,12 +33952,12 @@ ${remaining.slice(end + 3)}`;
       },
       [attachFile, input, mentionState.tokenStart]
     );
-    const loadConversation = (0, import_react7.useCallback)((id) => {
+    const loadConversation = (0, import_react8.useCallback)((id) => {
       vscode.postMessage({ type: "loadConversation", id });
       setActiveConversationId(id);
       setMessages(conversationMap[id] ?? []);
     }, [conversationMap]);
-    const deleteConversation = (0, import_react7.useCallback)((id) => {
+    const deleteConversation = (0, import_react8.useCallback)((id) => {
       vscode.postMessage({ type: "deleteConversation", id });
       setConversations((current) => current.filter((item) => item.id !== id));
       setConversationMap((current) => {
@@ -33654,6 +33970,15 @@ ${remaining.slice(end + 3)}`;
         setMessages([]);
       }
     }, []);
+    const learnPattern = (0, import_react8.useCallback)((conceptId) => {
+      vscode.postMessage({ type: "learnPattern", conceptId });
+    }, []);
+    const sendTranslationFeedback = (0, import_react8.useCallback)(
+      (payload) => {
+        vscode.postMessage({ type: "translationFeedback", ...payload });
+      },
+      []
+    );
     return {
       messages,
       input,
@@ -33661,6 +33986,13 @@ ${remaining.slice(end + 3)}`;
       contextFiles,
       tokenCount,
       conversations,
+      activeView,
+      patternConcepts,
+      patternImplementations,
+      learningQueue,
+      selectedConceptId,
+      selectedFromLanguage,
+      selectedToLanguage,
       mentionSuggestions: mentionState.suggestions,
       suggestions,
       streaming: streaming.active,
@@ -33670,13 +34002,26 @@ ${remaining.slice(end + 3)}`;
       stopStreaming,
       handleAction,
       openSettings,
+      openPatternExplorer,
       openContextManager,
       attachFile,
       selectMention,
       loadConversation,
-      deleteConversation
+      deleteConversation,
+      setActiveView,
+      setSelectedConceptId,
+      setSelectedFromLanguage,
+      setSelectedToLanguage,
+      learnPattern,
+      sendTranslationFeedback
     };
   };
+  function initialViewFromLocation() {
+    if (window.location.hash.includes("pattern-explorer")) {
+      return "pattern-explorer";
+    }
+    return "chat";
+  }
   function buildMentionState(input, contextFiles) {
     const match = /([@#])(\w[\w./-]*)?$/.exec(input);
     if (!match || match.index === void 0) {
@@ -33699,18 +34044,36 @@ ${remaining.slice(end + 3)}`;
   }
 
   // src/App.tsx
-  var import_jsx_runtime9 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime12 = __toESM(require_jsx_runtime());
   var App = () => {
     const chat = useChat();
     useTheme();
-    return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "app-shell", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("header", { className: "app-header", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("h1", { className: "app-title", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "app-shell", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("header", { className: "app-header", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("h1", { className: "app-title", children: [
           "Codee ",
-          /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("span", { className: "beta-badge", children: "BETA" })
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: "beta-badge", children: "BETA" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("vscode-button", { appearance: "secondary", onClick: chat.openSettings, "data-testid": "settings-button", children: "Settings" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "app-header-actions", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+            "vscode-button",
+            {
+              appearance: chat.activeView === "pattern-explorer" ? "primary" : "secondary",
+              onClick: chat.openPatternExplorer,
+              children: "Pattern Explorer"
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+            "vscode-button",
+            {
+              appearance: chat.activeView === "chat" ? "primary" : "secondary",
+              onClick: () => chat.setActiveView("chat"),
+              children: "Chat"
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("vscode-button", { appearance: "secondary", onClick: chat.openSettings, "data-testid": "settings-button", children: "Settings" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
           ContextPills,
           {
             tokenCount: chat.tokenCount,
@@ -33719,36 +34082,51 @@ ${remaining.slice(end + 3)}`;
           }
         )
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
-        ConversationList,
+      chat.activeView === "pattern-explorer" ? /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+        PatternExplorer,
         {
-          conversations: chat.conversations,
-          onLoad: chat.loadConversation,
-          onDelete: chat.deleteConversation
+          concepts: chat.patternConcepts,
+          implementations: chat.patternImplementations,
+          learningQueue: chat.learningQueue,
+          selectedConceptId: chat.selectedConceptId,
+          selectedFromLanguage: chat.selectedFromLanguage,
+          selectedToLanguage: chat.selectedToLanguage,
+          onSelectConcept: chat.setSelectedConceptId,
+          onLearnPattern: chat.learnPattern,
+          onFeedback: chat.sendTranslationFeedback
         }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(SuggestionChips, { suggestions: chat.suggestions, onSelect: chat.sendSuggestion }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(ChatContainer, { messages: chat.messages, streaming: chat.streaming, onAction: chat.handleAction }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
-        InputArea,
-        {
-          value: chat.input,
-          attachments: chat.attachments,
-          isStreaming: chat.streaming,
-          onChange: chat.setInput,
-          onSend: chat.sendMessage,
-          onStop: chat.stopStreaming,
-          mentionSuggestions: chat.mentionSuggestions,
-          onMentionSelect: chat.selectMention
-        }
-      )
+      ) : /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(import_jsx_runtime12.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+          ConversationList,
+          {
+            conversations: chat.conversations,
+            onLoad: chat.loadConversation,
+            onDelete: chat.deleteConversation
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(SuggestionChips, { suggestions: chat.suggestions, onSelect: chat.sendSuggestion }),
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ChatContainer, { messages: chat.messages, streaming: chat.streaming, onAction: chat.handleAction }),
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+          InputArea,
+          {
+            value: chat.input,
+            attachments: chat.attachments,
+            isStreaming: chat.streaming,
+            onChange: chat.setInput,
+            onSend: chat.sendMessage,
+            onStop: chat.stopStreaming,
+            mentionSuggestions: chat.mentionSuggestions,
+            onMentionSelect: chat.selectMention
+          }
+        )
+      ] })
     ] });
   };
 
   // src/components/ErrorBoundary.tsx
-  var import_react8 = __toESM(require_react());
-  var import_jsx_runtime10 = __toESM(require_jsx_runtime());
-  var ErrorBoundary = class extends import_react8.default.Component {
+  var import_react9 = __toESM(require_react());
+  var import_jsx_runtime13 = __toESM(require_jsx_runtime());
+  var ErrorBoundary = class extends import_react9.default.Component {
     constructor() {
       super(...arguments);
       this.state = { hasError: false };
@@ -33761,10 +34139,10 @@ ${remaining.slice(end + 3)}`;
     }
     render() {
       if (this.state.hasError) {
-        return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "error-boundary", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h2", { children: "Codee UI crashed" }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { children: this.state.message }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { children: "Reload the webview to recover." })
+        return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "error-boundary", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("h2", { children: "Codee UI crashed" }),
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { children: this.state.message }),
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("p", { children: "Reload the webview to recover." })
         ] });
       }
       return this.props.children;
@@ -33772,13 +34150,13 @@ ${remaining.slice(end + 3)}`;
   };
 
   // src/index.tsx
-  var import_jsx_runtime11 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime14 = __toESM(require_jsx_runtime());
   provideVSCodeDesignSystem().register(allComponents);
   var rootElement = document.getElementById("root");
   if (rootElement) {
     const root2 = (0, import_client.createRoot)(rootElement);
     root2.render(
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(ErrorBoundary, { children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(App, {}) })
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(ErrorBoundary, { children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(App, {}) })
     );
   }
 })();

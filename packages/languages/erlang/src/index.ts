@@ -1,0 +1,26 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+import { erlangRuntime } from "./implementation/runtime";
+import { erlangEcosystem } from "./implementation/ecosystem";
+import { erlangIdioms } from "./implementation/idioms";
+import { erlangAstPatterns } from "./analysis/ast-patterns";
+import { inferErlangTypes } from "./analysis/type-inference";
+
+export const erlangDefinition: LanguageDefinition = {
+  id: "erlang",
+  name: "Erlang",
+  extensions: [
+    ".erl",
+    ".hrl"
+  ],
+  serverFactory: (projectPath) => new LanguageServer(projectPath),
+  analyzerFactory: () => new LanguageAnalyzer(),
+  templates: new CodeTemplates(),
+  promptEngineering: new PromptEngineering()
+};
+
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { erlangRuntime, erlangEcosystem, erlangIdioms, erlangAstPatterns, inferErlangTypes };

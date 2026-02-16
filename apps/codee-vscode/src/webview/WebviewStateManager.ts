@@ -66,6 +66,39 @@ export class WebviewStateManager {
     if (context) {
       this.postMessage({ type: "updateContext", files: context.files, tokenCount: context.tokenCount });
     }
+    const learningQueue = this.restore<string[]>("learningQueue");
+    if (learningQueue) {
+      this.postMessage({ type: "updateLearningQueue", learningQueue });
+    }
+  }
+
+  getLearningQueue(): string[] {
+    return this.restore<string[]>("learningQueue") ?? [];
+  }
+
+  updateLearningQueue(queue: string[]): void {
+    this.persist("learningQueue", queue);
+    this.postMessage({ type: "updateLearningQueue", learningQueue: queue });
+  }
+
+  addTranslationFeedback(entry: {
+    sourceLanguage: string;
+    targetLanguage: string;
+    sourceCode: string;
+    targetCode: string;
+    feedback: string;
+    createdAt: string;
+  }): void {
+    const current = this.restore<Array<{
+      sourceLanguage: string;
+      targetLanguage: string;
+      sourceCode: string;
+      targetCode: string;
+      feedback: string;
+      createdAt: string;
+    }>>("translationFeedback") ?? [];
+    const next = [...current, entry];
+    this.persist("translationFeedback", next);
   }
 
   postMessage(message: ExtensionMessage): void {

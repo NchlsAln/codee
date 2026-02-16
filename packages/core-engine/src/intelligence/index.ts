@@ -2,6 +2,8 @@ export { ArchitectureAnalyzer } from "./ArchitectureAnalyzer";
 export { DocumentationGenerator } from "./DocumentationGenerator";
 export { MultiFileRefactor } from "./MultiFileRefactor";
 export { NaturalLanguageToCode } from "./NaturalLanguageToCode";
+export { PolyglotTranslator } from "./PolyglotTranslator";
+export { ProjectTranslator } from "./ProjectTranslator";
 export { TestGenerator } from "./TestGenerator";
 export { CorrectionStore } from "./learning";
 export type {
@@ -21,3 +23,4 @@ export type {
   TestGenerationPlan,
   TestSuiteResult
 } from "./types";
+export type { ProjectTranslationOptions } from "./ProjectTranslator";

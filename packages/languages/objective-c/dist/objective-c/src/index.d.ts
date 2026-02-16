@@ -1,0 +1,13 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+import { objectiveCRuntime } from "./implementation/runtime";
+import { objectiveCEcosystem } from "./implementation/ecosystem";
+import { objectiveCIdioms } from "./implementation/idioms";
+import { objectiveCAstPatterns } from "./analysis/ast-patterns";
+import { inferObjectiveCTypes } from "./analysis/type-inference";
+export declare const objectiveCDefinition: LanguageDefinition;
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { objectiveCRuntime, objectiveCEcosystem, objectiveCIdioms, objectiveCAstPatterns, inferObjectiveCTypes };

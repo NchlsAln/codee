@@ -1,0 +1,13 @@
+import { LanguageDefinition } from "@codee/lang-common";
+import { LanguageAnalyzer } from "./LanguageAnalyzer";
+import { LanguageServer } from "./LanguageServer";
+import { CodeTemplates } from "./CodeTemplates";
+import { PromptEngineering } from "./PromptEngineering";
+import { clojureRuntime } from "./implementation/runtime";
+import { clojureEcosystem } from "./implementation/ecosystem";
+import { clojureIdioms } from "./implementation/idioms";
+import { clojureAstPatterns } from "./analysis/ast-patterns";
+import { inferClojureTypes } from "./analysis/type-inference";
+export declare const clojureDefinition: LanguageDefinition;
+export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
+export { clojureRuntime, clojureEcosystem, clojureIdioms, clojureAstPatterns, inferClojureTypes };

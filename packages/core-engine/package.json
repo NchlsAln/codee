@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@codee/languages": "0.9.0-beta.1",
+    "@codee/polyglot-knowledge": "0.9.0-beta.1",
     "@journeyapps/sqlcipher": "^5.3.1",
     "chokidar": "^3.6.0",
     "langchain": "^0.1.0",
