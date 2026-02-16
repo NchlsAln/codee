@@ -41,6 +41,7 @@ export const ALL_LANGUAGE_IDS = [
   "ruby",
   "rust",
   "sas",
+  "scss",
   "sed",
   "scala",
   "solidity",

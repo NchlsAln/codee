@@ -11,10 +11,8 @@ import { inferYamlTypes } from "./analysis/type-inference";
 
 export const yamlDefinition: LanguageDefinition = {
   id: "yaml",
-  name: "Yaml",
-  extensions: [
-  ".ext"
-],
+  name: "YAML",
+  extensions: [".yml", ".yaml"],
   serverFactory: (projectPath) => new LanguageServer(projectPath),
   analyzerFactory: () => new LanguageAnalyzer(),
   templates: new CodeTemplates(),

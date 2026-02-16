@@ -4,7 +4,12 @@ exports.LanguageServer = void 0;
 const lang_common_1 = require("@codee/lang-common");
 class LanguageServer extends lang_common_1.BaseLanguageServer {
     constructor(projectPath) {
-        super({ languageId: "css", command: "css-language-server", args: ["--stdio"], projectPath });
+        super({
+            languageId: "css",
+            command: "vscode-css-language-server",
+            args: ["--stdio"],
+            projectPath
+        });
     }
 }
 exports.LanguageServer = LanguageServer;

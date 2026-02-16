@@ -1,5 +1,17 @@
 export declare const yamlRuntime: {
-    runtimeModel: string;
-    packageManager: string;
-    lspServer: string;
+    name: string;
+    supportedVersions: string[];
+    processingModel: {
+        parser: string;
+        schema: string;
+        resolution: string;
+    };
+    performance: {
+        notes: string[];
+    };
+    tooling: {
+        parsers: string[];
+        linters: string[];
+        schema: string[];
+    };
 };

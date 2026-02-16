@@ -11,10 +11,8 @@ import { inferJsonTypes } from "./analysis/type-inference";
 
 export const jsonDefinition: LanguageDefinition = {
   id: "json",
-  name: "Json",
-  extensions: [
-  ".ext"
-],
+  name: "JSON",
+  extensions: [".json"],
   serverFactory: (projectPath) => new LanguageServer(projectPath),
   analyzerFactory: () => new LanguageAnalyzer(),
   templates: new CodeTemplates(),

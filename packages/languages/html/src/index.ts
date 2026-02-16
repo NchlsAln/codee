@@ -11,10 +11,8 @@ import { inferHtmlTypes } from "./analysis/type-inference";
 
 export const htmlDefinition: LanguageDefinition = {
   id: "html",
-  name: "Html",
-  extensions: [
-  ".ext"
-],
+  name: "HTML",
+  extensions: [".html", ".htm"],
   serverFactory: (projectPath) => new LanguageServer(projectPath),
   analyzerFactory: () => new LanguageAnalyzer(),
   templates: new CodeTemplates(),

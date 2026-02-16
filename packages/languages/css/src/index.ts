@@ -11,10 +11,8 @@ import { inferCssTypes } from "./analysis/type-inference";
 
 export const cssDefinition: LanguageDefinition = {
   id: "css",
-  name: "Css",
-  extensions: [
-  ".ext"
-],
+  name: "CSS",
+  extensions: [".css"],
   serverFactory: (projectPath) => new LanguageServer(projectPath),
   analyzerFactory: () => new LanguageAnalyzer(),
   templates: new CodeTemplates(),

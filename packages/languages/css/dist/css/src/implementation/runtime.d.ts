@@ -1,5 +1,17 @@
 export declare const cssRuntime: {
-    runtimeModel: string;
-    packageManager: string;
-    lspServer: string;
+    name: string;
+    supportedVersions: string[];
+    renderingModel: {
+        cascade: string;
+        layout: string;
+        painting: string;
+        animations: string;
+    };
+    performance: {
+        notes: string[];
+    };
+    validation: {
+        tools: string[];
+        tooling: string[];
+    };
 };

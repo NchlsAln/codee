@@ -1,5 +1,17 @@
 export declare const jsonRuntime: {
-    runtimeModel: string;
-    packageManager: string;
-    lspServer: string;
+    name: string;
+    supportedVersions: string[];
+    processingModel: {
+        parser: string;
+        generator: string;
+        schema: string;
+    };
+    performance: {
+        notes: string[];
+    };
+    tooling: {
+        validators: string[];
+        query: string[];
+        schema: string[];
+    };
 };

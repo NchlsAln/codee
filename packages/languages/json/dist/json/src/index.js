@@ -21,10 +21,8 @@ const type_inference_1 = require("./analysis/type-inference");
 Object.defineProperty(exports, "inferJsonTypes", { enumerable: true, get: function () { return type_inference_1.inferJsonTypes; } });
 exports.jsonDefinition = {
     id: "json",
-    name: "Json",
-    extensions: [
-        ".ext"
-    ],
+    name: "JSON",
+    extensions: [".json"],
     serverFactory: (projectPath) => new LanguageServer_1.LanguageServer(projectPath),
     analyzerFactory: () => new LanguageAnalyzer_1.LanguageAnalyzer(),
     templates: new CodeTemplates_1.CodeTemplates(),

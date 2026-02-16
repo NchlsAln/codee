@@ -21,10 +21,8 @@ const type_inference_1 = require("./analysis/type-inference");
 Object.defineProperty(exports, "inferHtmlTypes", { enumerable: true, get: function () { return type_inference_1.inferHtmlTypes; } });
 exports.htmlDefinition = {
     id: "html",
-    name: "Html",
-    extensions: [
-        ".ext"
-    ],
+    name: "HTML",
+    extensions: [".html", ".htm"],
     serverFactory: (projectPath) => new LanguageServer_1.LanguageServer(projectPath),
     analyzerFactory: () => new LanguageAnalyzer_1.LanguageAnalyzer(),
     templates: new CodeTemplates_1.CodeTemplates(),

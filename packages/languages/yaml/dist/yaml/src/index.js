@@ -21,10 +21,8 @@ const type_inference_1 = require("./analysis/type-inference");
 Object.defineProperty(exports, "inferYamlTypes", { enumerable: true, get: function () { return type_inference_1.inferYamlTypes; } });
 exports.yamlDefinition = {
     id: "yaml",
-    name: "Yaml",
-    extensions: [
-        ".ext"
-    ],
+    name: "YAML",
+    extensions: [".yml", ".yaml"],
     serverFactory: (projectPath) => new LanguageServer_1.LanguageServer(projectPath),
     analyzerFactory: () => new LanguageAnalyzer_1.LanguageAnalyzer(),
     templates: new CodeTemplates_1.CodeTemplates(),

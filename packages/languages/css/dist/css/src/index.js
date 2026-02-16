@@ -21,10 +21,8 @@ const type_inference_1 = require("./analysis/type-inference");
 Object.defineProperty(exports, "inferCssTypes", { enumerable: true, get: function () { return type_inference_1.inferCssTypes; } });
 exports.cssDefinition = {
     id: "css",
-    name: "Css",
-    extensions: [
-        ".ext"
-    ],
+    name: "CSS",
+    extensions: [".css"],
     serverFactory: (projectPath) => new LanguageServer_1.LanguageServer(projectPath),
     analyzerFactory: () => new LanguageAnalyzer_1.LanguageAnalyzer(),
     templates: new CodeTemplates_1.CodeTemplates(),

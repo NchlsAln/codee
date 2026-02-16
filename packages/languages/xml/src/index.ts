@@ -11,10 +11,8 @@ import { inferXmlTypes } from "./analysis/type-inference";
 
 export const xmlDefinition: LanguageDefinition = {
   id: "xml",
-  name: "Xml",
-  extensions: [
-  ".ext"
-],
+  name: "XML",
+  extensions: [".xml", ".xsd", ".xsl", ".xslt"],
   serverFactory: (projectPath) => new LanguageServer(projectPath),
   analyzerFactory: () => new LanguageAnalyzer(),
   templates: new CodeTemplates(),

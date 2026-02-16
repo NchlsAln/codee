@@ -21,10 +21,8 @@ const type_inference_1 = require("./analysis/type-inference");
 Object.defineProperty(exports, "inferXmlTypes", { enumerable: true, get: function () { return type_inference_1.inferXmlTypes; } });
 exports.xmlDefinition = {
     id: "xml",
-    name: "Xml",
-    extensions: [
-        ".ext"
-    ],
+    name: "XML",
+    extensions: [".xml", ".xsd", ".xsl", ".xslt"],
     serverFactory: (projectPath) => new LanguageServer_1.LanguageServer(projectPath),
     analyzerFactory: () => new LanguageAnalyzer_1.LanguageAnalyzer(),
     templates: new CodeTemplates_1.CodeTemplates(),

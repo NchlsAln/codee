@@ -494,6 +494,18 @@ exports.COVERAGE_MATRIX = {
         "functional": { confidence: 0.5, limitations: ["TODO: Fill sas"] },
         "metaprogramming": { confidence: 0.5, limitations: ["TODO: Fill sas"] }
     },
+    "scss": {
+        "generics": { confidence: 0.5, limitations: ["TODO: Fill scss"] },
+        "iterators": { confidence: 0.5, limitations: ["TODO: Fill scss"] },
+        "closures": { confidence: 0.5, limitations: ["TODO: Fill scss"] },
+        "pattern-matching": { confidence: 0.5, limitations: ["TODO: Fill scss"] },
+        "concurrency": { confidence: 0.5, limitations: ["TODO: Fill scss"] },
+        "error-handling": { confidence: 0.5, limitations: ["TODO: Fill scss"] },
+        "memory-management": { confidence: 0.5, limitations: ["TODO: Fill scss"] },
+        "object-oriented": { confidence: 0.5, limitations: ["TODO: Fill scss"] },
+        "functional": { confidence: 0.5, limitations: ["TODO: Fill scss"] },
+        "metaprogramming": { confidence: 0.5, limitations: ["TODO: Fill scss"] }
+    },
     "sed": {
         "generics": { confidence: 0.5, limitations: ["TODO: Fill sed"] },
         "iterators": { confidence: 0.5, limitations: ["TODO: Fill sed"] },
