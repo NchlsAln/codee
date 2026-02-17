@@ -1,0 +1,28 @@
+export function pytorchTrainingTemplate(): string {
+  return [
+    "import torch",
+    "from torch import nn, optim",
+    "from torch.utils.data import DataLoader, TensorDataset",
+    "",
+    "device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')",
+    "",
+    "model = nn.Sequential(nn.Linear(32, 64), nn.ReLU(), nn.Linear(64, 10)).to(device)",
+    "optimizer = optim.Adam(model.parameters(), lr=1e-3)",
+    "criterion = nn.CrossEntropyLoss()",
+    "",
+    "x = torch.randn(256, 32)",
+    "y = torch.randint(0, 10, (256,))",
+    "loader = DataLoader(TensorDataset(x, y), batch_size=32, shuffle=True)",
+    "",
+    "for epoch in range(3):",
+    "    model.train()",
+    "    for batch_x, batch_y in loader:",
+    "        batch_x, batch_y = batch_x.to(device), batch_y.to(device)",
+    "        optimizer.zero_grad()",
+    "        logits = model(batch_x)",
+    "        loss = criterion(logits, batch_y)",
+    "        loss.backward()",
+    "        optimizer.step()",
+    "    print(f'epoch={epoch} loss={loss.item():.4f}')",
+  ].join("\n");
+}

@@ -11,7 +11,7 @@ export const pythonDefinition: LanguageDefinition = {
   serverFactory: (projectPath) => new LanguageServer(projectPath),
   analyzerFactory: () => new LanguageAnalyzer(),
   templates: new CodeTemplates(),
-  promptEngineering: new PromptEngineering()
+  promptEngineering: new PromptEngineering(),
 };
 
 export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
@@ -23,3 +23,24 @@ export { inferPythonTypes } from "./analysis/type-inference";
 export { djangoTemplate } from "./templates/django";
 export { fastApiTemplate } from "./templates/fastapi";
 export { pytorchTemplate } from "./templates/pytorch";
+export { pytorchTrainingTemplate } from "./templates/ml-ai/pytorch-training";
+export { tensorflowWorkflowTemplate } from "./templates/ml-ai/tensorflow-workflow";
+export { huggingfaceTransformersTemplate } from "./templates/ml-ai/huggingface-transformers";
+export { dataScienceTemplate } from "./templates/ml-ai/data-science";
+export { visualizationTemplate } from "./templates/ml-ai/visualization";
+export { fastApiAdvancedTemplate } from "./templates/web-async/fastapi-advanced";
+export { djangoAsyncTemplate } from "./templates/web-async/django-async";
+export { aiohttpPatternsTemplate } from "./templates/web-async/aiohttp-patterns";
+export { tornadoLegacyTemplate } from "./templates/web-async/tornado-legacy";
+export { cythonExtensionsTemplate } from "./templates/systems/cython-extensions";
+export { rustPyo3Template } from "./templates/systems/rust-pyo3";
+export { cffiBindingsTemplate } from "./templates/systems/cffi-bindings";
+export { subprocessManagementTemplate } from "./templates/systems/subprocess-management";
+export { dockerOptimizationTemplate } from "./templates/devops/docker-optimization";
+export { kubernetesOperatorsTemplate } from "./templates/devops/kubernetes-operators";
+export { cicdPipelinesTemplate } from "./templates/devops/ci-cd-pipelines";
+export { monitoringLoggingTemplate } from "./templates/devops/monitoring-logging";
+export { performanceOptimizer } from "./intelligence/performance-optimizer";
+export { securityAuditor } from "./intelligence/security-auditor";
+export { modernizationGuide } from "./intelligence/modernization-guide";
+export { refactoringEngine } from "./intelligence/refactoring-engine";

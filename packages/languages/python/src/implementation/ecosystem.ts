@@ -1,14 +1,15 @@
 export const pythonEcosystem = {
-  packageManagers: ["pip", "conda", "poetry", "pipenv", "uv"],
-  buildTools: ["setuptools", "hatch", "poetry build", "maturin"],
-  testing: ["pytest", "unittest", "nose2", "hypothesis"],
+  packageManagers: ["pip", "poetry", "pdm", "pipenv", "conda", "uv"],
+  buildTools: ["setuptools", "flit", "hatch", "maturin", "poetry build"],
+  buildBackends: ["setuptools.build_meta", "flit_core", "hatchling", "maturin"],
+  testing: ["pytest", "unittest", "nose2", "hypothesis", "pytest-benchmark"],
   integrationTesting: ["tox", "nox"],
-  linting: ["ruff", "flake8", "pylint"],
+  linting: ["ruff", "pylint", "flake8", "bandit"],
   formatting: ["black", "isort", "ruff format"],
-  typeChecking: ["mypy", "pyright"],
-  docs: ["Sphinx", "MkDocs", "pdoc"],
+  typeChecking: ["mypy", "pyright", "pytype", "beartype"],
+  docs: ["Sphinx", "MkDocs", "pydoc", "pdoc", "type hints"],
   ciCd: ["GitHub Actions", "GitLab CI", "Azure Pipelines"],
   deploymentTargets: ["containers", "serverless", "data pipelines", "embedded"],
   packaging: ["wheels", "sdist", "pex"],
-  observability: ["structlog", "opentelemetry"]
+  observability: ["structlog", "opentelemetry"],
 };

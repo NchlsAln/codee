@@ -39,6 +39,23 @@ import { ffiNativeTemplate } from "./templates/ffi/native";
 import { fastApiTemplate } from "./templates/fastapi";
 import { djangoTemplate } from "./templates/django";
 import { pytorchTemplate } from "./templates/pytorch";
+import { pytorchTrainingTemplate } from "./templates/ml-ai/pytorch-training";
+import { tensorflowWorkflowTemplate } from "./templates/ml-ai/tensorflow-workflow";
+import { huggingfaceTransformersTemplate } from "./templates/ml-ai/huggingface-transformers";
+import { dataScienceTemplate } from "./templates/ml-ai/data-science";
+import { visualizationTemplate } from "./templates/ml-ai/visualization";
+import { fastApiAdvancedTemplate } from "./templates/web-async/fastapi-advanced";
+import { djangoAsyncTemplate } from "./templates/web-async/django-async";
+import { aiohttpPatternsTemplate } from "./templates/web-async/aiohttp-patterns";
+import { tornadoLegacyTemplate } from "./templates/web-async/tornado-legacy";
+import { cythonExtensionsTemplate } from "./templates/systems/cython-extensions";
+import { rustPyo3Template } from "./templates/systems/rust-pyo3";
+import { cffiBindingsTemplate } from "./templates/systems/cffi-bindings";
+import { subprocessManagementTemplate } from "./templates/systems/subprocess-management";
+import { dockerOptimizationTemplate } from "./templates/devops/docker-optimization";
+import { kubernetesOperatorsTemplate } from "./templates/devops/kubernetes-operators";
+import { cicdPipelinesTemplate } from "./templates/devops/ci-cd-pipelines";
+import { monitoringLoggingTemplate } from "./templates/devops/monitoring-logging";
 
 export class CodeTemplates extends BaseCodeTemplates {
   constructor() {
@@ -47,7 +64,7 @@ export class CodeTemplates extends BaseCodeTemplates {
         "Prefer explicit imports.",
         "Follow PEP 8 naming and formatting.",
         "Use type hints for public APIs.",
-        "Prefer context managers for resources."
+        "Prefer context managers for resources.",
       ],
       templates: {
         "stdlib.collections": collectionsTemplate(),
@@ -86,16 +103,33 @@ export class CodeTemplates extends BaseCodeTemplates {
         "crypto.jwt": jwtTemplate(),
         "ffi.c": ffiCTemplate(),
         "ffi.wasm": ffiWasmTemplate(),
-        "ffi.native": ffiNativeTemplate()
+        "ffi.native": ffiNativeTemplate(),
+        "ml-ai.pytorch-training": pytorchTrainingTemplate(),
+        "ml-ai.tensorflow-workflow": tensorflowWorkflowTemplate(),
+        "ml-ai.huggingface-transformers": huggingfaceTransformersTemplate(),
+        "ml-ai.data-science": dataScienceTemplate(),
+        "ml-ai.visualization": visualizationTemplate(),
+        "web-async.fastapi-advanced": fastApiAdvancedTemplate(),
+        "web-async.django-async": djangoAsyncTemplate(),
+        "web-async.aiohttp-patterns": aiohttpPatternsTemplate(),
+        "web-async.tornado-legacy": tornadoLegacyTemplate(),
+        "systems.cython-extensions": cythonExtensionsTemplate(),
+        "systems.rust-pyo3": rustPyo3Template(),
+        "systems.cffi-bindings": cffiBindingsTemplate(),
+        "systems.subprocess-management": subprocessManagementTemplate(),
+        "devops.docker-optimization": dockerOptimizationTemplate(),
+        "devops.kubernetes-operators": kubernetesOperatorsTemplate(),
+        "devops.ci-cd-pipelines": cicdPipelinesTemplate(),
+        "devops.monitoring-logging": monitoringLoggingTemplate(),
       },
       frameworkTemplates: {
         "fastapi.endpoint": fastApiTemplate(),
         "django.view": djangoTemplate(),
-        "pytorch.training": pytorchTemplate()
+        "pytorch.training": pytorchTemplate(),
       },
       testTemplates: {
-        pytest: unitTemplate()
-      }
+        pytest: unitTemplate(),
+      },
     });
   }
 }
