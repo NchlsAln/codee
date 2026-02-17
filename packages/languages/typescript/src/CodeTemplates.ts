@@ -39,6 +39,22 @@ import { ffiNativeTemplate } from "./templates/ffi/native";
 import { reactTemplate } from "./templates/react";
 import { nextjsTemplate } from "./templates/nextjs";
 import { nestjsTemplate } from "./templates/nestjs";
+import { reactAdvancedTemplate } from "./templates/frontend-frameworks/react-advanced";
+import { vueCompositionTemplate } from "./templates/frontend-frameworks/vue-composition";
+import { svelteKitTemplate } from "./templates/frontend-frameworks/svelte-kit";
+import { solidJsTemplate } from "./templates/frontend-frameworks/solid-js";
+import { nestjsArchitectureTemplate } from "./templates/backend-api/nestjs-architecture";
+import { trpcRoutersTemplate } from "./templates/backend-api/trpc-routers";
+import { graphqlCodegenTemplate } from "./templates/backend-api/graphql-codegen";
+import { websocketServersTemplate } from "./templates/backend-api/websocket-servers";
+import { nextjsAppRouterTemplate } from "./templates/fullstack-meta/nextjs-app-router";
+import { remixLoadersTemplate } from "./templates/fullstack-meta/remix-loaders";
+import { sveltekitFullstackTemplate } from "./templates/fullstack-meta/sveltekit-fullstack";
+import { turborepoPipelinesTemplate } from "./templates/fullstack-meta/turborepo-pipelines";
+import { advancedGenericsTemplate } from "./templates/type-system-mastery/advanced-generics";
+import { brandTypesTemplate } from "./templates/type-system-mastery/brand-types";
+import { stateMachinesTemplate } from "./templates/type-system-mastery/state-machines";
+import { apiContractsTemplate } from "./templates/type-system-mastery/api-contracts";
 
 export class CodeTemplates extends BaseCodeTemplates {
   constructor() {
@@ -47,7 +63,7 @@ export class CodeTemplates extends BaseCodeTemplates {
         "Prefer type inference when clear.",
         "Use interfaces for public contracts.",
         "Keep functions small and composable.",
-        "Prefer unknown over any and narrow safely."
+        "Prefer unknown over any and narrow safely.",
       ],
       templates: {
         "stdlib.collections": collectionsTemplate(),
@@ -86,16 +102,32 @@ export class CodeTemplates extends BaseCodeTemplates {
         "crypto.jwt": jwtTemplate(),
         "ffi.c": ffiCTemplate(),
         "ffi.wasm": ffiWasmTemplate(),
-        "ffi.native": ffiNativeTemplate()
+        "ffi.native": ffiNativeTemplate(),
+        "frontend-frameworks.react-advanced": reactAdvancedTemplate(),
+        "frontend-frameworks.vue-composition": vueCompositionTemplate(),
+        "frontend-frameworks.svelte-kit": svelteKitTemplate(),
+        "frontend-frameworks.solid-js": solidJsTemplate(),
+        "backend-api.nestjs-architecture": nestjsArchitectureTemplate(),
+        "backend-api.trpc-routers": trpcRoutersTemplate(),
+        "backend-api.graphql-codegen": graphqlCodegenTemplate(),
+        "backend-api.websocket-servers": websocketServersTemplate(),
+        "fullstack-meta.nextjs-app-router": nextjsAppRouterTemplate(),
+        "fullstack-meta.remix-loaders": remixLoadersTemplate(),
+        "fullstack-meta.sveltekit-fullstack": sveltekitFullstackTemplate(),
+        "fullstack-meta.turborepo-pipelines": turborepoPipelinesTemplate(),
+        "type-system-mastery.advanced-generics": advancedGenericsTemplate(),
+        "type-system-mastery.brand-types": brandTypesTemplate(),
+        "type-system-mastery.state-machines": stateMachinesTemplate(),
+        "type-system-mastery.api-contracts": apiContractsTemplate(),
       },
       frameworkTemplates: {
         "react.component": reactTemplate(),
         "next.api": nextjsTemplate(),
-        "nestjs.controller": nestjsTemplate()
+        "nestjs.controller": nestjsTemplate(),
       },
       testTemplates: {
-        jest: unitTemplate()
-      }
+        jest: unitTemplate(),
+      },
     });
   }
 }

@@ -11,7 +11,7 @@ export const typescriptDefinition: LanguageDefinition = {
   serverFactory: (projectPath) => new LanguageServer(projectPath),
   analyzerFactory: () => new LanguageAnalyzer(),
   templates: new CodeTemplates(),
-  promptEngineering: new PromptEngineering()
+  promptEngineering: new PromptEngineering(),
 };
 
 export { LanguageAnalyzer, LanguageServer, CodeTemplates, PromptEngineering };
@@ -23,3 +23,23 @@ export { inferTypeScriptTypes } from "./analysis/type-inference";
 export { reactTemplate } from "./templates/react";
 export { nextjsTemplate } from "./templates/nextjs";
 export { nestjsTemplate } from "./templates/nestjs";
+export { reactAdvancedTemplate } from "./templates/frontend-frameworks/react-advanced";
+export { vueCompositionTemplate } from "./templates/frontend-frameworks/vue-composition";
+export { svelteKitTemplate } from "./templates/frontend-frameworks/svelte-kit";
+export { solidJsTemplate } from "./templates/frontend-frameworks/solid-js";
+export { nestjsArchitectureTemplate } from "./templates/backend-api/nestjs-architecture";
+export { trpcRoutersTemplate } from "./templates/backend-api/trpc-routers";
+export { graphqlCodegenTemplate } from "./templates/backend-api/graphql-codegen";
+export { websocketServersTemplate } from "./templates/backend-api/websocket-servers";
+export { nextjsAppRouterTemplate } from "./templates/fullstack-meta/nextjs-app-router";
+export { remixLoadersTemplate } from "./templates/fullstack-meta/remix-loaders";
+export { sveltekitFullstackTemplate } from "./templates/fullstack-meta/sveltekit-fullstack";
+export { turborepoPipelinesTemplate } from "./templates/fullstack-meta/turborepo-pipelines";
+export { advancedGenericsTemplate } from "./templates/type-system-mastery/advanced-generics";
+export { brandTypesTemplate } from "./templates/type-system-mastery/brand-types";
+export { stateMachinesTemplate } from "./templates/type-system-mastery/state-machines";
+export { apiContractsTemplate } from "./templates/type-system-mastery/api-contracts";
+export { reactOptimizer } from "./intelligence/react-optimizer";
+export { typeCoverageImprover } from "./intelligence/type-coverage-improver";
+export { bundleAnalyzer } from "./intelligence/bundle-analyzer";
+export { securityHardening } from "./intelligence/security-hardening";
