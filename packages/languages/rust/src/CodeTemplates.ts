@@ -38,6 +38,22 @@ import { ffiWasmTemplate } from "./templates/ffi/wasm";
 import { ffiNativeTemplate } from "./templates/ffi/native";
 import { cliTemplate } from "./templates/cli";
 import { axumTemplate } from "./templates/axum";
+import { kernelModulesTemplate } from "./templates/systems-programming/kernel-modules";
+import { embeddedBareMetalTemplate } from "./templates/systems-programming/embedded-bare-metal";
+import { deviceDriversTemplate } from "./templates/systems-programming/device-drivers";
+import { realTimeSystemsTemplate } from "./templates/systems-programming/real-time-systems";
+import { tokioServersTemplate } from "./templates/async-networking/tokio-servers";
+import { hyperHttpTemplate } from "./templates/async-networking/hyper-http";
+import { tonicGrpcTemplate } from "./templates/async-networking/tonic-grpc";
+import { quicImplementationTemplate } from "./templates/async-networking/quic-implementation";
+import { wasmBindgenTemplate } from "./templates/webassembly/wasm-bindgen";
+import { wasmPackWorkflowTemplate } from "./templates/webassembly/wasm-pack-workflow";
+import { wasiModulesTemplate } from "./templates/webassembly/wasi-modules";
+import { yewFrontendTemplate } from "./templates/webassembly/yew-frontend";
+import { simdOptimizationTemplate } from "./templates/high-performance/simd-optimization";
+import { lockFreeStructuresTemplate } from "./templates/high-performance/lock-free-structures";
+import { zeroCopyParsingTemplate } from "./templates/high-performance/zero-copy-parsing";
+import { gpuComputeTemplate } from "./templates/high-performance/gpu-compute";
 
 export class CodeTemplates extends BaseCodeTemplates {
   constructor() {
@@ -46,7 +62,7 @@ export class CodeTemplates extends BaseCodeTemplates {
         "Prefer ownership-friendly APIs.",
         "Use Result for fallible operations.",
         "Use iterators and avoid clones in hot paths.",
-        "Prefer borrowing over allocation."
+        "Prefer borrowing over allocation.",
       ],
       templates: {
         "stdlib.collections": collectionsTemplate(),
@@ -85,16 +101,31 @@ export class CodeTemplates extends BaseCodeTemplates {
         "crypto.jwt": jwtTemplate(),
         "ffi.c": ffiCTemplate(),
         "ffi.wasm": ffiWasmTemplate(),
-        "ffi.native": ffiNativeTemplate()
+        "ffi.native": ffiNativeTemplate(),
+        "systems-programming.kernel-modules": kernelModulesTemplate(),
+        "systems-programming.embedded-bare-metal": embeddedBareMetalTemplate(),
+        "systems-programming.device-drivers": deviceDriversTemplate(),
+        "systems-programming.real-time-systems": realTimeSystemsTemplate(),
+        "async-networking.tokio-servers": tokioServersTemplate(),
+        "async-networking.hyper-http": hyperHttpTemplate(),
+        "async-networking.tonic-grpc": tonicGrpcTemplate(),
+        "async-networking.quic-implementation": quicImplementationTemplate(),
+        "webassembly.wasm-bindgen": wasmBindgenTemplate(),
+        "webassembly.wasm-pack-workflow": wasmPackWorkflowTemplate(),
+        "webassembly.wasi-modules": wasiModulesTemplate(),
+        "webassembly.yew-frontend": yewFrontendTemplate(),
+        "high-performance.simd-optimization": simdOptimizationTemplate(),
+        "high-performance.lock-free-structures": lockFreeStructuresTemplate(),
+        "high-performance.zero-copy-parsing": zeroCopyParsingTemplate(),
+        "high-performance.gpu-compute": gpuComputeTemplate(),
       },
       frameworkTemplates: {
         "axum.route": axumTemplate(),
-        "cli.basic": cliTemplate()
+        "cli.basic": cliTemplate(),
       },
       testTemplates: {
-        rusttest: unitTemplate()
-      }
+        rusttest: unitTemplate(),
+      },
     });
   }
 }
-

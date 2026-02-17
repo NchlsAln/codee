@@ -2,15 +2,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.rustEcosystem = void 0;
 exports.rustEcosystem = {
-    packageManager: "cargo",
-    buildTools: ["cargo", "cargo-make", "cross"],
-    testing: ["cargo test", "nextest"],
-    benchmarking: ["criterion"],
-    linting: ["clippy"],
-    formatting: ["rustfmt"],
-    docs: ["rustdoc", "mdbook"],
-    ciCd: ["GitHub Actions", "GitLab CI", "Azure Pipelines"],
-    deploymentTargets: ["containers", "embedded", "wasm", "cli", "server"],
-    frameworks: ["axum", "actix-web", "rocket"],
-    tooling: ["rust-analyzer", "cargo-deny", "cargo-audit"]
+  packageManager: "cargo",
+  registries: ["crates.io"],
+  semver: "Cargo follows semver with feature flags",
+  features: "Optional dependencies and cfg feature gates",
+  workspaces: "Multi-crate builds and shared dependencies",
+  buildTools: ["cargo", "rustc", "cross"],
+  testing: ["cargo test", "nextest"],
+  benchmarking: ["criterion"],
+  linting: ["clippy"],
+  formatting: ["rustfmt"],
+  docs: ["rustdoc", "mdbook", "docs.rs"],
+  ciCd: ["GitHub Actions", "GitLab CI", "Azure Pipelines"],
+  deploymentTargets: ["containers", "embedded", "wasm", "cli", "server"],
+  frameworks: ["axum", "actix-web", "rocket"],
+  crossCompilation: ["musl", "wasm", "no_std"],
+  tooling: ["rust-analyzer", "cargo-deny", "cargo-audit", "cargo-geiger", "miri"],
 };

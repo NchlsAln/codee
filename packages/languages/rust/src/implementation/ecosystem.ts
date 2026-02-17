@@ -1,13 +1,18 @@
 export const rustEcosystem = {
   packageManager: "cargo",
-  buildTools: ["cargo", "cargo-make", "cross"],
+  registries: ["crates.io"],
+  semver: "Cargo follows semver with feature flags",
+  features: "Optional dependencies and cfg feature gates",
+  workspaces: "Multi-crate builds and shared dependencies",
+  buildTools: ["cargo", "rustc", "cross"],
   testing: ["cargo test", "nextest"],
   benchmarking: ["criterion"],
   linting: ["clippy"],
   formatting: ["rustfmt"],
-  docs: ["rustdoc", "mdbook"],
+  docs: ["rustdoc", "mdbook", "docs.rs"],
   ciCd: ["GitHub Actions", "GitLab CI", "Azure Pipelines"],
   deploymentTargets: ["containers", "embedded", "wasm", "cli", "server"],
   frameworks: ["axum", "actix-web", "rocket"],
-  tooling: ["rust-analyzer", "cargo-deny", "cargo-audit"]
+  crossCompilation: ["musl", "wasm", "no_std"],
+  tooling: ["rust-analyzer", "cargo-deny", "cargo-audit", "cargo-geiger", "miri"],
 };
