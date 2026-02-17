@@ -2,10 +2,3 @@
 > @codee/lang-typescript@0.9.0-beta.1 typecheck
 > tsc -p tsconfig.json --noEmit
 
-src/CodeTemplates.ts(42,39): error TS6142: Module './templates/frontend-frameworks/react-advanced' was resolved to 'C:/Users/Nikko/Desktop/Codee/packages/languages/typescript/src/templates/frontend-frameworks/react-advanced.tsx', but '--jsx' is not set.
-src/index.ts(26,39): error TS6142: Module './templates/frontend-frameworks/react-advanced' was resolved to 'C:/Users/Nikko/Desktop/Codee/packages/languages/typescript/src/templates/frontend-frameworks/react-advanced.tsx', but '--jsx' is not set.
-src/index.ts(42,32): error TS6142: Module './intelligence/react-optimizer' was resolved to 'C:/Users/Nikko/Desktop/Codee/packages/languages/typescript/src/intelligence/react-optimizer.tsx', but '--jsx' is not set.
-npm ERR! Lifecycle script `typecheck` failed with error: 
-npm ERR! Error: command failed 
-npm ERR!   in workspace: @codee/lang-typescript@0.9.0-beta.1 
-npm ERR!   at location: C:\Users\Nikko\Desktop\Codee\packages\languages\typescript 
