@@ -55,6 +55,27 @@ function inferPythonTypes(source) {
   if (source.includes("pd.DataFrame")) {
     hints.add("dataframe");
   }
+  if (source.includes("torch") || source.includes("tensorflow") || source.includes("jax")) {
+    hints.add("ml-tensors");
+  }
+  if (source.includes("sklearn") || source.includes("xgboost")) {
+    hints.add("ml-models");
+  }
+  if (source.includes("qiskit") || source.includes("cirq") || source.includes("pennylane")) {
+    hints.add("quantum-circuits");
+  }
+  if (source.includes("web3") || source.includes("eth_account")) {
+    hints.add("blockchain-web3");
+  }
+  if (source.includes("paho.mqtt") || source.includes("azure.iot")) {
+    hints.add("iot-telemetry");
+  }
+  if (source.includes("mpi4py") || source.includes("dask")) {
+    hints.add("hpc-distributed");
+  }
+  if (source.includes("numba") || source.includes("cupy")) {
+    hints.add("jit-acceleration");
+  }
   if (source.includes("cast(")) {
     hints.add("type-narrowing");
   }

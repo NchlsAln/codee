@@ -12,4 +12,11 @@ export const pythonEcosystem = {
   deploymentTargets: ["containers", "serverless", "data pipelines", "embedded"],
   packaging: ["wheels", "sdist", "pex"],
   observability: ["structlog", "opentelemetry"],
+  mlFrameworks: ["PyTorch", "TensorFlow", "JAX", "scikit-learn"],
+  mlOps: ["MLflow", "Weights & Biases", "DVC", "Feast"],
+  dataPipelines: ["Airflow", "Prefect", "Dagster"],
+  quantum: ["Qiskit", "Cirq", "PennyLane"],
+  blockchain: ["web3.py", "eth-account", "brownie", "ape"],
+  iot: ["paho-mqtt", "asyncio-mqtt", "azure-iot-sdk"],
+  hpc: ["mpi4py", "Dask", "Numba", "CuPy"],
 };

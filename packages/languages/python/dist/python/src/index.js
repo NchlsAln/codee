@@ -1,10 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.refactoringEngine =
-  exports.modernizationGuide =
-  exports.securityAuditor =
-  exports.performanceOptimizer =
-  exports.monitoringLoggingTemplate =
+exports.monitoringLoggingTemplate =
   exports.cicdPipelinesTemplate =
   exports.kubernetesOperatorsTemplate =
   exports.dockerOptimizationTemplate =
@@ -16,6 +12,26 @@ exports.refactoringEngine =
   exports.aiohttpPatternsTemplate =
   exports.djangoAsyncTemplate =
   exports.fastApiAdvancedTemplate =
+  exports.profilingOptimizationTemplate =
+  exports.numbaKernelsTemplate =
+  exports.distributedArraysTemplate =
+  exports.mpiJobTemplate =
+  exports.telemetryAnalyticsTemplate =
+  exports.digitalTwinsTemplate =
+  exports.deviceFirmwareTemplate =
+  exports.edgeIngestionTemplate =
+  exports.consensusSimulationTemplate =
+  exports.walletCustodyTemplate =
+  exports.eventIndexerTemplate =
+  exports.smartContractIntegrationTemplate =
+  exports.hybridWorkflowsTemplate =
+  exports.variationalAlgorithmsTemplate =
+  exports.quantumSimulatorsTemplate =
+  exports.qiskitCircuitsTemplate =
+  exports.featureStoresTemplate =
+  exports.ragSystemsTemplate =
+  exports.modelServingTemplate =
+  exports.mlopsPipelinesTemplate =
   exports.visualizationTemplate =
   exports.dataScienceTemplate =
   exports.huggingfaceTransformersTemplate =
@@ -34,6 +50,16 @@ exports.refactoringEngine =
   exports.LanguageServer =
   exports.LanguageAnalyzer =
   exports.pythonDefinition =
+    void 0;
+exports.hpcOptimizer =
+  exports.iotArchitect =
+  exports.blockchainIntegrator =
+  exports.quantumAdvisor =
+  exports.aiMlArchitect =
+  exports.refactoringEngine =
+  exports.modernizationGuide =
+  exports.securityAuditor =
+  exports.performanceOptimizer =
     void 0;
 const LanguageAnalyzer_1 = require("./LanguageAnalyzer");
 Object.defineProperty(exports, "LanguageAnalyzer", {
@@ -163,6 +189,146 @@ Object.defineProperty(exports, "visualizationTemplate", {
     return visualization_1.visualizationTemplate;
   },
 });
+var mlops_pipelines_1 = require("./templates/ai-ml/mlops-pipelines");
+Object.defineProperty(exports, "mlopsPipelinesTemplate", {
+  enumerable: true,
+  get: function () {
+    return mlops_pipelines_1.mlopsPipelinesTemplate;
+  },
+});
+var model_serving_1 = require("./templates/ai-ml/model-serving");
+Object.defineProperty(exports, "modelServingTemplate", {
+  enumerable: true,
+  get: function () {
+    return model_serving_1.modelServingTemplate;
+  },
+});
+var rag_systems_1 = require("./templates/ai-ml/rag-systems");
+Object.defineProperty(exports, "ragSystemsTemplate", {
+  enumerable: true,
+  get: function () {
+    return rag_systems_1.ragSystemsTemplate;
+  },
+});
+var feature_stores_1 = require("./templates/ai-ml/feature-stores");
+Object.defineProperty(exports, "featureStoresTemplate", {
+  enumerable: true,
+  get: function () {
+    return feature_stores_1.featureStoresTemplate;
+  },
+});
+var qiskit_circuits_1 = require("./templates/quantum/qiskit-circuits");
+Object.defineProperty(exports, "qiskitCircuitsTemplate", {
+  enumerable: true,
+  get: function () {
+    return qiskit_circuits_1.qiskitCircuitsTemplate;
+  },
+});
+var quantum_simulators_1 = require("./templates/quantum/quantum-simulators");
+Object.defineProperty(exports, "quantumSimulatorsTemplate", {
+  enumerable: true,
+  get: function () {
+    return quantum_simulators_1.quantumSimulatorsTemplate;
+  },
+});
+var variational_algorithms_1 = require("./templates/quantum/variational-algorithms");
+Object.defineProperty(exports, "variationalAlgorithmsTemplate", {
+  enumerable: true,
+  get: function () {
+    return variational_algorithms_1.variationalAlgorithmsTemplate;
+  },
+});
+var hybrid_workflows_1 = require("./templates/quantum/hybrid-workflows");
+Object.defineProperty(exports, "hybridWorkflowsTemplate", {
+  enumerable: true,
+  get: function () {
+    return hybrid_workflows_1.hybridWorkflowsTemplate;
+  },
+});
+var smart_contract_integration_1 = require("./templates/blockchain/smart-contract-integration");
+Object.defineProperty(exports, "smartContractIntegrationTemplate", {
+  enumerable: true,
+  get: function () {
+    return smart_contract_integration_1.smartContractIntegrationTemplate;
+  },
+});
+var event_indexer_1 = require("./templates/blockchain/event-indexer");
+Object.defineProperty(exports, "eventIndexerTemplate", {
+  enumerable: true,
+  get: function () {
+    return event_indexer_1.eventIndexerTemplate;
+  },
+});
+var wallet_custody_1 = require("./templates/blockchain/wallet-custody");
+Object.defineProperty(exports, "walletCustodyTemplate", {
+  enumerable: true,
+  get: function () {
+    return wallet_custody_1.walletCustodyTemplate;
+  },
+});
+var consensus_sim_1 = require("./templates/blockchain/consensus-sim");
+Object.defineProperty(exports, "consensusSimulationTemplate", {
+  enumerable: true,
+  get: function () {
+    return consensus_sim_1.consensusSimulationTemplate;
+  },
+});
+var edge_ingestion_1 = require("./templates/iot/edge-ingestion");
+Object.defineProperty(exports, "edgeIngestionTemplate", {
+  enumerable: true,
+  get: function () {
+    return edge_ingestion_1.edgeIngestionTemplate;
+  },
+});
+var device_firmware_1 = require("./templates/iot/device-firmware");
+Object.defineProperty(exports, "deviceFirmwareTemplate", {
+  enumerable: true,
+  get: function () {
+    return device_firmware_1.deviceFirmwareTemplate;
+  },
+});
+var digital_twins_1 = require("./templates/iot/digital-twins");
+Object.defineProperty(exports, "digitalTwinsTemplate", {
+  enumerable: true,
+  get: function () {
+    return digital_twins_1.digitalTwinsTemplate;
+  },
+});
+var telemetry_analytics_1 = require("./templates/iot/telemetry-analytics");
+Object.defineProperty(exports, "telemetryAnalyticsTemplate", {
+  enumerable: true,
+  get: function () {
+    return telemetry_analytics_1.telemetryAnalyticsTemplate;
+  },
+});
+var mpi_job_1 = require("./templates/hpc/mpi-job");
+Object.defineProperty(exports, "mpiJobTemplate", {
+  enumerable: true,
+  get: function () {
+    return mpi_job_1.mpiJobTemplate;
+  },
+});
+var distributed_arrays_1 = require("./templates/hpc/distributed-arrays");
+Object.defineProperty(exports, "distributedArraysTemplate", {
+  enumerable: true,
+  get: function () {
+    return distributed_arrays_1.distributedArraysTemplate;
+  },
+});
+var numba_kernels_1 = require("./templates/hpc/numba-kernels");
+Object.defineProperty(exports, "numbaKernelsTemplate", {
+  enumerable: true,
+  get: function () {
+    return numba_kernels_1.numbaKernelsTemplate;
+  },
+});
+var profiling_optimization_1 = require("./templates/hpc/profiling-optimization");
+Object.defineProperty(exports, "profilingOptimizationTemplate", {
+  enumerable: true,
+  get: function () {
+    return profiling_optimization_1.profilingOptimizationTemplate;
+  },
+});
 var fastapi_advanced_1 = require("./templates/web-async/fastapi-advanced");
 Object.defineProperty(exports, "fastApiAdvancedTemplate", {
   enumerable: true,
@@ -273,5 +439,40 @@ Object.defineProperty(exports, "refactoringEngine", {
   enumerable: true,
   get: function () {
     return refactoring_engine_1.refactoringEngine;
+  },
+});
+var ai_ml_architect_1 = require("./intelligence/ai-ml-architect");
+Object.defineProperty(exports, "aiMlArchitect", {
+  enumerable: true,
+  get: function () {
+    return ai_ml_architect_1.aiMlArchitect;
+  },
+});
+var quantum_advisor_1 = require("./intelligence/quantum-advisor");
+Object.defineProperty(exports, "quantumAdvisor", {
+  enumerable: true,
+  get: function () {
+    return quantum_advisor_1.quantumAdvisor;
+  },
+});
+var blockchain_integrator_1 = require("./intelligence/blockchain-integrator");
+Object.defineProperty(exports, "blockchainIntegrator", {
+  enumerable: true,
+  get: function () {
+    return blockchain_integrator_1.blockchainIntegrator;
+  },
+});
+var iot_architect_1 = require("./intelligence/iot-architect");
+Object.defineProperty(exports, "iotArchitect", {
+  enumerable: true,
+  get: function () {
+    return iot_architect_1.iotArchitect;
+  },
+});
+var hpc_optimizer_1 = require("./intelligence/hpc-optimizer");
+Object.defineProperty(exports, "hpcOptimizer", {
+  enumerable: true,
+  get: function () {
+    return hpc_optimizer_1.hpcOptimizer;
   },
 });

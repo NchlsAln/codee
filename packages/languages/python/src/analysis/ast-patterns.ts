@@ -30,4 +30,12 @@ export const pythonAstPatterns = [
   "types: Protocol class for structural typing",
   "types: TypeVar bounds and constraints",
   "testing: direct IO in unit tests (mock required)",
+  "ml: training without deterministic seed",
+  "ml: data leakage across train/test split",
+  "ml: forgetting model.eval() before inference",
+  "quantum: missing measurement operations",
+  "blockchain: hardcoded private keys or mnemonics",
+  "blockchain: no confirmation depth for finality",
+  "iot: unvalidated device payload schemas",
+  "hpc: heavy Python loops in numeric kernels",
 ];

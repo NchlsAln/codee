@@ -12,4 +12,11 @@ export declare const pythonEcosystem: {
   deploymentTargets: string[];
   packaging: string[];
   observability: string[];
+  mlFrameworks: string[];
+  mlOps: string[];
+  dataPipelines: string[];
+  quantum: string[];
+  blockchain: string[];
+  iot: string[];
+  hpc: string[];
 };

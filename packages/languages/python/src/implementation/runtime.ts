@@ -55,6 +55,16 @@ export const pythonRuntime = {
       "Prefer PyPy for long-running CPU workloads",
     ],
   },
+  aiAcceleration: {
+    gpu: ["CUDA", "ROCm", "Metal"],
+    inference: ["ONNX Runtime", "TensorRT", "OpenVINO"],
+    distributed: ["Ray", "Dask", "Horovod"],
+  },
+  hpcTooling: {
+    mpi: ["mpi4py", "OpenMPI"],
+    schedulers: ["Slurm", "PBS", "Kubernetes"],
+    profiling: ["cProfile", "py-spy", "line_profiler"],
+  },
   ffi: {
     c: ["ctypes", "cffi", "CPython C-API"],
     native: ["Cython", "pybind11", "maturin/pyo3"],

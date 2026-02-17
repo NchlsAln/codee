@@ -29,4 +29,12 @@ exports.pythonIdioms = [
   "Prefer pathlib over os.path for paths",
   "Use asyncio.gather with return_exceptions for fan-out",
   "Use async generators for streaming responses",
+  "Seed RNGs for reproducible ML experiments",
+  "Separate training, validation, and inference code paths",
+  "Log model inputs, outputs, and feature versions",
+  "Keep quantum circuits shallow for noisy backends",
+  "Verify chain IDs and confirmations for blockchain reads",
+  "Protect secrets with vaults or HSMs for custody flows",
+  "Validate IoT payload schemas and timestamps",
+  "Use batching and vectorization for HPC kernels",
 ];

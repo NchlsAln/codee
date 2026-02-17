@@ -44,6 +44,26 @@ import { tensorflowWorkflowTemplate } from "./templates/ml-ai/tensorflow-workflo
 import { huggingfaceTransformersTemplate } from "./templates/ml-ai/huggingface-transformers";
 import { dataScienceTemplate } from "./templates/ml-ai/data-science";
 import { visualizationTemplate } from "./templates/ml-ai/visualization";
+import { mlopsPipelinesTemplate } from "./templates/ai-ml/mlops-pipelines";
+import { modelServingTemplate } from "./templates/ai-ml/model-serving";
+import { ragSystemsTemplate } from "./templates/ai-ml/rag-systems";
+import { featureStoresTemplate } from "./templates/ai-ml/feature-stores";
+import { qiskitCircuitsTemplate } from "./templates/quantum/qiskit-circuits";
+import { quantumSimulatorsTemplate } from "./templates/quantum/quantum-simulators";
+import { variationalAlgorithmsTemplate } from "./templates/quantum/variational-algorithms";
+import { hybridWorkflowsTemplate } from "./templates/quantum/hybrid-workflows";
+import { smartContractIntegrationTemplate } from "./templates/blockchain/smart-contract-integration";
+import { eventIndexerTemplate } from "./templates/blockchain/event-indexer";
+import { walletCustodyTemplate } from "./templates/blockchain/wallet-custody";
+import { consensusSimulationTemplate } from "./templates/blockchain/consensus-sim";
+import { edgeIngestionTemplate } from "./templates/iot/edge-ingestion";
+import { deviceFirmwareTemplate } from "./templates/iot/device-firmware";
+import { digitalTwinsTemplate } from "./templates/iot/digital-twins";
+import { telemetryAnalyticsTemplate } from "./templates/iot/telemetry-analytics";
+import { mpiJobTemplate } from "./templates/hpc/mpi-job";
+import { distributedArraysTemplate } from "./templates/hpc/distributed-arrays";
+import { numbaKernelsTemplate } from "./templates/hpc/numba-kernels";
+import { profilingOptimizationTemplate } from "./templates/hpc/profiling-optimization";
 import { fastApiAdvancedTemplate } from "./templates/web-async/fastapi-advanced";
 import { djangoAsyncTemplate } from "./templates/web-async/django-async";
 import { aiohttpPatternsTemplate } from "./templates/web-async/aiohttp-patterns";
@@ -109,6 +129,26 @@ export class CodeTemplates extends BaseCodeTemplates {
         "ml-ai.huggingface-transformers": huggingfaceTransformersTemplate(),
         "ml-ai.data-science": dataScienceTemplate(),
         "ml-ai.visualization": visualizationTemplate(),
+        "ai-ml.mlops-pipelines": mlopsPipelinesTemplate(),
+        "ai-ml.model-serving": modelServingTemplate(),
+        "ai-ml.rag-systems": ragSystemsTemplate(),
+        "ai-ml.feature-stores": featureStoresTemplate(),
+        "quantum.qiskit-circuits": qiskitCircuitsTemplate(),
+        "quantum.quantum-simulators": quantumSimulatorsTemplate(),
+        "quantum.variational-algorithms": variationalAlgorithmsTemplate(),
+        "quantum.hybrid-workflows": hybridWorkflowsTemplate(),
+        "blockchain.smart-contract-integration": smartContractIntegrationTemplate(),
+        "blockchain.event-indexer": eventIndexerTemplate(),
+        "blockchain.wallet-custody": walletCustodyTemplate(),
+        "blockchain.consensus-sim": consensusSimulationTemplate(),
+        "iot.edge-ingestion": edgeIngestionTemplate(),
+        "iot.device-firmware": deviceFirmwareTemplate(),
+        "iot.digital-twins": digitalTwinsTemplate(),
+        "iot.telemetry-analytics": telemetryAnalyticsTemplate(),
+        "hpc.mpi-job": mpiJobTemplate(),
+        "hpc.distributed-arrays": distributedArraysTemplate(),
+        "hpc.numba-kernels": numbaKernelsTemplate(),
+        "hpc.profiling-optimization": profilingOptimizationTemplate(),
         "web-async.fastapi-advanced": fastApiAdvancedTemplate(),
         "web-async.django-async": djangoAsyncTemplate(),
         "web-async.aiohttp-patterns": aiohttpPatternsTemplate(),

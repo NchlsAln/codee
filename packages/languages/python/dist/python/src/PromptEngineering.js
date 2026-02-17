@@ -44,6 +44,21 @@ class PromptEngineering extends lang_common_1.BasePromptEngineering {
           input: "Upgrade a Python 3.8 service to 3.12",
           output: "Update typing syntax, review deprecations, and add tests for behavior changes.",
         },
+        {
+          task: "mlops",
+          input: "Design a model serving pipeline",
+          output: "Define data contracts, add drift monitoring, and include a rollback strategy.",
+        },
+        {
+          task: "quantum",
+          input: "Prototype a hybrid quantum workflow",
+          output: "Start with simulators, keep circuits shallow, and track shot counts.",
+        },
+        {
+          task: "blockchain",
+          input: "Index smart contract events",
+          output: "Handle chain reorgs, validate confirmations, and persist checkpoints.",
+        },
       ],
       contextHints: [
         "Prefer explicit error handling and narrow exception scopes.",
@@ -56,6 +71,10 @@ class PromptEngineering extends lang_common_1.BasePromptEngineering {
         "Prefer async for IO concurrency and multiprocessing for CPU-bound work.",
         "Document public APIs with type hints and clear docstrings.",
         "Plan migrations with incremental typing and dependency pinning.",
+        "For ML systems, version data, models, and features.",
+        "For IoT pipelines, validate payload schemas and handle device churn.",
+        "For HPC workloads, prefer vectorization and JIT kernels.",
+        "For blockchain integrations, secure keys and handle confirmations.",
       ],
     });
   }

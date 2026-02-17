@@ -49,6 +49,16 @@ export declare const pythonRuntime: {
     throughput: string;
     notes: string[];
   };
+  aiAcceleration: {
+    gpu: string[];
+    inference: string[];
+    distributed: string[];
+  };
+  hpcTooling: {
+    mpi: string[];
+    schedulers: string[];
+    profiling: string[];
+  };
   ffi: {
     c: string[];
     native: string[];

@@ -47,6 +47,26 @@ const tensorflow_workflow_1 = require("./templates/ml-ai/tensorflow-workflow");
 const huggingface_transformers_1 = require("./templates/ml-ai/huggingface-transformers");
 const data_science_1 = require("./templates/ml-ai/data-science");
 const visualization_1 = require("./templates/ml-ai/visualization");
+const mlops_pipelines_1 = require("./templates/ai-ml/mlops-pipelines");
+const model_serving_1 = require("./templates/ai-ml/model-serving");
+const rag_systems_1 = require("./templates/ai-ml/rag-systems");
+const feature_stores_1 = require("./templates/ai-ml/feature-stores");
+const qiskit_circuits_1 = require("./templates/quantum/qiskit-circuits");
+const quantum_simulators_1 = require("./templates/quantum/quantum-simulators");
+const variational_algorithms_1 = require("./templates/quantum/variational-algorithms");
+const hybrid_workflows_1 = require("./templates/quantum/hybrid-workflows");
+const smart_contract_integration_1 = require("./templates/blockchain/smart-contract-integration");
+const event_indexer_1 = require("./templates/blockchain/event-indexer");
+const wallet_custody_1 = require("./templates/blockchain/wallet-custody");
+const consensus_sim_1 = require("./templates/blockchain/consensus-sim");
+const edge_ingestion_1 = require("./templates/iot/edge-ingestion");
+const device_firmware_1 = require("./templates/iot/device-firmware");
+const digital_twins_1 = require("./templates/iot/digital-twins");
+const telemetry_analytics_1 = require("./templates/iot/telemetry-analytics");
+const mpi_job_1 = require("./templates/hpc/mpi-job");
+const distributed_arrays_1 = require("./templates/hpc/distributed-arrays");
+const numba_kernels_1 = require("./templates/hpc/numba-kernels");
+const profiling_optimization_1 = require("./templates/hpc/profiling-optimization");
 const fastapi_advanced_1 = require("./templates/web-async/fastapi-advanced");
 const django_async_1 = require("./templates/web-async/django-async");
 const aiohttp_patterns_1 = require("./templates/web-async/aiohttp-patterns");
@@ -112,6 +132,28 @@ class CodeTemplates extends lang_common_1.BaseCodeTemplates {
         huggingface_transformers_1.huggingfaceTransformersTemplate)(),
         "ml-ai.data-science": (0, data_science_1.dataScienceTemplate)(),
         "ml-ai.visualization": (0, visualization_1.visualizationTemplate)(),
+        "ai-ml.mlops-pipelines": (0, mlops_pipelines_1.mlopsPipelinesTemplate)(),
+        "ai-ml.model-serving": (0, model_serving_1.modelServingTemplate)(),
+        "ai-ml.rag-systems": (0, rag_systems_1.ragSystemsTemplate)(),
+        "ai-ml.feature-stores": (0, feature_stores_1.featureStoresTemplate)(),
+        "quantum.qiskit-circuits": (0, qiskit_circuits_1.qiskitCircuitsTemplate)(),
+        "quantum.quantum-simulators": (0, quantum_simulators_1.quantumSimulatorsTemplate)(),
+        "quantum.variational-algorithms": (0,
+        variational_algorithms_1.variationalAlgorithmsTemplate)(),
+        "quantum.hybrid-workflows": (0, hybrid_workflows_1.hybridWorkflowsTemplate)(),
+        "blockchain.smart-contract-integration": (0,
+        smart_contract_integration_1.smartContractIntegrationTemplate)(),
+        "blockchain.event-indexer": (0, event_indexer_1.eventIndexerTemplate)(),
+        "blockchain.wallet-custody": (0, wallet_custody_1.walletCustodyTemplate)(),
+        "blockchain.consensus-sim": (0, consensus_sim_1.consensusSimulationTemplate)(),
+        "iot.edge-ingestion": (0, edge_ingestion_1.edgeIngestionTemplate)(),
+        "iot.device-firmware": (0, device_firmware_1.deviceFirmwareTemplate)(),
+        "iot.digital-twins": (0, digital_twins_1.digitalTwinsTemplate)(),
+        "iot.telemetry-analytics": (0, telemetry_analytics_1.telemetryAnalyticsTemplate)(),
+        "hpc.mpi-job": (0, mpi_job_1.mpiJobTemplate)(),
+        "hpc.distributed-arrays": (0, distributed_arrays_1.distributedArraysTemplate)(),
+        "hpc.numba-kernels": (0, numba_kernels_1.numbaKernelsTemplate)(),
+        "hpc.profiling-optimization": (0, profiling_optimization_1.profilingOptimizationTemplate)(),
         "web-async.fastapi-advanced": (0, fastapi_advanced_1.fastApiAdvancedTemplate)(),
         "web-async.django-async": (0, django_async_1.djangoAsyncTemplate)(),
         "web-async.aiohttp-patterns": (0, aiohttp_patterns_1.aiohttpPatternsTemplate)(),
